@@ -5,26 +5,24 @@
 
 var threeSum = function(nums) {
   let res = [];
-  let sortedArr = nums.sort((a, b) => a - b);
-
-  for (let i = 0; i < sortedArr.length; i++) {
+  nums.sort((a, b) => a - b);
+  for (let i = 0; i < nums.length; i++) {
     if (i > 0 && nums[i] === nums[i - 1]) {
       continue;
-    } else {
-      let left = i + 1;
-      let right = sortedArr.length - 1;
-      while (left < right) {
-        let target = nums[i] + nums[left] + nums[right];
-        if (target === 0) {
-          res.push([nums[i], nums[left], nums[right]]);
-          left++;
-          while (nums[left] === nums[left - 1] && left < right) {
-            left++;
-          }
-        } else if (target > 0) {
-          right--;
-        } else {
-          left++;
+    }
+    let l = i + 1;
+    let r = nums.length - 1;
+    while (l < r) {
+      let target = nums[i] + nums[l] + nums[r];
+      if (target > 0) {
+        r--;
+      } else if (target < 0) {
+        l++;
+      } else {
+        res.push([nums[i], nums[l], nums[r]]);
+        l++;
+        while (nums[l] == nums[l - 1] && l < r) {
+          l++;
         }
       }
     }

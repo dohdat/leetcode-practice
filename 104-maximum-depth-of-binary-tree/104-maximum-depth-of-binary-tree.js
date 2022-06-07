@@ -12,14 +12,14 @@
  */
 var maxDepth = function(root) {
     if (!root) return 0;
-    const queue = [root];
     let level = 0;
-    while (queue.length !== 0) {
-        const len = queue.length;
+    let q = [root];
+    while (q.length !== 0) {
+        const len = q.length;
         for (let i = 0; i < len; i++) {
-            let node = queue.shift();
-            if (node.left) queue.push(node.left);
-            if (node.right) queue.push(node.right);
+            let node = q.shift();
+            if (node.left) q.push(node.left);
+            if (node.right) q.push(node.right);
         }
         level++;
     }

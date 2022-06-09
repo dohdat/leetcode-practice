@@ -18,8 +18,8 @@ var isSubtree = function(root, subRoot) {
     return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
 };
 
-var isSameTree = function(q, p) {
-    if (!q && !p) return true;
-    if (!q || !p || q.val !== p.val) return false;
-    return isSameTree(q.left, p.left) && isSameTree(q.right, p.right);
+var isSameTree = function(s, t) {
+    if (!s && !t) return true;
+    if (!s || !t || s.val !== t.val) return false;
+    return isSameTree(s.left, t.left) && isSameTree(s.right, t.right);
 };

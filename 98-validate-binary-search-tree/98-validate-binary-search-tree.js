@@ -11,13 +11,11 @@
  * @return {boolean}
  */
 var isValidBST = function(root) {
-    return dfs(root, null, null);
+    return dfs(root, -Infinity, Infinity);
 };
 
-var dfs = function(node, min, max) {
+var dfs = function(node, left, right) {
     if (!node) return true;
-    if ((min !== null && node.val <= min) || (max !== null && node.val >= max)) {
-        return false;
-    }
-    return dfs(node.left, min, node.val) && dfs(node.right, node.val, max);
+    if (!(node.val < right && node.val > left)) return false;
+    return dfs(node.left, left, node.val) && dfs(node.right, node.val, right);
 };

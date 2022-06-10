@@ -14,12 +14,8 @@ var checkRecord = function(s) {
         } else {
             have = 3;
         }
-        if (have === 0) return false;
+        if (have === 0 || map.get('A') >= 2) return false;
     }
 
-    if (map.get('A') >= 2) {
-        return false;
-    } else {
-        return true;
-    }
+    return true;
 };

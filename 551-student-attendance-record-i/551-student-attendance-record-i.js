@@ -17,7 +17,7 @@ var checkRecord = function(s) {
         if (have === 0) return false;
     }
 
-    if (map.get('A') >= 2 || have <= 0) {
+    if (map.get('A') >= 2) {
         return false;
     } else {
         return true;

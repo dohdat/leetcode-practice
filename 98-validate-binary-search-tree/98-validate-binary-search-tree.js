@@ -15,7 +15,9 @@ var isValidBST = function(root) {
 };
 
 var dfs = function(node, left, right) {
-    if (!node) return true;
-    if (!(node.val < right && node.val > left)) return false;
+    if(!node) return true;
+    if (!(node.val > left && node.val < right)) {
+        return false;
+    }
     return dfs(node.left, left, node.val) && dfs(node.right, node.val, right);
 };

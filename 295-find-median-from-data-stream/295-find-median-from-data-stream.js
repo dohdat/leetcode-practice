@@ -6,8 +6,9 @@ var MedianFinder = function() {
  * @param {number} num
  * @return {void}
  */
+
 MedianFinder.prototype.addNum = function(num) {
-    if (!this.arr.length) {
+    if (this.arr.length === 0) {
         this.arr.push(num);
         return;
     }
@@ -15,8 +16,13 @@ MedianFinder.prototype.addNum = function(num) {
     let right = this.arr.length;
     while (left < right) {
         let mid = Math.floor((left + right) / 2);
-        num > this.arr[mid] ? (left = mid + 1) : (right = mid);
+        if (num < this.arr[mid]) {
+            left = mid + 1;
+        } else {
+            right = mid;
+        }
     }
+
     this.arr.splice(left, 0, num);
 };
 
@@ -25,10 +31,11 @@ MedianFinder.prototype.addNum = function(num) {
  */
 MedianFinder.prototype.findMedian = function() {
     let mid = Math.floor(this.arr.length / 2);
-    if (this.arr.length % 2 === 0) {
-        return (this.arr[mid] + this.arr[mid - 1]) / 2;
-    } else {
+
+    if (this.arr.length % 2 !== 0) {
         return this.arr[mid];
+    } else {
+        return (this.arr[mid] + this.arr[mid - 1]) / 2;
     }
 };
 

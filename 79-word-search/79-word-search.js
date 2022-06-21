@@ -4,33 +4,30 @@
  * @return {boolean}
  */
 var exist = function(board, word) {
-    let row = board.length;
-    let col = board[0].length;
+    let rows = board.length;
+    let cols = board[0].length;
     let res = false;
-
-    function backtrack(r, c, i) {
-        //if i index is equal to word length, which meant we found our word
+    function backtrack(i, r, c) {
         if (i === word.length) {
             res = true;
             return;
         }
-        //check if we are out of bounds
-        if (r < 0 || c < 0 || r >= row || c >= col || word[i] !== board[r][c] || !board[r][c]) {
-            return;
-        }
-        // mark our path so we dont go back and forth
+        if (r < 0 || c < 0 || r >= rows || c >= cols || board[r][c] !== word[i] || !board[r][c]) return;
+
         board[r][c] = null;
-        backtrack(r + 1, c, i + 1) || backtrack(r - 1, c, i + 1) || backtrack(r, c + 1, i + 1) || backtrack(r, c - 1, i + 1);
-        board[r][c] = word[i]; //reset our board, for backtracking
+        backtrack(i + 1, r - 1, c) || backtrack(i + 1, r + 1, c) || backtrack(i + 1, r, c - 1) || backtrack(i + 1, r, c + 1);
+        board[r][c] = word[i];
     }
 
-    for (let r = 0; r < row; r++) {
-        for (let c = 0; c < col; c++) {
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
             if (board[r][c] === word[0]) {
-                backtrack(r, c, 0);
-                if (res) return true;
+                if (backtrack(0, r, c)) {
+                    res = true;
+                    return res;
+                }
             }
         }
     }
-    return false;
+    return res;
 };

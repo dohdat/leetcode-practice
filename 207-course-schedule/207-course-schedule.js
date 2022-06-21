@@ -19,11 +19,6 @@ var canFinish = function(numCourses, prerequisites) {
             return false;
         }
 
-        // if (preMap.get(crs) !== undefined) {
-        //     if (preMap.get(crs).length === 0) {
-        //         return true;
-        //     }
-        // }
         visited.add(crs);
 
         for (let i = 0; i < preMap.get(crs).length; i++) {

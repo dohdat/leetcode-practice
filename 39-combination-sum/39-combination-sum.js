@@ -5,21 +5,20 @@
  */
 var combinationSum = function(candidates, target) {
     let res = [];
-    function backtrack(i, cur, total) {
+    function backtrack(i, path, total) {
         if (total === target) {
-            res.push([...cur]);
+            res.push([...path]);
             return;
         }
-        if (i >= candidates.length || total > target) {
+        if (total > target || i >= candidates.length) {
             return;
         }
-        //first case: includes the candidates[i]
-        //important do not increase i index
-        cur.push(candidates[i]);
-        backtrack(i, cur, total + candidates[i]);
-        cur.pop();
-        //second case: do not includes candidates[i], but we increase the i index
-        backtrack(i + 1, cur, total);
+        //1st case: track if we can use this el 
+        path.push(candidates[i]);
+        backtrack(i, path, total + candidates[i]);
+        path.pop();
+        //2nd case: track if we cannot use this el
+        backtrack(i + 1, path, total);
     }
 
     backtrack(0, [], 0);

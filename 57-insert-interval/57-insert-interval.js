@@ -9,12 +9,12 @@ var insert = function(intervals, newInterval) {
     let prev = intervals[0];
     let res = [prev];
     for (let i = 0; i < intervals.length; i++) {
-        let cur = intervals[i];
-        if (cur[0] <= prev[1]) {
-            prev[1] = Math.max(cur[1], prev[1]);
+        let c = intervals[i];
+        if (c[0] <= prev[1]) {
+            prev[1] = Math.max(prev[1], c[1]);
         } else {
-            res.push(cur);
-            prev = cur;
+            res.push(c);
+            prev = c;
         }
     }
     return res;

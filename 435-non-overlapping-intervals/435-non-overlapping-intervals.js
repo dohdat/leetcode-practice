@@ -7,11 +7,11 @@ var eraseOverlapIntervals = function(intervals) {
     let prev = intervals[0];
     let res = 0;
     for (let i = 1; i < intervals.length; i++) {
-        let cur = intervals[i];
-        if (cur[0] < prev[1]) {
+        let c = intervals[i];
+        if (c[0] < prev[1]) {
             res++;
         } else {
-            prev = cur;
+            prev = c;
         }
     }
     return res;

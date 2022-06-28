@@ -6,22 +6,20 @@
 var maxSlidingWindow = function(nums, k) {
   let res = [];
   let q = [];
-  let left = 0;
-  let right = 0;
+  let l = 0;
+  let r = 0;
 
-  while (right < nums.length) {
-    while (q.length && nums[q[q.length - 1]] < nums[right]) {
+  while (r < nums.length) {
+    while (q && nums[q[q.length - 1]] < nums[r]) {
       q.pop();
     }
-    q.push(right);
-    if (left > q[0]) {
-      q.shift();
-    }
-    if (right + 1 >= k) {
+    q.push(r);
+    if (l > q[0]) q.shift();
+    if (r + 1 >= k) {
       res.push(nums[q[0]]);
-      left++;
+      l++;
     }
-    right++;
+    r++;
   }
   return res;
 };

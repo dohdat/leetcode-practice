@@ -19,9 +19,8 @@ var networkDelayTime = function(times, n, k) {
         }
     }
     let res = 0;
-
-    for (let i = 1; i <= n; i++) {
-        res = Math.max(res, time[i]);
+    for (let i = 1; i < time.length; i++) {
+        res = Math.max(time[i], res);
     }
     return res === Infinity ? -1 : res;
 };

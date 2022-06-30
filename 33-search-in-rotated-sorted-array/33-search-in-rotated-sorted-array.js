@@ -9,7 +9,7 @@ var search = function(nums, target) {
     while (left <= right) {
         let mid = Math.floor((left + right) / 2);
         if (target === nums[mid]) return mid;
-        //         left sorted potion?
+        //left sorted potion?
         if (nums[mid] >= nums[left]) {
             //search right if target > mid val
             if (target > nums[mid] || target < nums[left]) {

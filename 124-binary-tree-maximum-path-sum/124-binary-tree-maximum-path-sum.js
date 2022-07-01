@@ -8,9 +8,7 @@ var maxPathSum = function(root) {
         if (!node) return 0;
         let leftSum = dfs(node.left);
         let rightSum = dfs(node.right);
-        //calculate max WITH Split
         max = Math.max(max, node.val + leftSum + rightSum);
-        //calculate max WITHOUT the Split
         return Math.max(0, node.val + leftSum, node.val + rightSum);
     }
     dfs(root);

@@ -13,9 +13,8 @@
 var isValidBST = function(root) {
     return dfs(root, -Infinity, Infinity);
 };
-
-var dfs = function(node, left, right) {
+function dfs(node, left, right) {
     if (!node) return true;
     if (!(node.val > left && node.val < right)) return false;
     return dfs(node.left, left, node.val) && dfs(node.right, node.val, right);
-};
+}

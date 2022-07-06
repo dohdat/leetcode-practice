@@ -12,13 +12,14 @@
  * @return {number}
  */
 var kthSmallest = function(root, k) {
-    let res = null;
+    let res = 0;
     function dfs(node) {
         if (!node) return false;
         node.left && dfs(node.left);
-        if (k === 1) res = node.val;
+        if (k === 1) {
+            res = node.val;
+        }
         k--;
-
         node.right && dfs(node.right);
     }
     dfs(root);

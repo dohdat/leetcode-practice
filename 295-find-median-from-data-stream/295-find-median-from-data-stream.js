@@ -6,8 +6,9 @@ var MedianFinder = function() {
  * @param {number} num
  * @return {void}
  */
-
 MedianFinder.prototype.addNum = function(num) {
+    //use binary search to find the position of num of arr, then use splice method to add to arr this.arr.splice(left, 0, num)
+    //push into arr if the arr is empty;
     if (this.arr.length === 0) {
         this.arr.push(num);
         return;
@@ -16,13 +17,12 @@ MedianFinder.prototype.addNum = function(num) {
     let right = this.arr.length;
     while (left < right) {
         let mid = Math.floor((left + right) / 2);
-        if (num < this.arr[mid]) {
+        if (this.arr[mid] > num) {
             left = mid + 1;
         } else {
             right = mid;
         }
     }
-
     this.arr.splice(left, 0, num);
 };
 
@@ -30,12 +30,13 @@ MedianFinder.prototype.addNum = function(num) {
  * @return {number}
  */
 MedianFinder.prototype.findMedian = function() {
-    let mid = Math.floor(this.arr.length / 2);
-
-    if (this.arr.length % 2 !== 0) {
-        return this.arr[mid];
-    } else {
+    let left = 0;
+    let right = this.arr.length;
+    let mid = Math.floor((left + right) / 2);
+    if (this.arr.length % 2 === 0) {
         return (this.arr[mid] + this.arr[mid - 1]) / 2;
+    } else {
+        return this.arr[mid];
     }
 };
 

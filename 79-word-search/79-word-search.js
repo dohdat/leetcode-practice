@@ -26,7 +26,6 @@ var exist = function(board, word) {
         for (let c = 0; c < cols; c++) {
             if (board[r][c] === word[0]) {
                 if (backtrack(0, r, c)) {
-                    res = true;
                     return res;
                 }
             }

@@ -52,8 +52,8 @@ var ladderLength = function(beginWord, endWord, wordList) {
                 return res + 1;
             }
             //consider all roots possible from this word
-            for (let i = 0; i < w.length; i++) {
-                let wordRoot = w.substring(0, i) + '*' + w.substring(i + 1);
+            for (let j = 0; j < w.length; j++) {
+                let wordRoot = w.substring(0, j) + '*' + w.substring(j + 1);
                 //consider all words that have the same root
                 for (let nei of map.get(wordRoot) || []) {
                     //if this word has been visited before, continue, else consider it

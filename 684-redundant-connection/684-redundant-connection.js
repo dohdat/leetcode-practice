@@ -1,3 +1,4 @@
+//In undirected graph, use Union Find algo to detect a cycle.
 var findRedundantConnection = function(edges) {
     let par = [];
     for (let i = 0; i < edges.length + 1; i++) {

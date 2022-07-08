@@ -27,7 +27,7 @@ var ladderLength = function(beginWord, endWord, wordList) {
         'ho*' -> [hot]
     */
     let map = new Map();
-
+    // '*ot' -> [hot, dot, lot]
     for (let el = 0; el < wordList.length; el++) {
         let word = wordList[el];
         for (let i = 0; i < word.length; i++) {
@@ -45,7 +45,8 @@ var ladderLength = function(beginWord, endWord, wordList) {
     let visited = new Set();
     while (q.length > 0) {
         const neighbors = [];
-        while (q.length > 0) {
+        let len = q.length;
+        for (let i = 0; i < len; i++) {
             let w = q.pop();
             if (w === endWord) {
                 return res + 1;

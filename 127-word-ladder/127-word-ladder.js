@@ -44,7 +44,6 @@ var ladderLength = function(beginWord, endWord, wordList) {
     let res = 0;
     let visited = new Set();
     while (q.length > 0) {
-        const neighbors = [];
         let len = q.length;
         for (let i = 0; i < len; i++) {
             let w = q.shift();
@@ -55,11 +54,12 @@ var ladderLength = function(beginWord, endWord, wordList) {
             for (let j = 0; j < w.length; j++) {
                 let wordRoot = w.substring(0, j) + '*' + w.substring(j + 1);
                 //consider all words that have the same root
-                for (let nei of map.get(wordRoot) || []) {
+                let visiting = map.get(wordRoot) || [];
+                for (let nei of visiting) {
                     //if this word has been visited before, continue, else consider it
                     if (!visited.has(nei)) {
                         visited.add(nei);
-                        q.push(nei)
+                        q.push(nei);
                     }
                 }
             }

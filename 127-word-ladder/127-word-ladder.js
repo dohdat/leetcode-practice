@@ -59,12 +59,11 @@ var ladderLength = function(beginWord, endWord, wordList) {
                     //if this word has been visited before, continue, else consider it
                     if (!visited.has(nei)) {
                         visited.add(nei);
-                        neighbors.push(nei);
+                        q.push(nei)
                     }
                 }
             }
         }
-        q = neighbors;
         res++;
     }
     return 0;

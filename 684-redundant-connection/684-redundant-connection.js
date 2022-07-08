@@ -13,7 +13,13 @@ var findRedundantConnection = function(edges) {
             return (par[n] = find(par[n]));
         }
     }
-    for (let [a, b] of edges)
-        if (find(a) === find(b)) return [a, b];
-        else union(a, b);
+    for (let [n1, n2] of edges) {
+        if (find(n1) === find(n2)) {
+            return [n1, n2];
+        } else {
+            union(n1, n2);
+        }
+    }
 };
+//Time Complexity: O(N) where N is the length of edges
+//Space Complexity: O(N) for par and the recursion stack

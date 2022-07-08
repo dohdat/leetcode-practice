@@ -1,26 +1,38 @@
-//In undirected graph, use Union Find algo to detect a cycle.
 var findRedundantConnection = function(edges) {
-    let par = [];
+    let parent = [];
+    let rank = new Array(edges.length + 1).fill(1);
     for (let i = 0; i < edges.length + 1; i++) {
-        par.push(i);
+        parent.push(i);
     }
-    function union(n1, n2) {
-        return (par[find(n2)] = find(n1));
-    }
+
     function find(n) {
-        if (n === par[n]) {
-            return par[n];
-        } else {
-            return (par[n] = find(par[n]));
+        let p = parent[n];
+        while (p !== parent[p]) {
+            p = parent[p];
         }
+        return p;
     }
+    //return false if cant complete
+    function union(n1, n2) {
+        let p1 = find(n1);
+        let p2 = find(n2);
+        if (p1 === p2) {
+            return false;
+        }
+        if (rank[p1] > rank[p2]) {
+            parent[p2] = p1;
+            rank[p1] += rank[p2];
+        } else {
+            parent[p1] = p2;
+            rank[p2] += rank[p1];
+        }
+        return true;
+    }
+
     for (let [n1, n2] of edges) {
-        if (find(n1) === find(n2)) {
+        if (!union(n1, n2)) {
             return [n1, n2];
-        } else {
-            union(n1, n2);
         }
     }
+    return [];
 };
-//Time Complexity: O(N) where N is the length of edges
-//Space Complexity: O(N) for par and the recursion stack

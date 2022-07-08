@@ -47,7 +47,7 @@ var ladderLength = function(beginWord, endWord, wordList) {
         const neighbors = [];
         let len = q.length;
         for (let i = 0; i < len; i++) {
-            let w = q.pop();
+            let w = q.shift();
             if (w === endWord) {
                 return res + 1;
             }

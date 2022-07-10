@@ -5,27 +5,28 @@
 var solve = function(board) {
   let rows = board.length;
   let cols = board[0].length;
-  function capture(r, c) {
-    if (r < 0 || c < 0 || r === rows || c === cols || board[r][c] !== "O") {
+  function dfs(r, c) {
+    //check for boundaries
+    if (r < 0 || r >= rows || c < 0 || c >= cols || board[r][c] !== "O") {
       return;
     }
     board[r][c] = "T";
-    capture(r + 1, c);
-    capture(r - 1, c);
-    capture(r, c + 1);
-    capture(r, c - 1);
+    dfs(r - 1, c);
+    dfs(r + 1, c);
+    dfs(r, c + 1);
+    dfs(r, c - 1);
   }
-  //capture unsurrounded regions (change O to T)
-  for (r = 0; r < rows; r++) {
-    for (c = 0; c < cols; c++) {
-      if (r === 0 || r === rows - 1 || c === 0 || c === cols - 1)
-        if (board[r][c] === "O") {
-          capture(r, c);
-        }
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      if (r === 0 || r === rows - 1 || c === 0 || c === cols - 1) {
+        //mark all these border lines to T
+        dfs(r, c);
+      }
     }
   }
-  for (r = 0; r < rows; r++) {
-    for (c = 0; c < cols; c++) {
+
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
       if (board[r][c] === "O") {
         board[r][c] = "X";
       }
@@ -34,4 +35,5 @@ var solve = function(board) {
       }
     }
   }
+  
 };

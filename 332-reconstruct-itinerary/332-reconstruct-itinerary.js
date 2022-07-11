@@ -3,7 +3,7 @@
  * @return {string[]}
  */
 var findItinerary = function(tickets) {
-    tickets.sort();
+    // tickets.sort();
     let res = [];
     let preMap = new Map();
     for (let [src, dst] of tickets) {

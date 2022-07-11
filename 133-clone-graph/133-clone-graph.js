@@ -11,19 +11,14 @@
  * @return {Node}
  */
 var cloneGraph = function(node) {
-    if (node === null) {
-        return null;
-    }
-    const hash = new Map();
-    function clone(root) {
-        // If our graph hasn't already copied the input node
-        if (!hash.has(root.val)) {
-            // Create new copy node (+ reference in map)
-            hash.set(root.val, new Node(root.val));
-            // Recursively clone neighbors
-            hash.get(root.val).neighbors = root.neighbors.map((nei) => clone(nei));
+    if (!node) return null;
+    let map = new Map();
+    function clone(cur) {
+        if (!map.has(cur.val)) {
+            map.set(cur.val, new Node(cur.val));
+            map.get(cur.val).neighbors = cur.neighbors.map((nei) => clone(nei));
         }
-        return hash.get(root.val);
+        return map.get(cur.val);
     }
     return clone(node);
 };

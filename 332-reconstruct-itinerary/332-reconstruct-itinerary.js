@@ -16,8 +16,8 @@ var findItinerary = function(tickets) {
             let c = visiting.shift();
             dfs(c);
         }
-        res.unshift(node);
+        res.push(node);
     }
     dfs('JFK');
-    return res;
+    return res.reverse();
 };

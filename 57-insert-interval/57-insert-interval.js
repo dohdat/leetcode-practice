@@ -3,6 +3,7 @@
  * @param {number[]} newInterval
  * @return {number[][]}
  */
+//[ [ 1, 3 ], [ 2, 5 ], [ 6, 9 ] ]
 var insert = function(intervals, newInterval) {
     intervals.push(newInterval);
     intervals.sort((a, b) => a[0] - b[0]);

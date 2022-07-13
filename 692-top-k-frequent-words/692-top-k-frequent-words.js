@@ -15,7 +15,7 @@ var topKFrequent = function(words, k) {
         }
         return b[1] - a[1];
     });
-    console.log(sorted)
+
     for (let i = 0; i < k; i++) {
         res.push(sorted[i][0]);
     }

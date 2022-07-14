@@ -7,7 +7,7 @@
  * @return {number}
  */
 var findCheapestPrice = function(n, flights, src, dst, k) {
-    let time = new Array(n + 1).fill(Infinity);
+    let time = new Array(n).fill(Infinity);
     time[src] = 0;
     for (let i = 0; i <= k; i++) {
         let temp = time.slice();

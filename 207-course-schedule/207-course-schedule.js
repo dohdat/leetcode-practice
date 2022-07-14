@@ -1,25 +1,18 @@
 var canFinish = function(numCourses, prerequisites) {
-    let adjList = new Map();
+    let preMap = new Map();
     let visited = new Set();
-    for (let i = 0; i < numCourses; i++) {
-        adjList.set(i, []);
+    for (let [crs, pre] of prerequisites) {
+        preMap.set(crs, (preMap.get(crs) || []).concat(pre));
     }
-    prerequisites.forEach(([crs, pre]) => {
-        if (adjList.has(crs)) {
-            adjList.get(crs).push(pre);
-        } else {
-            adjList.set(crs, [pre]);
-        }
-    });
-    function dfs(crs) {
-        if (visited.has(crs)) return false;
-        visited.add(crs);
-        for (let i = 0; i < adjList.get(crs).length; i++) {
-            let c = adjList.get(crs)[i];
+    function dfs(node) {
+        if (visited.has(node)) return false;
+        visited.add(node);
+        let visiting = preMap.get(node);
+        while (visiting && visiting.length > 0) {
+            let c = visiting.shift();
             if (!dfs(c)) return false;
         }
-        visited.delete(crs);
-        adjList.set(crs, []);
+        visited.delete(node);
         return true;
     }
     for (let i = 0; i < numCourses; i++) {

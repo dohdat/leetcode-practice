@@ -3,10 +3,11 @@
  * @return {string[]}
  */
 var findItinerary = function(tickets) {
-    let res = [];
     let preMap = new Map();
-    for (let [src, dst] of tickets) {
-        preMap.set(src, (preMap.get(src) || []).concat(dst).sort());
+    let visited = new Set();
+    let res = [];
+    for (let [from, to] of tickets) {
+        preMap.set(from, (preMap.get(from) || []).concat(to).sort());
     }
 
     function dfs(node) {
@@ -17,6 +18,7 @@ var findItinerary = function(tickets) {
         }
         res.push(node);
     }
+
     dfs('JFK');
     return res.reverse();
 };

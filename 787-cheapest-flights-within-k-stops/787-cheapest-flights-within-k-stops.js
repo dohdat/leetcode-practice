@@ -7,19 +7,15 @@
  * @return {number}
  */
 var findCheapestPrice = function(n, flights, src, dst, k) {
-    let price = new Array(n).fill(Infinity);
-    price[src] = 0;
-    for (let i = 0; i < k + 1; i++) {
-        let temp = price.slice();
+    let time = new Array(n + 1).fill(Infinity);
+    time[src] = 0;
+    for (let i = 0; i <= k; i++) {
+        let temp = time.slice();
         for (let [from, to, cost] of flights) {
-            // we need to start from src
-            if (price[from] === Infinity) {
-                continue;
-            }
-            temp[to] = Math.min(temp[to], price[from] + cost);
+            if (time[from] === Infinity) continue;
+            temp[to] = Math.min(temp[to], time[from] + cost);
         }
-        price = temp;
+        time = temp;
     }
-
-    return price[dst] === Infinity ? -1 : price[dst];
+    return time[dst] === Infinity ? -1 : time[dst];
 };

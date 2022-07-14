@@ -1,26 +1,16 @@
-/**
- * @param {number[][]} times
- * @param {number} n
- * @param {number} k
- * @return {number}
- */
 var networkDelayTime = function(times, n, k) {
-    const time = [];
-    for (let i = 0; i <= n; i++) {
-        time.push(Infinity);
-    }
+    let time = new Array(n + 1).fill(Infinity);
     time[k] = 0;
     for (let i = 0; i < n; i++) {
-        for (let [u, v, w] of times) {
-            if (time[u] === Infinity) continue;
-            if (time[v] > time[u] + w) {
-                time[v] = time[u] + w;
-            }
+        let temp = time.slice();
+        for (let [from, to, cost] of times) {
+            if (time[from] === Infinity) continue;
+            temp[to] = Math.min(temp[to], time[from] + cost);
         }
+        time = temp;
     }
-    let res = 0;
-    for (let i = 1; i < time.length; i++) {
-        res = Math.max(time[i], res);
-    }
+    //remove first element since we never use it
+    time.shift();
+    let res = Math.max(...time);
     return res === Infinity ? -1 : res;
 };

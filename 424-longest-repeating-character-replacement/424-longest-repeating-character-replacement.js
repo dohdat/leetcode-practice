@@ -16,7 +16,7 @@ var characterReplacement = function(s, k) {
             map.set(lc, map.get(lc) - 1);
             left++;
         }
-        max = Math.max(right - left + 1, max);
+        max = Math.max(max, right - left + 1);
     }
     return max;
 };

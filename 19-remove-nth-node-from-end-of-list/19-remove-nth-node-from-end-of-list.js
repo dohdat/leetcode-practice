@@ -22,6 +22,7 @@ var removeNthFromEnd = function(head, n) {
         left = left.next;
         right = right.next;
     }
+    //delete 
     left.next = left.next.next;
     return dummy.next;
 };

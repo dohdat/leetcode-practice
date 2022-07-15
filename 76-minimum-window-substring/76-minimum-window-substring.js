@@ -5,9 +5,8 @@
  */
 var minWindow = function(s, t) {
     let countT = new Map();
-    for (let i = 0; i < t.length; i++) {
-        let c = t[i];
-        countT.set(c, 1 + (countT.get(c) || 0));
+    for (let i of t) {
+        countT.set(i, 1 + (countT.get(i) || 0));
     }
     let window = new Map();
     let have = 0;
@@ -21,6 +20,7 @@ var minWindow = function(s, t) {
         if (window.has(c) && window.get(c) === countT.get(c)) {
             have++;
         }
+
         while (have === need) {
             if (right - left + 1 < resLen) {
                 res = s.substring(left, right + 1);

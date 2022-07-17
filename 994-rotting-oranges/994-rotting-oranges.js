@@ -20,19 +20,15 @@ var orangesRotting = function(grid) {
       }
     }
   }
-
-  if (!fresh) return 0;
-
+  if (fresh === 0) return 0;
   let directions = [[1, 0], [-1, 0], [0, 1], [0, -1]];
-
   while (q.length && fresh) {
     let len = q.length;
-    for (i = 0; i < len; i++) {
+    for (let i = 0; i < len; i++) {
       let [r, c] = q.shift();
       for (let [dr, dc] of directions) {
         let row = dr + r;
         let col = dc + c;
-        //if out of bounds and not fresh, skip
         if (
           row < 0 ||
           row >= rows ||
@@ -42,17 +38,12 @@ var orangesRotting = function(grid) {
         ) {
           continue;
         }
-
-        //if in bounds and fresh, make rotten
-
         grid[row][col] = 2;
         q.push([row, col]);
         fresh--;
       }
     }
-    //increment time by 1
     time++;
   }
-  //return time if fresh is 0 else -1 if we cannot make everything rotten
   return fresh === 0 ? time : -1;
 };

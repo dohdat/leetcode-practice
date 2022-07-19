@@ -1,4 +1,15 @@
-//Fast and slow pointers algo
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
 var hasCycle = function(head) {
     let slow = head;
     let fast = head;
@@ -9,6 +20,3 @@ var hasCycle = function(head) {
     }
     return false;
 };
-
-// Time Complexity: O(n)
-// Space Complexity: O(1)

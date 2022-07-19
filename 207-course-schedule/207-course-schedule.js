@@ -1,9 +1,15 @@
+/**
+ * @param {number} numCourses
+ * @param {number[][]} prerequisites
+ * @return {boolean}
+ */
 var canFinish = function(numCourses, prerequisites) {
     let preMap = new Map();
     let visited = new Set();
     for (let [crs, pre] of prerequisites) {
         preMap.set(crs, (preMap.get(crs) || []).concat(pre));
     }
+
     function dfs(node) {
         if (visited.has(node)) return false;
         visited.add(node);

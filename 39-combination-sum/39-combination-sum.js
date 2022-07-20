@@ -5,18 +5,18 @@
  */
 var combinationSum = function(candidates, target) {
     let res = [];
-    function backtrack(i, path, curSum) {
-        if (curSum === target) {
-            res.push(path.slice());
+    function backtrack(i, path, total) {
+        if (total === target) {
+            res.push([...path]);
             return;
         }
-        if (i >= candidates.length || curSum > target) {
+        if (total > target || i >= candidates.length) {
             return;
         }
         path.push(candidates[i]);
-        backtrack(i, path, curSum + candidates[i]);
+        backtrack(i, path, total + candidates[i]);
         path.pop();
-        backtrack(i + 1, path, curSum);
+        backtrack(i + 1, path, total);
     }
     backtrack(0, [], 0);
     return res;

@@ -9,14 +9,11 @@ var findWords = function(board, words) {
     let res = new Set();
     let visited = new Array(rows).fill(false).map(() => new Array(cols).fill(false));
 
-    //Trie Implementation
     function TrieNode() {
         this.children = new Map();
         this.end = false;
     }
-
     let root = new TrieNode();
-
     function add(word) {
         let cur = root;
         for (let c of word) {
@@ -37,17 +34,16 @@ var findWords = function(board, words) {
         if (r < 0 || r >= rows || c < 0 || c >= cols || visited[r][c] || !node.children.get(board[r][c])) {
             return;
         }
-
-        word += board[r][c];
         visited[r][c] = true;
+        word += board[r][c];
         node = node.children.get(board[r][c]);
-        if (node.end) res.add(word);
-
-        dfs(r + 1, c, node, word);
+        if (node.end) {
+            res.add(word);
+        }
         dfs(r - 1, c, node, word);
-        dfs(r, c + 1, node, word);
+        dfs(r + 1, c, node, word);
         dfs(r, c - 1, node, word);
-        //backtrack
+        dfs(r, c + 1, node, word);
         visited[r][c] = false;
     }
 

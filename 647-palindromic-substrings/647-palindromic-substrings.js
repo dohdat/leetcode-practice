@@ -3,13 +3,13 @@
  * @return {number}
  */
 var countSubstrings = function(s) {
-    let res = [];
+    let res = 0;
     let resLen = 0;
     let len = s.length;
 
     function expand(l, r) {
         while (l >= 0 && r < len && s[l] === s[r]) {
-            res.push(s.substring(l, r + 1));
+            res++;
             l--;
             r++;
         }
@@ -18,5 +18,5 @@ var countSubstrings = function(s) {
         expand(i, i);
         expand(i, i + 1);
     }
-    return res.length;
+    return res;
 };

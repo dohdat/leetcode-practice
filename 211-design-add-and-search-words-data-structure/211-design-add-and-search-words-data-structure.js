@@ -19,6 +19,7 @@ WordDictionary.prototype.search = function(word) {
     let len = word.length;
     if (!this.map.has(len)) return false;
     let words = this.map.get(len);
+
     for (let i = 0; i < words.length; i++) {
         let match = true;
         for (let j = 0; j < words[i].length; j++) {
@@ -27,11 +28,8 @@ WordDictionary.prototype.search = function(word) {
                 break;
             }
         }
-        if (match) {
-            return true;
-        }
+        if (match) return true;
     }
-
     return false;
 };
 

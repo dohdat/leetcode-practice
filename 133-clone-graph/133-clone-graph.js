@@ -14,13 +14,13 @@ var cloneGraph = function(node) {
     if (node === null) {
         return null;
     }
-    const map = new Map();
+    let hash = new Map();
     function clone(root) {
-        if (!map.has(root.val)) {
-            map.set(root.val, new Node(root.val));
-            map.get(root.val).neighbors = root.neighbors.map((nei) => clone(nei));
+        if (!hash.get(root.val)) {
+            hash.set(root.val, new Node(root.val));
+            hash.get(root.val).neighbors = root.neighbors.map((i) => clone(i));
         }
-        return map.get(root.val);
+        return hash.get(root.val);
     }
     return clone(node);
 };

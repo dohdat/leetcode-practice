@@ -1,26 +1,28 @@
 var isValidSudoku = function(board) {
-    const rows = new Array(9).fill().map(() => new Set());
-    const cols = new Array(9).fill().map(() => new Set());
-    const squares = new Array(9).fill().map(() => new Set());
+    let rowsLen = board.length;
+    let colsLen = board[0].length;
+    const rows = new Array(rowsLen).fill().map(() => new Set());
+    const cols = new Array(colsLen).fill().map(() => new Set());
+    const squares = new Array(colsLen).fill().map(() => new Set());
 
-    for (let i = 0; i < 9; i++) {
-        for (let j = 0; j < 9; j++) {
-            if (board[i][j] === '.') continue;
+    for (let r = 0; r < rowsLen; r++) {
+        for (let c = 0; c < colsLen; c++) {
+            if (board[r][c] === '.') continue;
 
-            const val = board[i][j];
+            let cur = board[r][c];
 
             // get square (0-8)
-            const squareIndex = Math.floor(i / 3) * 3 + Math.floor(j / 3);
+            const squareIndex = Math.floor(r / 3) * 3 + Math.floor(c / 3);
 
             // no duplicate entries
-            if (rows[i].has(val) || cols[j].has(val) || squares[squareIndex].has(val)) {
+            if (rows[r].has(cur) || cols[c].has(cur) || squares[squareIndex].has(cur)) {
                 return false;
             }
 
             // add number to sets
-            rows[i].add(val);
-            cols[j].add(val);
-            squares[squareIndex].add(val);
+            rows[r].add(cur);
+            cols[c].add(cur);
+            squares[squareIndex].add(cur);
         }
     }
 

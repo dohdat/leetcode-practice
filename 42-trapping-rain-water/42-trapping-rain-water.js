@@ -27,3 +27,6 @@ var trap = function(height) {
     }
     return res;
 };
+
+//Time Complexity: O(n)
+//Space: O(1)

@@ -10,18 +10,12 @@ var trap = function(height) {
     let res = 0;
     while (left < right) {
         if (height[left] < height[right]) {
-            if (height[left] >= leftMax) {
-                leftMax = height[left];
-            } else {
-                res += leftMax - height[left];
-            }
+            leftMax = Math.max(height[left], leftMax);
+            res += leftMax - height[left];
             left++;
         } else {
-            if (height[right] >= rightMax) {
-                rightMax = height[right];
-            } else {
-                res += rightMax - height[right];
-            }
+            rightMax = Math.max(height[right], rightMax);
+            res += rightMax - height[right];
             right--;
         }
     }

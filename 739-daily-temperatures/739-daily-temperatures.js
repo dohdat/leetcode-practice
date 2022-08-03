@@ -2,6 +2,8 @@
  * @param {number[]} temperatures
  * @return {number[]}
  */
+
+//monotonic decreasing stack
 var dailyTemperatures = function(temperatures) {
     let res = new Array(temperatures.length).fill(0);
     let stack = [];

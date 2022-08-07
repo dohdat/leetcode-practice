@@ -1,14 +1,32 @@
-<mxfile host="app.diagrams.net" modified="2022-08-07T23:21:38.249Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36" etag="O14NdyYG9JL1pflZ08B8" version="20.2.3" type="github">
+<mxfile host="app.diagrams.net" modified="2022-08-07T23:27:48.561Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36" etag="Z-5_9ci0VaYNB0E9SM-z" version="20.2.3" type="github">
   <diagram id="Zi-IdDZvf-XGHymGtbge" name="Page-1">
-    <mxGraphModel dx="1552" dy="1903" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1435" dy="1769" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="2jC8lsVwugVBiCHZB-My-1" value="Functional Requirements:&lt;br&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Real-time messaging&lt;br&gt;Online Status&lt;br&gt;Media uploads&lt;br&gt;Read receipts&lt;br&gt;Notifications&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1" vertex="1" parent="1">
+        <mxCell id="2jC8lsVwugVBiCHZB-My-1" value="Functional Requirements:&lt;br&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Real-time messaging&lt;br&gt;Online Status&lt;br&gt;Media uploads&lt;br&gt;Read receipts&lt;br&gt;Notifications&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1" parent="1" vertex="1">
           <mxGeometry x="5" y="-15" width="170" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="2jC8lsVwugVBiCHZB-My-2" value="&lt;b&gt;Non-functional Requirements:&lt;/b&gt;&lt;br&gt;Low latency&lt;br&gt;High Volume&lt;br&gt;Reliable&amp;nbsp;&lt;br&gt;Secure" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+        <mxCell id="2jC8lsVwugVBiCHZB-My-2" value="&lt;b&gt;Non-functional Requirements:&lt;/b&gt;&lt;br&gt;Low latency&lt;br&gt;High Volume&lt;br&gt;Reliable&amp;nbsp;&lt;br&gt;Secure" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="-10" y="85" width="200" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="vfJ7Y360fpqIS0XEaNpH-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="vfJ7Y360fpqIS0XEaNpH-1" target="vfJ7Y360fpqIS0XEaNpH-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vfJ7Y360fpqIS0XEaNpH-1" value="User" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry y="240" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="vfJ7Y360fpqIS0XEaNpH-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="vfJ7Y360fpqIS0XEaNpH-2" target="vfJ7Y360fpqIS0XEaNpH-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vfJ7Y360fpqIS0XEaNpH-2" value="User" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry y="410" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="vfJ7Y360fpqIS0XEaNpH-3" value="API Server" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="340" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="vfJ7Y360fpqIS0XEaNpH-6" value="&lt;b&gt;Long-Pulling:&lt;/b&gt;&lt;br&gt;Maintain open connection with the servers. &lt;br&gt;Wait until the header has a message before responding" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-50" y="530" width="320" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

@@ -1,1 +1,16 @@
-<mxfile host="app.diagrams.net" modified="2022-08-07T23:19:19.651Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36" version="20.2.3" etag="C-gMi83axy4cS3xysasU" type="github"><diagram id="Zi-IdDZvf-XGHymGtbge">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2022-08-07T23:21:38.249Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36" etag="O14NdyYG9JL1pflZ08B8" version="20.2.3" type="github">
+  <diagram id="Zi-IdDZvf-XGHymGtbge" name="Page-1">
+    <mxGraphModel dx="1552" dy="1903" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2jC8lsVwugVBiCHZB-My-1" value="Functional Requirements:&lt;br&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Real-time messaging&lt;br&gt;Online Status&lt;br&gt;Media uploads&lt;br&gt;Read receipts&lt;br&gt;Notifications&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="5" y="-15" width="170" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="2jC8lsVwugVBiCHZB-My-2" value="&lt;b&gt;Non-functional Requirements:&lt;/b&gt;&lt;br&gt;Low latency&lt;br&gt;High Volume&lt;br&gt;Reliable&amp;nbsp;&lt;br&gt;Secure" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-10" y="85" width="200" height="90" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

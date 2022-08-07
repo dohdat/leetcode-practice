@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2022-08-07T23:27:48.561Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36" etag="Z-5_9ci0VaYNB0E9SM-z" version="20.2.3" type="github">
+<mxfile host="app.diagrams.net" modified="2022-08-07T23:31:44.049Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36" etag="WOeNwHf-bVlmalzlGRlq" version="20.2.3" type="github">
   <diagram id="Zi-IdDZvf-XGHymGtbge" name="Page-1">
-    <mxGraphModel dx="1435" dy="1769" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1612" dy="1769" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -25,8 +25,11 @@
         <mxCell id="vfJ7Y360fpqIS0XEaNpH-3" value="API Server" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="140" y="340" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="vfJ7Y360fpqIS0XEaNpH-6" value="&lt;b&gt;Long-Pulling:&lt;/b&gt;&lt;br&gt;Maintain open connection with the servers. &lt;br&gt;Wait until the header has a message before responding" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="-50" y="530" width="320" height="60" as="geometry" />
+        <mxCell id="vfJ7Y360fpqIS0XEaNpH-6" value="&lt;div style=&quot;text-align: left;&quot;&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;Long-Pulling:&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Maintain open connection with the servers.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Wait until the header has a message before responding&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Good for Notifications system&lt;/span&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry y="530" width="320" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="vfJ7Y360fpqIS0XEaNpH-7" value="&lt;b&gt;WebSockets:&lt;/b&gt;&lt;br&gt;Designed for real time chat messages&lt;br&gt;Open duplex connections with the servers and the users&lt;br&gt;Maintain and kept open for the duration of the session&lt;br&gt;Can only have 65000 open connections at the same time, so have to have multiple API servers&lt;br&gt;Bad for weak connections, have to establish connections for again&amp;nbsp;&lt;br&gt;Some browsers do not support this &amp;lt;2011" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="10" y="615" width="530" height="110" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

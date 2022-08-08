@@ -5,23 +5,23 @@
  */
 var numMatchingSubseq = function(s, words) {
   let res = 0;
-  let map = new Map();
-  function isSub(a, b) {
-    if (map.has(a)) return map.get(a);
-    let idx = -1;
-    for (let char of a) {
-      idx = b.indexOf(char, idx + 1);
-      if (idx === -1) {
-        map.set(a, false);
-        return false;
+  function isSub(word, s) {
+    let lastIndex = -1;
+    let match = 0;
+    for (let c of word) {
+      let curIndex = s.indexOf(c, lastIndex + 1);
+      if (curIndex > lastIndex) {
+        match++;
+        lastIndex = curIndex;
+      } else {
+        break;
       }
     }
-    map.set(a, true);
-    return true;
+    return match === word.length;
   }
-  for (let w of words) {
-    if (w.length > s.length) continue;
-    if (isSub(w, s)) {
+  for (let word of words) {
+    if (word.length > s.length) continue;
+    if (isSub(word, s)) {
       res++;
     }
   }

@@ -9,10 +9,9 @@ var TimeMap = function() {
  * @return {void}
  */
 TimeMap.prototype.set = function(key, value, timestamp) {
-    if (!map.has(key)) {
-        map.set(key, []);
-    }
-    map.get(key)[timestamp] = value;
+    let vals = map.get(key) || [];
+    vals.push([timestamp, value]);
+    map.set(key, vals);
 };
 
 /**
@@ -21,18 +20,24 @@ TimeMap.prototype.set = function(key, value, timestamp) {
  * @return {string}
  */
 TimeMap.prototype.get = function(key, target) {
-    if (!map.get(key)) return '';
-    let cur = map.get(key);
-    if (cur[target]) {
-        return cur[target];
+    let arr = map.get(key);
+    if (!arr) {
+        return '';
     }
-    while (target > -1) {
-        if (cur[target]) {
-            return cur[target];
+    let left = 0;
+    let right = arr.length - 1;
+    let res = '';
+
+    while (left <= right) {
+        let mid = left + Math.floor((right - left) / 2);
+        if (arr[mid][0] <= target) {
+            res = arr[mid][1];
+            left = mid + 1;
+        } else {
+            right = mid - 1;
         }
-        target--;
     }
-    return '';
+    return res;
 };
 
 /**

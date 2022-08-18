@@ -17,7 +17,7 @@ var combinationSum2 = function(nums, target) {
         }
 
         for (let i = idx; i < nums.length; i++) {
-            if (i !== idx && nums[i] === nums[i - 1]) {
+            if (i > idx && nums[i] === nums[i - 1]) {
                 continue;
             }
 

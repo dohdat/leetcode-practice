@@ -3,16 +3,13 @@
  * @return {number}
  */
 var jump = function(nums) {
-  let res = 0;
-  let [left, right] = [0, 0];
-  while (right < nums.length - 1) {
-    let farthest = 0;
-    for (let i = left; i < right + 1; i++) {
-      farthest = Math.max(farthest, i + nums[i]);
+  let [res, curEnd, farthest] = [0, 0, 0];
+  for (let i = 0; i < nums.length - 1; i++) {
+    farthest = Math.max(farthest, i + nums[i]);
+    if (i === curEnd) {
+      res++;
+      curEnd = farthest;
     }
-    left = right + 1;
-    right = farthest;
-    res += 1;
   }
   return res;
 };

@@ -12,11 +12,12 @@ var isNStraightHand = function(hand, groupSize) {
   for (let [key, val] of count) {
     if (val > 0) {
       for (let i = 1; i < groupSize; i++) {
-        if (!count.has(key + i)) {
+        let cur = key + i;
+        if (!count.has(cur)) {
           return false;
         }
-        count.set(key + i, count.get(key + i) - val);
-        if (count.get(key + i) < 0) {
+        count.set(cur, count.get(cur) - val);
+        if (count.get(cur) < 0) {
           return false;
         }
       }

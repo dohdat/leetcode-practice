@@ -9,7 +9,7 @@ var isHappy = function(n) {
     let total = 0;
     while (num > 0) {
       arr.push(num % 10);
-      num = Math.trunc(num / 10);
+      num = Math.floor(num / 10);
     }
     for (let i of arr) {
       total += Math.pow(i, 2);

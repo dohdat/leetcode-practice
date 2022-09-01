@@ -9,11 +9,7 @@ var partitionLabels = function(s) {
   let end = 0;
   for (let i = 0; i < s.length; i++) {
     let cur = s[i];
-    if (map.get(cur)) {
-      map.set(cur, Math.max(map.get(cur), i));
-    } else {
-      map.set(cur, i);
-    }
+    map.set(cur, i);
   }
   for (let i = 0; i < s.length; i++) {
     let cur = s[i];

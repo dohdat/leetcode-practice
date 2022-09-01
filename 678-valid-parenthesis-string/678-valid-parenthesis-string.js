@@ -1,22 +1,25 @@
-/**
- * @param {string} s
- * @return {boolean}
- */
-var checkValidString = function(s) {
-  let [low, high] = [0, 0];
-  for (let c of s) {
-    if (c === "(") {
-      low += 1;
-    } else {
-      low += -1;
-    }
-    if (c !== ")") {
-      high += 1;
-    } else {
-      high += -1;
-    }
-    if (high < 0) break;
-    low = Math.max(low, 0);
+function checkValidString(s) {
+  let balance = 0;
+
+  // left to right : * becomes (
+  for (let i = 0; i < s.length; i++) {
+    s[i] === "(" || s[i] === "*" ? balance++ : balance--;
+
+    if (balance < 0) return false;
   }
-  return low === 0;
-};
+
+  if (balance === 0) return true;
+  // reset balance
+  balance = 0;
+
+  // right to left : * becomes )
+  for (let i = s.length - 1; i >= 0; i--) {
+    // if ) or *, increment balance, else decrement
+    s[i] === ")" || s[i] === "*" ? balance++ : balance--;
+    // if ever balanced, not even wildcards can save this
+    if (balance < 0) return false;
+  }
+
+  // never found any problems, cool
+  return true;
+}

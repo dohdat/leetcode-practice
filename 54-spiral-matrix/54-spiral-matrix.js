@@ -1,9 +1,9 @@
 var spiralOrder = function(matrix) {
-  const res = [];
+  let res = [];
   while (matrix.length) {
-    const first = matrix.shift();
+    let first = matrix.shift();
     res.push(...first);
-    for (const m of matrix) {
+    for (let m of matrix) {
       let val = m.pop();
       if (val) res.push(val);
       m.reverse();

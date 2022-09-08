@@ -80,12 +80,5 @@ var tictactoe = function(moves) {
     player = player === "A" ? "B" : "A";
   }
 
-  // function printBoard() {
-  //   for (let r of board) {
-  //     console.log(r, "\n");
-  //   }
-  // }
-  // printBoard();
-
   return checkDraw() ? "Draw" : "Pending";
 };

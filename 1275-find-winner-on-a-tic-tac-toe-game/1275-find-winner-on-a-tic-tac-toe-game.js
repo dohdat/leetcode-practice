@@ -1,6 +1,10 @@
 var tictactoe = function(moves) {
   // record and move on approach
-  let rows = [0, 0, 0], cols = [0, 0, 0], dia = 0, antiDia = 0, count = 0;
+  let rows = [0, 0, 0];
+  let cols = [0, 0, 0];
+  let dia = 0;
+  let antiDia = 0;
+  let count = 0;
   for (let [r, c] of moves) {
     let val = count % 2 === 0 ? 1 : -1;
     rows[r] += val;

@@ -3,25 +3,25 @@
  * @return {boolean}
  */
 var isHappy = function(n) {
-  let set = new Set();
-  function digits(num) {
-    var arr = [];
+  let seen = new Set();
+  function checkNum(num) {
     let total = 0;
+    let arr = [];
     while (num > 0) {
       arr.push(num % 10);
       num = Math.floor(num / 10);
     }
-    for (let i of arr) {
-      total += Math.pow(i, 2);
+    for (let i = 0; i < arr.length; i++) {
+      total += Math.pow(arr[i], 2);
     }
     return total;
   }
   while (n !== 1) {
-    if (set.has(n)) {
+    if (seen.has(n)) {
       return false;
     }
-    set.add(n);
-    n = digits(n);
+    seen.add(n);
+    n = checkNum(n);
   }
   return true;
 };

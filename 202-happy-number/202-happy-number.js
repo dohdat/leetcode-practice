@@ -11,8 +11,8 @@ var isHappy = function(n) {
       arr.push(num % 10);
       num = Math.floor(num / 10);
     }
-    for (let i = 0; i < arr.length; i++) {
-      total += Math.pow(arr[i], 2);
+    for (let i of arr) {
+      total += Math.pow(i, 2);
     }
     return total;
   }

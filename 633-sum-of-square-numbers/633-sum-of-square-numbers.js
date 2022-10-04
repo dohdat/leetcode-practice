@@ -1,4 +1,5 @@
 var judgeSquareSum = function(c) {
+  if (c === 0) return true;
   let r = Math.floor(Math.sqrt(c));
   let l = 0;
 

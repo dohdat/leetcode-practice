@@ -5,23 +5,20 @@
 var maxProduct = function(words) {
   let res = -Infinity;
   words.sort((a, b) => b.length - a.length);
-  function checkCommon(a, b) {
-    if (b.length < a.length) {
-      return checkCommon(b, a);
-    }
-    for (let i = 0; i < a.length; i++) {
-      if (b.indexOf(a[i]) != -1) {
+  function checkUnCommon(word1, word2) {
+    for (let i = 0; i < word1.length; i++) {
+      let c = word1[i];
+      if (word2.indexOf(c) != -1) {
         return true;
       }
     }
     return false;
   }
-
   for (let i = 0; i < words.length; i++) {
     for (let j = i + 1; j < words.length; j++) {
       let cur = words[i];
       let next = words[j];
-      if (!checkCommon(cur, next)) {
+      if (!checkUnCommon(cur, next)) {
         res = Math.max(res, cur.length * next.length);
         break;
       }

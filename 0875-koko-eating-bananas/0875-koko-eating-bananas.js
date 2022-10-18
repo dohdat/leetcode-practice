@@ -12,7 +12,7 @@ var minEatingSpeed = function(piles, h) {
     return piles.reduce((sum, pile) => sum + Math.ceil(pile / speed), 0);
   }
   while (min <= max) {
-    const mid = Math.floor((min + max) / 2);
+    let mid = Math.floor((min + max) / 2);
     if (time(mid) <= h) {
       best = mid;
       max = mid - 1;

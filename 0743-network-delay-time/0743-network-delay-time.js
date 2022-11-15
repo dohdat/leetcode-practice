@@ -7,7 +7,7 @@
 var networkDelayTime = function(times, n, k) {
   let arr = new Array(n + 1).fill(Infinity);
   arr[k] = 0;
-  for (let i = 0; i < times.length; i++) {
+  for (let i = 0; i <= n; i++) {
     let temp = arr.slice();
     for (let [source, target, cost] of times) {
       if (temp[source] === Infinity) continue;

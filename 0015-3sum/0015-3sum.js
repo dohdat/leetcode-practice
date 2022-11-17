@@ -4,22 +4,21 @@
  */
 var threeSum = function(nums) {
   nums.sort((a, b) => a - b);
+  let numSet = new Set();
   let res = [];
-  let set = new Set();
   for (let i = 0; i < nums.length; i++) {
     let left = i + 1;
-    let right = nums.length - 1;
+    let right = nums.length;
     while (left < right) {
-      let target = nums[left] + nums[right] + nums[i];
+      let target = nums[i] + nums[left] + nums[right];
       if (target === 0) {
-        let targetStr = [nums[left], nums[right], nums[i]].toString();
-        if (!set.has(targetStr)) {
-          set.add(targetStr);
-          res.push([nums[left], nums[right], nums[i]]);
-        } else {
-          left++;
-          right--;
+        let resStr = [nums[i], nums[left], nums[right]].toString();
+        if (!numSet.has(resStr)) {
+          res.push([nums[i], nums[left], nums[right]]);
+          numSet.add(resStr);
         }
+        left++;
+        right--;
       } else if (target < 0) {
         left++;
       } else {

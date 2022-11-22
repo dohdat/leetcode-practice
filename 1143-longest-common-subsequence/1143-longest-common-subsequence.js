@@ -9,7 +9,6 @@ var longestCommonSubsequence = function(text1, text2) {
     if (memo.has(key)) return memo.get(key);
 
     let result;
-
     if (text1.charAt(index1) === text2.charAt(index2)) {
       result = recursion(index1 - 1, index2 - 1) + 1;
     } else {

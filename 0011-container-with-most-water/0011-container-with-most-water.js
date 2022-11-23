@@ -1,19 +1,25 @@
 /**
- * @param {number[]} height
- * @return {number}
+Q) Explain the general approach?
+Use a 2 pointers technique, left and right. Shift smaller pointer value over to keep max value.
+Q) What technique to shift pointers? and why?
+Shift smaller pointer value over.
+Q) Time complexity?
+O(n) where n is the height length
+Q) Space complexity?
+O(1)
  */
 var maxArea = function(height) {
   let left = 0;
   let right = height.length - 1;
-  let res = 0;
+  let max = 0;
   while (left <= right) {
-    let curArea = Math.min(height[right], height[left]) * (right - left);
-    if (height[left] > height[right]) {
-      right--;
-    } else {
+    let curArea = Math.min(height[left], height[right]) * (right - left);
+    max = Math.max(max, curArea);
+    if (height[left] <= height[right]) {
       left++;
+    } else {
+      right--;
     }
-    res = Math.max(res, curArea);
   }
-  return res;
+  return max;
 };

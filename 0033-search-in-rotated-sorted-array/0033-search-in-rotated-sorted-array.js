@@ -10,14 +10,18 @@ var search = function(nums, target) {
     let mid = Math.floor((left + right) / 2);
     if (nums[mid] === target) {
       return mid;
-    } else if (nums[mid] >= nums[left]) {
-      if (target >= nums[left] && target < nums[mid]) {
+    }
+    //left sorted
+    if (nums[left] <= nums[mid]) {
+      //nums[l] <= target < nums[m]
+      if (nums[left] <= target && target < nums[mid]) {
         right = mid - 1;
       } else {
         left = mid + 1;
       }
     } else {
-      if (target <= nums[right] && target > nums[mid]) {
+      //nums[m] < target <= nums[r]
+      if (nums[mid] < target && target <= nums[right]) {
         left = mid + 1;
       } else {
         right = mid - 1;

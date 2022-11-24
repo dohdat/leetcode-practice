@@ -11,17 +11,20 @@ var search = function(nums, target) {
     if (nums[mid] === target) {
       return mid;
     }
-    //left sorted
+    //check if left side is sorted
     if (nums[left] <= nums[mid]) {
-      //nums[l] <= target < nums[m]
-      if (nums[left] <= target && target < nums[mid]) {
+      //if smallest <= target <= biggest
+      if (nums[left] <= target && target <= nums[mid]) {
+        //target is in the left side
         right = mid - 1;
       } else {
         left = mid + 1;
       }
     } else {
-      //nums[m] < target <= nums[r]
-      if (nums[mid] < target && target <= nums[right]) {
+      //otherwise, right side is sorted
+      //if smallest <= target <= biggest
+      if (nums[mid] <= target && target <= nums[right]) {
+        //target is in the right
         left = mid + 1;
       } else {
         right = mid - 1;

@@ -24,6 +24,7 @@ var permute = function(nums) {
     return combinations;
 };
 ```
+___
 
 ### Sliding Window:
 Given a string s, find the length of the longest substring without repeating characters.
@@ -48,22 +49,40 @@ var lengthOfLongestSubstring = function(s) {
 };
 
 ```
+___
 ### String methods:
+___
 ### Arrays methods:
+___
 ### Stack:
+___
 ### Two Pointers:
+___
 ### BFS:
+___
 ### DFS:
+___
 ### Binary Search:
+___
 ### Topological Sort:
+___
 ### Union Find:
+___
 ### Intervals:
+___
 ### Fast & slow pointers:
+___
 ### Heap:
+___
 ### Greedy:
+___
 ### Top-down DP:
+___
 ### Bottom-up DP:
+___
 ### Bit Manipulation:
+___
 ### Trie:
+___
 
 

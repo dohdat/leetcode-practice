@@ -4,7 +4,8 @@ Given an array nums of distinct integers, return all the possible permutations. 
 **Input:** nums = [1,2,3]
 
 **Output:** [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
-
+<details>
+  
 ```javascript
 var permute = function(nums) {
   let res = [];
@@ -28,6 +29,9 @@ var permute = function(nums) {
   return res;
 };
 ```
+  
+</details>
+
 ___
 
 ### Sliding Window:
@@ -38,7 +42,8 @@ Given a string s, find the length of the longest substring without repeating cha
 **Output:** 3
 
 **Explanation:** The answer is "abc", with the length of 3.
-
+<details>
+  
 ```javascript
 var lengthOfLongestSubstring = function(s) {
     let set = new Set();
@@ -55,6 +60,8 @@ var lengthOfLongestSubstring = function(s) {
 };
 
 ```
+ </details>    
+  
 ___
 ### String methods:
 **slice()** extracts a part of a string and returns the extracted part in a new string.

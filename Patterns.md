@@ -104,8 +104,12 @@ ___
 ### Two Pointers:
 ___
 ### BFS:
+Iterative
+Recursion
 ___
 ### DFS:
+Iterative
+Recursion
 ___
 ### Binary Search:
 ___

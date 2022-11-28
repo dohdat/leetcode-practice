@@ -1,4 +1,4 @@
-# Backtracking:
+### Backtracking:
 Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.
 
 **Input:** nums = [1,2,3]
@@ -25,7 +25,7 @@ var permute = function(nums) {
 };
 ```
 
-# Sliding Window:
+### Sliding Window:
 Given a string s, find the length of the longest substring without repeating characters.
 
 **Input:** s = "abcabcbb"
@@ -48,3 +48,22 @@ var lengthOfLongestSubstring = function(s) {
 };
 
 ```
+### String methods:
+### Arrays methods:
+### Stack:
+### Two Pointers:
+### BFS:
+### DFS:
+### Binary Search:
+### Topological Sort:
+### Union Find:
+### Intervals:
+### Fast & slow pointers:
+### Heap:
+### Greedy:
+### Top-down DP:
+### Bottom-up DP:
+### Bit Manipulation:
+### Trie:
+
+

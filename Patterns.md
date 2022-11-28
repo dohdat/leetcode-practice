@@ -125,9 +125,10 @@ ___
 ___
 ### Bottom-up DP:
 ___
-### Bit Manipulation:
-___
+
 ### Trie:
+___
+### Bit Manipulation:
 ___
 ### JavaScript Bitwise:
 https://www.w3schools.com/js/js_bitwise.asp

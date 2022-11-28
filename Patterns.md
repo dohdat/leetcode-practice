@@ -3,25 +3,29 @@ Given an array nums of distinct integers, return all the possible permutations. 
 
 **Input:** nums = [1,2,3]
 
+**Output:** [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+
 ```javascript
 var permute = function(nums) {
-    var combinations = [],
-        maxLength = nums.length;
-
-    var backtrack = function(nums, path) {
-        if (path.length === maxLength) {
-            combinations.push([...path]);
-        } else {
-            for (var i = 0; i < nums.length; i++) {
-                path.push(nums[i]);
-                backtrack(nums.filter((itm, i) => i !== i), path);
-                path.pop();
-            }
-        }
+  let res = [];
+  let cur = new Set();
+  function backtrack() {
+    if (cur.size === nums.length) {
+      res.push([...cur]);
+      return;
     }
 
-    backtrack(nums, []);
-    return combinations;
+    for (let n of nums) {
+      if (cur.has(n)) {
+        continue;
+      }
+      cur.add(n);
+      dfs();
+      cur.delete(n);
+    }
+  }
+  backtrack();
+  return res;
 };
 ```
 ___

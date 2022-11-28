@@ -51,8 +51,38 @@ var lengthOfLongestSubstring = function(s) {
 ```
 ___
 ### String methods:
+**slice()** extracts a part of a string and returns the extracted part in a new string.
+
+The method takes 2 parameters: start position, and end position (end not included).
+```javascript
+let text = "Apple, Banana, Kiwi";
+let part = text.slice(7, 13);
+
+return Banana
+```
+```javascript
+let text = "Apple, Banana, Kiwi";
+let part = text.slice(7);
+return Banana, Kiwi
+```
+
+The ***indexOf()*** method returns the index of (position of) the first occurrence of a string in a string:
+```javascript
+let str = "Please locate where 'locate' occurs!";
+str.indexOf("locate");
+
+return 7
+```
 ___
 ### Arrays methods:
+
+The ***pop()*** method removes the last element from an array:
+```javascript
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.pop();
+
+Banana,Orange,Apple
+```
 ___
 ### Stack:
 ___

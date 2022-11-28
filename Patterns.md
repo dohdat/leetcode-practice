@@ -76,13 +76,22 @@ return 7
 ___
 ### Arrays methods:
 
-The ***pop()*** method removes the last element from an array:
+The ***pop()*** method removes ***the last element*** from an array:
 ```javascript
 const fruits = ["Banana", "Orange", "Apple", "Mango"];
 fruits.pop();
 
-Banana,Orange,Apple
+fruits = ["Banana", "Orange", "Apple"]
 ```
+```javascript
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+let fruit = fruits.pop();
+
+fruit = "Mango"
+```
+___
+### Sets, Maps:
+https://www.w3schools.com/js/js_sets.asp
 ___
 ### Stack:
 ___
@@ -113,6 +122,9 @@ ___
 ### Bit Manipulation:
 ___
 ### Trie:
+___
+### JavaScript Bitwise:
+https://www.w3schools.com/js/js_bitwise.asp
 ___
 
 

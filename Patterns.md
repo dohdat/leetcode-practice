@@ -1,4 +1,4 @@
-### Backtracking:
+## Backtracking:
 Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.
 
 **Input:** nums = [1,2,3]
@@ -33,7 +33,7 @@ var permute = function(nums) {
 
 ___
 
-### Sliding Window:
+## Sliding Window:
 Given a string s, find the length of the longest substring without repeating characters.
 
 **Input:** s = "abcabcbb"
@@ -60,7 +60,7 @@ var lengthOfLongestSubstring = function(s) {
 ```
   
 ___
-### String methods:
+## String methods:
 **slice()** extracts a part of a string and returns the extracted part in a new string.
 
 The method takes 2 parameters: start position, and end position (end not included).
@@ -86,7 +86,7 @@ return 7
 ___
 
 
-### Stack:
+## Stack:
 Decode this string.
   
 **Input:** s = "3[a]2[bc]"
@@ -121,7 +121,7 @@ const decodeString = s => {
   
 
 ___
-### Two Pointers:
+## Two Pointers:
   
 Return the _maximum amount of water a container can store_.
   
@@ -151,7 +151,7 @@ var maxArea = function(height) {
 };
 ```
 ___
-### BFS:
+## BFS:
   
 #### Iterative
 Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
@@ -185,7 +185,7 @@ var levelOrder = function(root) {
                                 
   
 ___
-### DFS:
+## DFS:
   
 ##### In-order: 
 Left-> Root -> Right
@@ -236,7 +236,7 @@ var sumNumbers = function(root) {
 };
 ```
 ___
-### Binary Search:
+## Binary Search:
 Find if target exists in array. You must write an algorithm with _**O(log n)**_ time complexity.
   
 **Input:** nums = [-1,0,3,5,9,12], target = 9
@@ -268,7 +268,7 @@ var search = function(nums, target) {
   
 
 ___ 
-### Graphs:
+## Graphs:
 
 #### Vertex vs Edge
 ![image](https://user-images.githubusercontent.com/30649150/204603322-a7cc9c31-f8e6-4567-8a23-b07e4d121102.png)
@@ -473,6 +473,7 @@ var findOrder = function(numCourses, prerequisites) {
 </details>
   
 ___
+
 #### Union Find:
 Find the _number of connected components_ in the graph.
   
@@ -513,16 +514,16 @@ var countComponents = function(n, edges) {
                         
   
 ___
-### Intervals:
+## Intervals:
 ___
-### Fast & slow pointers:
+## Fast & slow pointers:
 ___
-### Heap:
+## Heap:
 Find the Top/Least Kth element
 ___
-### Greedy:
+## Greedy:
 ___
-### Top-down DP:
+## Top-down DP:
   
 Given an integer array nums, return the **length of the longest strictly increasing subsequence**.
 
@@ -548,7 +549,7 @@ var lengthOfLIS = function(nums) {
 };
 ```
 ___
-### Bottom-up DP:
+## Bottom-up DP:
   
 You are climbing a staircase. It takes n steps to reach the top.
 
@@ -587,7 +588,7 @@ var climbStairs = function(n) {
 ```
 ___
 
-### Trie:
+## Trie:
 
 Given an m x n board of characters and a list of strings words, return **all words on the board**.
                    
@@ -657,7 +658,7 @@ var findWords = function(board, words) {
 </details>
   
 ___
-### Sets, Maps:
+## Sets, Maps:
 #### Sets
 Creates a new Set
 ```javascript
@@ -728,7 +729,7 @@ Returns the number of elements in a Map
 console.log(fruits.size);
 ```
 ___
-### Arrays methods:
+## Arrays methods:
 
 The ***pop()*** method removes ***the last element*** from an array:
 ```javascript
@@ -797,9 +798,9 @@ const citrus = fruits.slice(1);
 fruits = Orange, Lemon, Apple, Mango
 ```
 ___
-### Bit Manipulation:
+## Bit Manipulation:
 ___
-### JavaScript Bitwise:
+## JavaScript Bitwise:
 https://www.w3schools.com/js/js_bitwise.asp
 ___
 

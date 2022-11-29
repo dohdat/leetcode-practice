@@ -123,7 +123,36 @@ ___
 ### Shortest Path:
 Dijkstra (weighted): O(E log V)
   
-Bellman Ford
+#### Bellman Ford
+Works when there is **negative weight edge**. Slower than Dijkstra.
+
+Find the _shortest path_ from k to n
+  
+![image](https://user-images.githubusercontent.com/30649150/204414568-0f596aa8-a850-4463-9fb3-3ed3720709b7.png)
+  
+  
+**Input:** times = [[2,1,1],[2,3,1],[3,4,1]], n = 4, k = 2
+  
+**Output:** 2
+  
+```javascript
+var networkDelayTime = function(times, n, k) {
+  let arr = new Array(n + 1).fill(Infinity);
+  arr[k] = 0;
+  for (let i = 0; i <= n; i++) {
+    let temp = arr.slice();
+    for (let [source, target, cost] of times) {
+      if (temp[source] === Infinity) continue;
+      temp[target] = Math.min(temp[target], temp[source] + cost);
+    }
+    arr = temp;
+  }
+  arr.shift();
+  let res = Math.max(...arr);
+  return res === Infinity ? -1 : res;
+};
+```
+Time Complexity: O ( V ⋅ E )
 ___
 ### Topological Sort:
 ___

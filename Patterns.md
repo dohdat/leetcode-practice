@@ -88,39 +88,7 @@ return 7
 ```
 ___
 
-### Sets, Maps:
-#### Sets
-Creates a new Set
-```javascript
-new Set()
-const myArray = ["a","b","c"];
-const letters = new Set(myArray);
-```
-Adds a new element to the Set
-```javascript
-letters.add("a");
-```
-Removes an element from a Set
-```javascript
-letters.delete("a");
-```
-Returns true if a value exists in the Set
-```javascript
-let res = letters.has("a");
 
-res = true
-```
-Returns the number of elements in a Set
-```javascript
-const myArray = ["a","b","c"];
-const letters = new Set(myArray);
-let size = letters.size;
-
-size = 3
-```
-#### Maps
-https://www.w3schools.com/js/js_sets.asp
-___
 ### Stack:
 ___
 ### Two Pointers:
@@ -390,6 +358,77 @@ ___
 ### Trie:
 ___
 ### Cycle Detection in Graph:
+___
+### Sets, Maps:
+#### Sets
+Creates a new Set
+```javascript
+new Set()
+const myArray = ["a","b","c"];
+const letters = new Set(myArray);
+```
+Adds a new element to the Set
+```javascript
+letters.add("a");
+```
+Removes an element from a Set
+```javascript
+letters.delete("a");
+```
+Returns true if a value exists in the Set
+```javascript
+let res = letters.has("a");
+
+res = true
+```
+Returns the number of elements in a Set
+```javascript
+const myArray = ["a","b","c"];
+const letters = new Set(myArray);
+let size = letters.size;
+
+size = 3
+```
+#### Maps
+Creates a new Map
+```javascript
+const fruits = new Map();
+```
+Sets the value for a key in a Map
+```javascript
+const preMap = new Map();
+
+for (let [crs, pre] of prerequisites) {
+    preMap.set(crs, (preMap.get(crs) || []).concat(pre));
+}
+```
+Gets the value for a key in a Map
+```javascript
+const fruits = new Map();
+
+// Set Map Values
+fruits.set("apples", 500);
+fruits.get("apples");    // Returns 500
+```
+Removes a Map element specified by the key
+```javascript
+fruits.delete("apples");
+```
+Returns true if a key exists in a Map
+```javascript
+fruits.has("apples");
+```
+How to iterate through a hashmap
+```javascript
+for(let [key, val] of preMap) {
+  console.log(key);
+  console.log(val);
+}
+```
+Returns the number of elements in a Map
+```javascript
+console.log(fruits.size);
+```
 ___
 ### Arrays methods:
 

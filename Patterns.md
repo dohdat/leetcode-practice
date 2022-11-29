@@ -21,7 +21,7 @@ var permute = function(nums) {
         continue;
       }
       cur.add(n);
-      dfs();
+      backtrack();
       cur.delete(n);
     }
   }

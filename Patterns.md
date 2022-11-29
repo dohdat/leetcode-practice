@@ -4,7 +4,7 @@ Given an array nums of distinct integers, return all the possible permutations. 
 **Input:** nums = [1,2,3]
 
 **Output:** [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
-<details>
+
   
 ```javascript
 var permute = function(nums) {
@@ -30,7 +30,6 @@ var permute = function(nums) {
 };
 ```
   
-</details>
 
 ___
 
@@ -42,7 +41,6 @@ Given a string s, find the length of the longest substring without repeating cha
 **Output:** 3
 
 **Explanation:** The answer is "abc", with the length of 3.
-<details>
   
 ```javascript
 var lengthOfLongestSubstring = function(s) {
@@ -60,7 +58,6 @@ var lengthOfLongestSubstring = function(s) {
 };
 
 ```
- </details>    
   
 ___
 ### String methods:
@@ -126,6 +123,34 @@ const decodeString = s => {
 
 ___
 ### Two Pointers:
+  
+Return the _maximum amount of water a container can store_.
+  
+![image](https://user-images.githubusercontent.com/30649150/204601200-bcc4e2e8-6186-4d7f-b37e-489725210212.png)
+  
+**Input:** height = [1,8,6,2,5,4,8,3,7]
+  
+**Output:** 49
+  
+**Explanation:** The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.
+  
+```javascript
+var maxArea = function(height) {
+  let left = 0;
+  let right = height.length - 1;
+  let max = 0;
+  while (left <= right) {
+    let curArea = Math.min(height[left], height[right]) * (right - left);
+    if (height[left] <= height[right]) {
+      left++;
+    } else {
+      right--;
+    }
+    max = Math.max(max, curArea);
+  }
+  return max;
+};
+```
 ___
 ### BFS:
   
@@ -138,7 +163,6 @@ Given the root of a binary tree, return the level order traversal of its nodes' 
   
 **Output:** [[3],[9,20],[15,7]]
   
-<details>
   
 ```javascript
 var levelOrder = function(root) {
@@ -160,7 +184,6 @@ var levelOrder = function(root) {
 };
 ```
                                 
-</details>
   
 ___
 ### DFS:
@@ -223,7 +246,6 @@ Find if target exists in array. You must write an algorithm with _**O(log n)**_ 
   
 **Explanation:** 9 exists in nums and its index is 4
   
-<details>
   
 ```javascript
 var search = function(nums, target) {
@@ -245,7 +267,6 @@ var search = function(nums, target) {
 
 ```
   
-</details>
 
 ___ 
 ### Graphs:
@@ -339,7 +360,6 @@ Dijkstra (weighted): O(E log V)
 Works when there is **negative weight edge**. Slower than Dijkstra.
 
 
-<details>
   
 ```javascript
 var networkDelayTime = function(times, n, k) {
@@ -360,7 +380,6 @@ var networkDelayTime = function(times, n, k) {
 ```
 Time Complexity: O ( V ⋅ E )
 
-</details>
 ___
   
 #### Cycle Detection in Graph:
@@ -378,7 +397,6 @@ Find all possible paths from source to target. Return them in **any order**.
   
 **Explanation:** There are two paths: 0 -> 1 -> 3 and 0 -> 2 -> 3.
 
-<details>
 
 ```javascript
 var allPathsSourceTarget = function(graph) {
@@ -402,7 +420,6 @@ var allPathsSourceTarget = function(graph) {
 };
 ```
   
-</details>
 
 ___
 ### Topological Sort:
@@ -460,7 +477,6 @@ Find the _number of connected components_ in the graph.
   
 **Output:** 2
   
-<details>
   
 ```javascript
 var countComponents = function(n, edges) {
@@ -490,7 +506,6 @@ var countComponents = function(n, edges) {
 ```
 **Time Complexity:**  O(log n)
                         
-</details>
   
 ___
 ### Intervals:

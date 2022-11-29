@@ -381,9 +381,6 @@ Time Complexity: O ( V ⋅ E )
 
 ___
   
-#### Cycle Detection in Graph:
-___
-  
 #### All paths from Source to Target:
   
 Find all possible paths from source to target. Return them in **any order**.
@@ -421,7 +418,7 @@ var allPathsSourceTarget = function(graph) {
   
 
 ___
-### Topological Sort:
+### Topological Sort (Cycle Detection):
 Return the correct order you should take to finish all courses. 
   
 **Input:** numCourses = 4, prerequisites = [[1,0],[2,0],[3,1],[3,2]]

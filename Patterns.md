@@ -503,11 +503,139 @@ ___
 ### Greedy:
 ___
 ### Top-down DP:
+  
+Given an integer array nums, return the **length of the longest strictly increasing subsequence**.
+
+**Input:** nums = [10,9,2,5,3,7,101,18]
+  
+**Output:** 4
+  
+**Explanation:** The longest increasing subsequence is [2,3,7,101], therefore the length is 4.
+  
+```javascript
+var lengthOfLIS = function(nums) {
+    const dp = new Array(nums.length).fill(1);
+
+    for (let i = 1; i < nums.length; i++) {
+        for (let j = 0; j < i; j++) {
+            if (nums[i] > nums[j]) {
+                dp[i] = Math.max(dp[i], dp[j] + 1);
+            }
+        }
+    }
+
+    return Math.max(...dp);
+};
+```
 ___
 ### Bottom-up DP:
+  
+You are climbing a staircase. It takes n steps to reach the top.
+
+Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+  
+**Input:** n = 3
+  
+**Output:** 3
+  
+**Explanation:** There are three ways to climb to the top.
+  
+1. 1 step + 1 step + 1 step
+  
+2. 1 step + 2 steps
+  
+3. 2 steps + 1 step
+
+```javascript
+var climbStairs = function(n) {
+  let memo = [];
+  function dfs(step, end) {
+    if (step === end) {
+      return 1;
+    }
+    if (end < step) {
+      return 0;
+    }
+    if (memo[step]) {
+      return memo[step];
+    }
+    memo[step] = dfs(step + 1, end) + dfs(step + 2, end);
+    return memo[step];
+  }
+  return dfs(0, n);
+};
+```
 ___
 
 ### Trie:
+
+Given an m x n board of characters and a list of strings words, return **all words on the board**.
+                   
+![image](https://user-images.githubusercontent.com/30649150/204600726-f686a3f4-c7ac-4800-a266-a059e2c2cdb3.png)
+                   
+**Input:** board = [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]], words = ["oath","pea","eat","rain"]
+                   
+**Output:** ["eat","oath"]
+
+                   
+<details>
+  
+```javascript
+var findWords = function(board, words) {
+    let rows = board.length;
+    let cols = board[0].length;
+    let res = new Set();
+    let visited = new Array(rows).fill(false).map(() => new Array(cols).fill(false));
+
+    function TrieNode() {
+        this.children = new Map();
+        this.end = false;
+    }
+    let root = new TrieNode();
+    function add(word) {
+        let cur = root;
+        for (let c of word) {
+            if (!cur.children.has(c)) {
+                cur.children.set(c, new TrieNode());
+            }
+            cur = cur.children.get(c);
+        }
+        cur.end = true;
+    }
+
+    //add all the words to Trie
+    for (let word of words) {
+        add(word);
+    }
+
+    function dfs(r, c, node, word) {
+        if (r < 0 || r >= rows || c < 0 || c >= cols || visited[r][c] || !node.children.get(board[r][c])) {
+            return;
+        }
+        visited[r][c] = true;
+        word += board[r][c];
+        node = node.children.get(board[r][c]);
+        if (node.end) {
+            res.add(word);
+        }
+        dfs(r - 1, c, node, word);
+        dfs(r + 1, c, node, word);
+        dfs(r, c - 1, node, word);
+        dfs(r, c + 1, node, word);
+        visited[r][c] = false;
+    }
+
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+            dfs(r, c, root, '');
+        }
+    }
+    return [...res];
+};
+```
+  
+</details>
+  
 ___
 ### Sets, Maps:
 #### Sets

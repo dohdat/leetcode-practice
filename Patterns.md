@@ -174,8 +174,6 @@ Left-> Right -> Root
   
 <img src="https://user-images.githubusercontent.com/30649150/204592320-ca049928-eadf-4862-a5c0-4652bb76d63c.png" width="300" height="300"/>
 
-
-#### Iterative
   
 #### Recursion
   
@@ -248,9 +246,10 @@ var search = function(nums, target) {
 ```
   
 </details>
-  
-___
-### Shortest Path:
+
+___ 
+### Graphs:
+#### Shortest Path:
   
 Find the _shortest path_ from k to n
   
@@ -362,6 +361,48 @@ var networkDelayTime = function(times, n, k) {
 Time Complexity: O ( V ⋅ E )
 
 </details>
+___
+  
+#### Cycle Detection in Graph:
+___
+  
+#### All paths from Source to Target:
+  
+Find all possible paths from source to target. Return them in **any order**.
+  
+![image](https://user-images.githubusercontent.com/30649150/204597998-57d77c73-94a9-431d-a805-ecbed876be12.png)
+  
+**Input:** graph = [[1,2],[3],[3],[]]
+  
+**Output:** [[0,1,3],[0,2,3]]
+  
+**Explanation:** There are two paths: 0 -> 1 -> 3 and 0 -> 2 -> 3.
+
+<details>
+
+```javascript
+var allPathsSourceTarget = function(graph) {
+  let res = [];
+  let target = graph.length - 1;
+  function dfs(node, path) {
+    path.push(node);
+    if (node === target) {
+      res.push(path);
+      return;
+    }
+
+    let visiting = graph[node];
+    for(let cur of visiting) {
+      dfs(cur, [...path])
+    }
+  }
+
+  dfs(0, []);
+  return res;
+};
+```
+  
+</details>
 
 ___
 ### Topological Sort:
@@ -467,8 +508,6 @@ ___
 ___
 
 ### Trie:
-___
-### Cycle Detection in Graph:
 ___
 ### Sets, Maps:
 #### Sets

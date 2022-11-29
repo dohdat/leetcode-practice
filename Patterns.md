@@ -799,6 +799,25 @@ fruits = Orange, Lemon, Apple, Mango
 ```
 ___
 ## Bit Manipulation:
+Write a function that takes an unsigned integer and returns the number of '1' bits it has.
+
+**Input:** n = 00000000000000000000000000001011
+  
+**Output:** 3
+  
+**Explanation:** The input binary string 00000000000000000000000000001011 has a total of three '1' bits.
+  
+```javascript
+var hammingWeight = function(n) {
+  let count = 0;
+  while (n !== 0) {
+    let bitComp = n & 1; //1 &1 will return 1, 0 &1 will return 0
+    if (bitComp === 1) count++;
+    n >>>= 1; // unsigned right shift assignment (chop off the last bit and assign it)
+  }
+  return count;
+};
+```
 ___
 ## JavaScript Bitwise:
 https://www.w3schools.com/js/js_bitwise.asp

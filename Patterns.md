@@ -398,7 +398,51 @@ var allPathsSourceTarget = function(graph) {
 };
 ```
   
+___
+#### Min Cost to Connect all Points (Minimum Spanning Tree):
+Return the _minimum cost to make all points connected_. All points are connected if there is exactly one simple path between any two points.
+                        
+![image](https://user-images.githubusercontent.com/30649150/204612578-a5daf822-86a5-41f4-9366-31fe31f68190.png)
+                      
+**Input:** points = [[0,0],[2,2],[3,10],[5,2],[7,0]]
+                        
+**Output:** 20
+                        
+**Explanation: **
+                        
+![image](https://user-images.githubusercontent.com/30649150/204612554-aa521193-a231-4c69-ac61-922babf0566c.png)
 
+We can connect the points as shown above to get the minimum cost of 20.
+Notice that there is a unique path between every pair of points.
+                        
+```javascript
+var minCostConnectPoints = function(points) {
+  let cost = 0;
+  let n = points.length;
+  let dist = new Array(n).fill(Infinity);
+  dist[0] = 0;
+  let next = 0;
+  for (let i = 1; i < n; i++) {
+    let min = Infinity;
+    let point = -1;
+    for (let j = 1; j < n; j++) {
+      let [x1, y1] = points[j];
+      let [x2, y2] = points[next];
+      if (dist[j] > 0) {
+        dist[j] = Math.min(dist[j], Math.abs(x1 - x2) + Math.abs(y1 - y2));
+        if (dist[j] < min) {
+          min = dist[j];
+          point = j;
+        }
+      }
+    }
+    cost += min;
+    dist[point] = 0;
+    next = point;
+  }
+  return cost;
+};
+```
 ___
 #### Topological Sort (Cycle Detection):
 Return the correct order you should take to finish all courses. 
@@ -487,8 +531,7 @@ var countComponents = function(n, edges) {
 };
 ```
 **Time Complexity:**  O(log n)
-                        
-  
+                       
 ___
 ## Intervals:
 

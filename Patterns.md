@@ -93,7 +93,7 @@ Decode this string.
   
 **Output:** "aaabcbc"
  
-<details>
+
   
 ```javascript
 const decodeString = s => {
@@ -119,7 +119,6 @@ const decodeString = s => {
 };
 ```
   
-</details>
 
 ___
 ### Two Pointers:

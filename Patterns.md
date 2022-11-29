@@ -63,6 +63,9 @@ ___
 
 
 ## Stack:
+
+**Question:**
+
 Decode this string.
   
 **Input:** s = "3[a]2[bc]"
@@ -92,6 +95,36 @@ const decodeString = s => {
     stack.push(str.repeat(Number(num)));
   }
   return stack.join('');
+};
+```
+___
+**Question:**
+
+Determine valid parentheses.
+
+**Input:** s = "()[]{}"
+
+**Output:** true
+
+```javascript
+var isValid = function(s) {   
+    const stack = [];
+    const map = {
+      '(': ')',
+      '[': ']',
+      '{': '}'
+    }
+    
+    for (let i = 0 ; i < s.length ; i++) {
+        let c = s[i];
+        if (map[c]) {
+          stack.push(map[c])
+        } else if (c !== stack.pop()) {
+          return false;
+        } 
+    }
+    
+    return !stack.length;
 };
 ```
   

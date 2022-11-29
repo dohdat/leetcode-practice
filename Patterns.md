@@ -87,22 +87,7 @@ str.indexOf("locate");
 return 7
 ```
 ___
-### Arrays methods:
 
-The ***pop()*** method removes ***the last element*** from an array:
-```javascript
-const fruits = ["Banana", "Orange", "Apple", "Mango"];
-fruits.pop();
-
-fruits = ["Banana", "Orange", "Apple"]
-```
-```javascript
-const fruits = ["Banana", "Orange", "Apple", "Mango"];
-let fruit = fruits.pop();
-
-fruit = "Mango"
-```
-___
 ### Sets, Maps:
 https://www.w3schools.com/js/js_sets.asp
 ___
@@ -111,14 +96,50 @@ ___
 ### Two Pointers:
 ___
 ### BFS:
-Iterative
-Recursion
+  
+#### Iterative
+  
+#### Recursion
 ___
 ### DFS:
-Iterative
-Recursion
+  
+#### Iterative
+  
+#### Recursion
 ___
 ### Binary Search:
+Find if target exists in array. You must write an algorithm with _**O(log n)**_ time complexity.
+  
+**Input:** nums = [-1,0,3,5,9,12], target = 9
+  
+**Output:** 4
+  
+**Explanation:** 9 exists in nums and its index is 4
+  
+<details>
+  
+```javascript
+var search = function(nums, target) {
+  let left = 0;
+  let right = nums.length - 1;
+  while (left <= right) {
+    let mid = Math.floor((right + left) / 2);
+    if (nums[mid] === target) {
+      return mid;
+    }
+    if (nums[mid] > target) {
+      right = mid - 1;
+    } else {
+      left = mid + 1;
+    }
+  }
+  return -1;
+};
+
+```
+  
+</details>
+  
 ___
 ### Shortest Path:
   
@@ -235,8 +256,92 @@ Time Complexity: O ( V ⋅ E )
 
 ___
 ### Topological Sort:
+Return the correct order you should take to finish all courses. 
+  
+**Input:** numCourses = 4, prerequisites = [[1,0],[2,0],[3,1],[3,2]]
+  
+**Output:** [0,2,1,3]
+  
+**Explanation:** There are a total of 4 courses to take. To take course 3 you should have finished both courses 1 and 2. Both courses 1 and 2 should be taken after you finished course 0.
+So one correct course order is [0,1,2,3]. Another correct ordering is [0,2,1,3].
+  
+<details>
+  
+```javascript
+var findOrder = function(numCourses, prerequisites) {
+  let preMap = new Map();
+  //Create a set, not an array, so that we do not add visited nodes
+  let res = new Set();
+  let visited = new Set();
+  //create adjList 
+  for (let [crs, pre] of prerequisites) {
+    preMap.set(crs, (preMap.get(crs) || []).concat(pre));
+  }
+    
+
+  function dfs(node) {
+    if (visited.has(node)) return false;
+    visited.add(node);
+    let visiting = preMap.get(node);
+    while (visiting && visiting.length > 0) {
+      let c = visiting.shift();
+      if (!dfs(c)) return false;
+    }
+    visited.delete(node);
+    res.add(node);
+    return true;
+  }
+
+  for (let i = 0; i < numCourses; i++) {
+    if (!dfs(i)) return [];
+  }
+  return [...res];
+};
+```                             
+</details>
+  
 ___
 ### Union Find:
+Find the _number of connected components_ in the graph.
+  
+![image](https://user-images.githubusercontent.com/30649150/204418053-33fb0980-461a-4923-a4cb-d619aa49542c.png)
+  
+**Input:** n = 5, edges = [[0,1],[1,2],[3,4]]
+  
+**Output:** 2
+  
+<details>
+  
+```javascript
+var countComponents = function(n, edges) {
+  let arr = [];
+  for (let i = 0; i < n; i++) {
+    arr.push(i);
+  }
+
+  function find(n) {
+    let p = arr[n];
+    while (p !== arr[p]) {
+      p = arr[p];
+    }
+    return p;
+  }
+
+  for (let [src, dst] of edges) {
+    let p1 = find(src);
+    let p2 = find(dst);
+    if (p1 !== p2) {
+      arr[p1] = arr[p2];
+      n--;
+    }
+  }
+  return n;
+};
+```
+**Time Complexity:**  O(log n)
+                        
+</details>
+  
 ___
 ### Intervals:
 ___
@@ -253,6 +358,77 @@ ___
 ___
 
 ### Trie:
+___
+### Cycle Detection in Graph:
+___
+### Arrays methods:
+
+The ***pop()*** method removes ***the last element*** from an array:
+```javascript
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.pop();
+
+fruits = ["Banana", "Orange", "Apple"]
+```
+```javascript
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+let fruit = fruits.pop();
+
+fruit = "Mango"
+```
+The **push()** method adds a new element to an array **(at the end)**:
+```javascript
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.push("Kiwi");
+
+fruits = ["Banana", "Orange", "Apple", "Mango", "Kiwi"];
+```
+The **shift()** method removes the first array element and "shifts" all other elements to a lower index.
+```javascript
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.shift();
+
+fruits = ["Orange", "Apple", "Mango"];
+```
+The **unshift()** method adds a new element to an array **(at the beginning)**, and "unshifts" older elements:
+```javascript
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.unshift("Lemon");
+  
+fruits = ["Lemon","Banana", "Orange", "Apple", "Mango"];
+```
+The **concat()** method creates a new array by merging (concatenating) existing arrays:
+```javascript
+const myGirls = ["Cecilie", "Lone"];
+const myBoys = ["Emil", "Tobias", "Linus"];
+
+const myChildren = myGirls.concat(myBoys);
+
+myChildren = Cecilie,Lone,Emil,Tobias,Linus
+```
+The **splice()** method adds new items to an array.
+```javascript
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.splice(2, 0, "Lemon", "Kiwi");
+
+fruits = Banana, Orange, Lemon, Kiwi, Apple, Mango
+  
+//The first parameter (2) defines the position where new elements should be added (spliced in).
+
+//The second parameter (0) defines how many elements should be removed.
+
+//The rest of the parameters ("Lemon" , "Kiwi") define the new elements to be added.
+```
+
+
+The **slice()** method slices out a piece of an array.
+```javascript
+const fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+const citrus = fruits.slice(1);
+  
+//This example slices out a part of an array starting from array element 1 ("Orange")
+fruits = Orange, Lemon, Apple, Mango
+```
 ___
 ### Bit Manipulation:
 ___

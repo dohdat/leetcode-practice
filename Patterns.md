@@ -494,7 +494,20 @@ var findOrder = function(numCourses, prerequisites) {
   
 ___
 
-#### Union Find:
+#### Union Find (Disjoint Set):
+A Union-Find data structure is to maintain a set of elements partitioned into a number of mutually disjoint (non-overlapping) subsets. So _no elements belong to more than one set_. 
+
+**Applications:**
+
+- connected component in Graph problem.
+  
+- detecting cycles in graph.
+  
+- minimum spanning tree.
+
+
+**Question:**
+  
 Find the _number of connected components_ in the graph.
   
 ![image](https://user-images.githubusercontent.com/30649150/204418053-33fb0980-461a-4923-a4cb-d619aa49542c.png)
@@ -632,7 +645,7 @@ ___
                         
 Greedy is an algo approach that builds up a solution piece by piece, always choosing the next piece that **offers that most obvious and immediate benefit**. So the problems where choosing locally optimal also leads to global solution are the best fit for Greedy. 
 
-#### Example:
+**Question:**
                         
 Given an integer array nums, find the subarray which has the largest sum and return its sum.
 

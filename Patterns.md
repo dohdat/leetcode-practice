@@ -130,14 +130,91 @@ ___
 ### BFS:
   
 #### Iterative
+Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
   
-#### Recursion
+![image](https://user-images.githubusercontent.com/30649150/204590605-7587d0a6-f9be-47e2-be27-42ad32de2f28.png)
+  
+**Input:** root = [3,9,20,null,null,15,7]
+  
+**Output:** [[3],[9,20],[15,7]]
+  
+<details>
+  
+```javascript
+var levelOrder = function(root) {
+    if(!root) return [];
+    let q = [root];
+    let res = [];
+    while (q.length !== 0) {
+        let temp = [];
+        let len = q.length;
+        for (let i = 0; i < len; i++) {
+            let c = q.shift();
+            temp.push(c.val);
+            c.left && q.push(c.left);
+            c.right && q.push(c.right);
+        }
+        res.push(temp);
+    }
+    return res;
+};
+```
+                                
+</details>
+  
 ___
 ### DFS:
   
+##### In-order: 
+Left-> Root -> Right
+##### Pre-order: 
+Root-> Left -> Right
+##### Post-order: 
+Left-> Right -> Root
+  
+<img src="https://user-images.githubusercontent.com/30649150/204592320-ca049928-eadf-4862-a5c0-4652bb76d63c.png" width="300" height="300"/>
+
+
 #### Iterative
   
 #### Recursion
+  
+Find the total sum of all root-to-leaf numbers. A **leaf** node is a node with no children. 
+  
+![image](https://user-images.githubusercontent.com/30649150/204594786-e9473ae0-b2c2-4c0b-8f64-d25ec1f56461.png)
+  
+**Input:** root = [1,2,3] 
+  
+**Output:** 25
+  
+**Explanation:** 
+  
+The root-to-leaf path 1->2 represents the number 12.
+  
+The root-to-leaf path 1->3 represents the number 13.
+  
+Therefore, sum = 12 + 13 = 25. 
+
+```javascript
+var sumNumbers = function(root) {
+  let res = [];
+  function dfs(node, path) {
+    if (!node) {
+      return false;
+    }
+    path.push(node.val);
+    if (!node.left && !node.right) {
+      res.push(Number(path.join("")));
+      return true;
+    }
+    node.left && dfs(node.left, [...path]);
+    node.right && dfs(node.right, [...path]);
+  }
+  dfs(root, []);
+  let answer = res.reduce((a, b) => a + b);
+  return answer;
+};
+```
 ___
 ### Binary Search:
 Find if target exists in array. You must write an algorithm with _**O(log n)**_ time complexity.

@@ -522,6 +522,33 @@ ___
 Find the Top/Least Kth element
 ___
 ## Greedy:
+                        
+Greedy is an algo approach that builds up a solution piece by piece, always choosing the next piece that **offers that most obvious and immediate benefit**. So the problems where choosing locally optimal also leads to global solution are the best fit for Greedy. 
+
+#### Example:
+                        
+Given an integer array nums, find the subarray which has the largest sum and return its sum.
+
+**Input:** nums = [-2,1,-3,4,-1,2,1,-5,4]
+                        
+**Output:** 6
+                        
+**Explanation:** [4,-1,2,1] has the largest sum = 6.  
+```javascript
+var maxSubArray = function(nums) {
+  let res = nums[0];
+  let curMax = 0;
+  for (let n of nums) {
+    if (curMax < 0) {
+      curMax = 0;
+    }
+    curMax += n;
+    res = Math.max(res, curMax);
+  }
+  return res;
+};
+```
+                        
 ___
 ## Top-down DP:
   

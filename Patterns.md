@@ -89,6 +89,14 @@ return 7
 ___
 
 ### Sets, Maps:
+#### Sets
+Creates a new Set
+```javascript
+new Set()
+const myArray = ["a","b","c"];
+const letters = new Set(myArray);
+```
+#### Maps
 https://www.w3schools.com/js/js_sets.asp
 ___
 ### Stack:

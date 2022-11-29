@@ -96,6 +96,28 @@ new Set()
 const myArray = ["a","b","c"];
 const letters = new Set(myArray);
 ```
+Adds a new element to the Set
+```javascript
+letters.add("a");
+```
+Removes an element from a Set
+```javascript
+letters.delete("a");
+```
+Returns true if a value exists in the Set
+```javascript
+let res = letters.has("a");
+
+res = true
+```
+Returns the number of elements in a Set
+```javascript
+const myArray = ["a","b","c"];
+const letters = new Set(myArray);
+let size = letters.size;
+
+size = 3
+```
 #### Maps
 https://www.w3schools.com/js/js_sets.asp
 ___

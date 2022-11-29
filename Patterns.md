@@ -820,7 +820,12 @@ var hammingWeight = function(n) {
 ```
 ___
 ## JavaScript Bitwise:
-https://www.w3schools.com/js/js_bitwise.asp
+  
+![image](https://user-images.githubusercontent.com/30649150/204605771-61e3bace-1fb5-47d8-b6b9-5ae132948399.png)
+  
+![image](https://user-images.githubusercontent.com/30649150/204605814-fb389423-021e-4925-a78c-44fff6c8336d.png)
+
+
 ___
 
 

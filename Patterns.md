@@ -269,6 +269,10 @@ var search = function(nums, target) {
 
 ___ 
 ### Graphs:
+
+#### Vertex vs Edge
+![image](https://user-images.githubusercontent.com/30649150/204603322-a7cc9c31-f8e6-4567-8a23-b07e4d121102.png)
+
 #### Shortest Path:
   
 Find the _shortest path_ from k to n
@@ -280,7 +284,7 @@ Find the _shortest path_ from k to n
   
 **Output:** 2
 
-Dijkstra (weighted): O(E log V)
+#### Dijkstra (weighted)
   
 <details>
   
@@ -352,6 +356,8 @@ Dijkstra (weighted): O(E log V)
 };
 
 ```
+
+**Time Complexity:** O(E log V)
   
 </details>
   
@@ -377,7 +383,7 @@ var networkDelayTime = function(times, n, k) {
   return res === Infinity ? -1 : res;
 };
 ```
-Time Complexity: O ( V ⋅ E )
+**Time Complexity:** O ( V ⋅ E )
 
 ___
   
@@ -418,7 +424,7 @@ var allPathsSourceTarget = function(graph) {
   
 
 ___
-### Topological Sort (Cycle Detection):
+#### Topological Sort (Cycle Detection):
 Return the correct order you should take to finish all courses. 
   
 **Input:** numCourses = 4, prerequisites = [[1,0],[2,0],[3,1],[3,2]]
@@ -460,11 +466,14 @@ var findOrder = function(numCourses, prerequisites) {
   }
   return [...res];
 };
-```                             
+```  
+                                 
+**Time Complexity:** O(V+E), where V = vertices, E = Edges.
+                                 
 </details>
   
 ___
-### Union Find:
+#### Union Find:
 Find the _number of connected components_ in the graph.
   
 ![image](https://user-images.githubusercontent.com/30649150/204418053-33fb0980-461a-4923-a4cb-d619aa49542c.png)

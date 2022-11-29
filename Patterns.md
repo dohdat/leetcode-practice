@@ -121,11 +121,7 @@ ___
 ### Binary Search:
 ___
 ### Shortest Path:
-Dijkstra (weighted): O(E log V)
   
-#### Bellman Ford
-Works when there is **negative weight edge**. Slower than Dijkstra.
-
 Find the _shortest path_ from k to n
   
 ![image](https://user-images.githubusercontent.com/30649150/204414568-0f596aa8-a850-4463-9fb3-3ed3720709b7.png)
@@ -134,6 +130,87 @@ Find the _shortest path_ from k to n
 **Input:** times = [[2,1,1],[2,3,1],[3,4,1]], n = 4, k = 2
   
 **Output:** 2
+
+Dijkstra (weighted): O(E log V)
+  
+<details>
+  
+```javascript
+  var networkDelayTime = function (times, n, k) {
+
+    
+    // Our return value, how long did it take
+    // to reach all nodes within the network from {k}
+    let time_taken = 0;
+
+    // A set so we don't visit the same node twice.
+    const visited_set = new Set();
+
+    const min_heap = new MinPriorityQueue();
+
+    // An adjacency list, where we store 
+    // Node -> [[Edge, Cost],[Edge, Cost]]
+    const node_edge_cost = new Map();
+
+    // Build the adjacency list.
+    for (const [node, edge, cost] of times) {
+        let edges = [];
+        if (node_edge_cost.has(node)) {
+            edges = node_edge_cost.get(node);
+        }
+        edges.push([edge, cost]);
+        node_edge_cost.set(node, edges);
+    }
+
+    // We have been asked to start at {k}
+    // So we enqueue {k} at the cost of 0, as of course
+    // it costs nothing as we start here.
+    min_heap.enqueue([k, 0], 0);
+
+    while (min_heap.size()) {
+
+        // Get the cheapest operation relative to {k}
+        // Node and cost
+        const [node, cost] = min_heap.dequeue().element;
+
+        // Have we already been here? No loops today kiddo
+        if (visited_set.has(node)) continue;
+
+        // Set it. We don't want to come back here. 
+        visited_set.add(node);
+
+        // Did our distance increase?
+        // If so, update it. If not, keep the same
+        time_taken = Math.max(cost, time_taken);
+
+        // Get the edges for this node (If any)
+        const node_edges = node_edge_cost.get(node) || [];
+
+        for (const [edge_node, edge_cost] of node_edges) {
+            if (!visited_set.has(edge_node)) {
+                
+                // Add it to the queue, set the priority to the cost of the edge
+                // So we only ever visit the cheapest edge.
+                min_heap.enqueue([edge_node, edge_cost + cost], edge_cost + cost);
+            }
+        }
+    }
+
+    // Did we visit every node?
+    // If not, we failed to spread the message across the network.
+    // If so, return the time taken. 
+    return visited_set.size === n ? time_taken : -1;
+};
+
+```
+  
+</details>
+  
+#### Bellman Ford
+Works when there is **negative weight edge**. Slower than Dijkstra.
+
+
+<details>
   
 ```javascript
 var networkDelayTime = function(times, n, k) {
@@ -153,6 +230,9 @@ var networkDelayTime = function(times, n, k) {
 };
 ```
 Time Complexity: O ( V ⋅ E )
+
+</details>
+
 ___
 ### Topological Sort:
 ___

@@ -174,7 +174,9 @@ Left-> Right -> Root
 
   
 #### Recursion
-  
+
+**Question:**
+
 Find the total sum of all root-to-leaf numbers. A **leaf** node is a node with no children. 
   
 ![image](https://user-images.githubusercontent.com/30649150/204594786-e9473ae0-b2c2-4c0b-8f64-d25ec1f56461.png)
@@ -209,6 +211,42 @@ var sumNumbers = function(root) {
   dfs(root, []);
   let answer = res.reduce((a, b) => a + b);
   return answer;
+};
+```
+___
+
+**Question:**
+
+Find the number of islands in a grid.
+
+![image](https://user-images.githubusercontent.com/30649150/204641606-8eeb52bb-467d-418e-9f02-3be2f8e4e17d.png)
+
+**Output:** 3
+
+```javascript
+var numIslands = function(grid) {
+    let rows = grid.length;
+    let cols = grid[0].length;
+    let res = 0;
+    function dfs(r, c) {
+        if (r < 0 || c < 0 || r >= rows || c >= cols || !grid[r][c] || grid[r][c] === '0') {
+            return;
+        }
+        grid[r][c] = '0';
+        dfs(r - 1, c);
+        dfs(r + 1, c);
+        dfs(r, c - 1);
+        dfs(r, c + 1);
+    }
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+            if (grid[r][c] === '1') {
+                res++;
+                dfs(r, c);
+            }
+        }
+    }
+    return res;
 };
 ```
 ___
@@ -878,6 +916,7 @@ console.log(fruits.size);
 ___
 ## Arrays methods:
 Find Intersection of Two Arrays
+  
 **Input:** nums1 = [4,9,5], nums2 = [9,4,9,8,4]
   
 **Output:** [9,4]

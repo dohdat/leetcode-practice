@@ -1,3 +1,18 @@
+**Common agile development terms**
+
+1 story point = 1 day/work
+
+1 PI (Program Increment) is 3 months
+
+1 sprint is 2 weeks
+
+**What is a user story?**
+
+A user story is the smallest unit of work in an agile framework.
+
+**What is an epic?**
+
+Epics are large bodies of work that can be broken down into a number of smaller tasks (called stories).
 ___
 How to run yarn to **display latest changes**
 ```console

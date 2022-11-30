@@ -1,6 +1,25 @@
 ___
+How to run yarn to **display latest changes**
 ```console
 yarn run webpacklocal
+```
+
+**How to run unit tests**
+```console
+yarn run test:unit:src <test-file-with-path> -u
+```
+**Mock data**
+
+https://splunk.enterprise.slack.com/files/W9WH87QKS/F041CB83EQ4/itsidefaultscheduledbackup-1661949816.zip
+___
+**How to install splunk or ITSI:**
+```console
+wget <link>
+```
+
+**Unzip Splunk**
+```console
+tar -xvzf splunk-8.2.6-a6fe1ee8894b-Linux-x86_64.tgz
 ```
 ___
 Whenever setting up new VM, remember to setup **correct SPLUNK_HOME path**
@@ -80,6 +99,10 @@ sudo ss -lptn 'sport = :8089'
 **Kill port with id**
 ```console
 sudo kill -9 4344
+```
+**Check which process is running:**
+```console
+ps -ef|grep splunkd
 ```
 ___
 **Environment setup**

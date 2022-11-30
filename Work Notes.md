@@ -14,6 +14,19 @@ A user story is the smallest unit of work in an agile framework.
 
 Epics are large bodies of work that can be broken down into a number of smaller tasks (called stories).
 
+## Splunk Terms
+
+<details>
+  
+**KPI:**  Key Performance Indicator
+  
+**Types of KPI Source:**
+- Ad hoc Search: define your own search to retrieve portion of data.
+- Data Model: Use Splunk Data Models to define a search.
+- Shared Base Search: Use a shared base search configuration to define a search.
+  
+</details>
+
 ## Front End 
 
 <details>

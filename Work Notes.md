@@ -123,7 +123,7 @@ ln -s $GIT_DIRECTORY/apps/SA-ITOA/package $SPLUNK_HOME/etc/apps/SA-ITOA/package
 ```
 ___
 
-**Listening to port **
+**Listening to port**
 ```console
 sudo ss -lptn 'sport = :8089'
 ```

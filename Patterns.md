@@ -1069,6 +1069,14 @@ str.indexOf("locate");
 
 return 7
 ```
+                              
+Break string into Array
+```javascript
+let text = "How are you doing today?";
+const myArray = text.split(" ");
+
+Output: ["How","are","you","doing","today?"]
+```
 ___
 ## Bit Manipulation:
 Write a function that takes an unsigned integer and returns the number of '1' bits it has.

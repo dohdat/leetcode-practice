@@ -15,6 +15,9 @@ A user story is the smallest unit of work in an agile framework.
 Epics are large bodies of work that can be broken down into a number of smaller tasks (called stories).
 
 ## Front End 
+
+<details>
+  
 How to run yarn to **display latest changes**
 ```console
 yarn run webpacklocal
@@ -161,5 +164,10 @@ $SPLUNK_HOME/etc/apps/SA-ITOA/lib:\
 $HOME/Library/Python/2.7/lib/python/site-packages:\
 /Library/Python/2.7/site-packages
 ```
-
+  
+</details>
+  
 ## Back End
+  
+<details>
+  </details>

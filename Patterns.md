@@ -1,5 +1,8 @@
 ## Leetcode Study Plans:
 - Algorithm 1
+<details>
+  <summary>Planned Courses</summary>
+  
 - Algorithm 2
 - Algorithm 3
 - Graph Theory 1
@@ -12,6 +15,8 @@
 - Dynamic Programming 2
 - Dynamic Programming 3
 - Dynamic Programming 4
+  
+</details>
 
 ## Backtracking:
 Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.
@@ -1166,5 +1171,38 @@ ___
 
 
 ___
+
+## Big-O Complexity:
+![image](https://user-images.githubusercontent.com/30649150/205147112-28db06f5-935c-4bc8-9bdf-ac12e3ec121d.png)
+ 
+**O(1):**
+  
+push and pop of stack/array
+  
+**O(n):**
+
+Traversing an array
+
+Linear search
+
+**O(log n):**
+  
+ _<sub>O(log n) can be faster than O(n) on large data set.</sub>_
+  
+ Binary search
+
+**O(n log n):**
+  
+Divide and Conquer Algorithms
+
+**O(n<sup>2</sup>):**
+
+Traversing 2D array
+
+**O(n!):**
+  
+Generating all unrestricted permutations of a partially ordered set
+
+
 
 

@@ -1077,6 +1077,15 @@ const myArray = text.split(" ");
 
 Output: ["How","are","you","doing","today?"]
 ```
+                              
+Remove the first and last char of a string
+```javascript
+let str = "Hello";
+let newStr = str.slice(1,-1);
+                              
+console.log(newStr);
+Output: "ell"
+```
 ___
 ## Bit Manipulation:
 Write a function that takes an unsigned integer and returns the number of '1' bits it has.

@@ -54,6 +54,9 @@ var permute = function(nums) {
 ___
 
 ## Sliding Window:
+
+![Image](https://cdn.tealfeed.com/articles/content-images/6297b46357c93285cbbca84c/1654109346418-123360.gif)
+
 Given a string s, find the _length of the longest substring without repeating characters_.
 
 **Input:** s = "abcabcbb"
@@ -151,6 +154,8 @@ var isValid = function(s) {
 
 ___
 ## Two Pointers:
+
+![Image](https://logicmojo.com/assets/dist/new_pages/images/twosum1.gif)
   
 Return the _maximum amount of water a container can store_.
   
@@ -304,6 +309,9 @@ var numIslands = function(grid) {
 ```
 ___
 ## Binary Search:
+
+![Image](https://blog.penjee.com/wp-content/uploads/2015/04/binary-and-linear-search-animations.gif)
+
 Find if target exists in array. You must write an algorithm with _**O(log n)**_ time complexity.
   
 **Input:** nums = [-1,0,3,5,9,12], target = 9

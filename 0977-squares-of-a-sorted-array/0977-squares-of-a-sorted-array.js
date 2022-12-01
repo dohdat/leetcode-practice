@@ -1,7 +1,3 @@
-/**
- * @param {number[]} nums
- * @return {number[]}
- */
 var sortedSquares = function(nums) {
   let q = new MinPriorityQueue({ priority: x => x });
   let res = [];

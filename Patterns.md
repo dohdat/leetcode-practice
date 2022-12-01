@@ -1075,6 +1075,11 @@ const citrus = fruits.slice(1);
 //This example slices out a part of an array starting from array element 1 ("Orange")
 fruits = Orange, Lemon, Apple, Mango
 ```
+
+Create an array from 0 to N
+```javascript
+[...Array(10).keys()]
+```
 ___
 ## String methods:
 **slice()** extracts a part of a string and returns the extracted part in a new string.

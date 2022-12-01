@@ -1,5 +1,5 @@
 var sortedSquares = function(nums) {
-  let q = new MinPriorityQueue({ priority: x => x });
+  let q = new MinPriorityQueue();
   let res = [];
   for (let n of nums) {
     q.enqueue(Math.pow(n, 2));

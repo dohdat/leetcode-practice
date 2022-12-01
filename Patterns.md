@@ -699,7 +699,10 @@ var hasCycle = function(head) {
 ___
 ## Heap (Priority Queue):
   
-Time complexity: O(nlogn)
+Heaps are structures meant to allow quick access to the min or the max.
+Can get acccess to max or min at constant time ```O(1)```
+
+Time complexity: ```O(nlogn)```
   
 **MaxPriorityQueue**
   

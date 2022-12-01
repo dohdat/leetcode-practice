@@ -1,3 +1,5 @@
+![image](https://user-images.githubusercontent.com/30649150/205174398-73d5942d-a926-4920-86e8-7cfbedcff532.png)
+
 ## Leetcode Study Plans:
 - Algorithm 1
 <details>

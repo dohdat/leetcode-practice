@@ -699,6 +699,8 @@ var hasCycle = function(head) {
 ___
 ## Heap (Priority Queue):
   
+Time complexity: O(nlogn)
+  
 **MaxPriorityQueue**
   
 Given an integer array nums and an integer k, return the k _most frequent elements_. You may return the answer in **any order**.
@@ -733,6 +735,7 @@ var topKFrequent = function(nums, k) {
   return ans;
 };
 ```
+
                         
 **MinPriorityQueue**
                         

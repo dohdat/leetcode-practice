@@ -1,3 +1,18 @@
+## Leetcode Study Plans:
+- Algorithm 1
+- Algorithm 2
+- Algorithm 3
+- Graph Theory 1
+- Graph Theory 2
+- Graph Theory 3
+- Binary Search 1
+- Binary Search 2
+- Binary Search 3
+- Dynamic Programming 1
+- Dynamic Programming 2
+- Dynamic Programming 3
+- Dynamic Programming 4
+
 ## Backtracking:
 Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.
 

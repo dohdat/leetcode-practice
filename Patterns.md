@@ -677,7 +677,9 @@ var hasCycle = function(head) {
   
 
 ___
-## Heap:
+## Heap (Priority Queue):
+  
+**MaxPriorityQueue**
   
 Given an integer array nums and an integer k, return the k _most frequent elements_. You may return the answer in **any order**.
 
@@ -709,6 +711,34 @@ var topKFrequent = function(nums, k) {
   }
 
   return ans;
+};
+```
+                        
+**MinPriorityQueue**
+                        
+Return the closest point to origin.
+                        
+<img src="https://user-images.githubusercontent.com/30649150/204942748-91c1faf4-aa71-4914-8af7-191eb1e6ec96.png" width="300" height="300"/>
+                        
+**Input:** points = [[1,3],[-2,2]], k = 1
+                        
+**Output:** [[-2,2]]
+
+```javascript
+var kClosest = function(points, k) {
+    let q = new MinPriorityQueue({ priority: (x) => x[0] });
+    let res = [];
+    function calculateDis([a, b]) {
+        return a * a + b * b;
+    }
+    for (let p of points) {
+        q.enqueue([calculateDis(p), p]);
+    }
+    for (let i = 0; i < k; i++) {
+        let c = q.dequeue().element;
+        res.push(c[1]);
+    }
+    return res;
 };
 ```
 ___

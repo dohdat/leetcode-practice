@@ -1160,6 +1160,18 @@ let newStr = str.slice(1,-1);
 console.log(newStr);
 Output: "ell"
 ```
+                              
+Find the interesection between 2 strings
+```javascript
+let arr1 = ["a","b];
+let arr2 = ["b","a","d"];
+ 
+let filtered = arr1.filter(c => arr2.includes(c));
+console.log(filtered);
+
+Output: ["a","b"]
+                              
+```
 ___
 ## Bit Manipulation:
 Write a function that takes an unsigned integer and returns the number of '1' bits it has.

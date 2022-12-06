@@ -21,7 +21,7 @@ Epics are large bodies of work that can be broken down into a number of smaller 
 
 **Unit tests** for all the js files?
 
-Use gettext for string
+Use **gettext()** for string
 ```javascript
 const thresholdType = configSettingsModel.get('threshold_config_is_aggregate') ? gettext('Aggregate') : gettext('Entity');
 const title = sprintf(gettext('Preview %(thresholdType)s Thresholds'), { thresholdType });

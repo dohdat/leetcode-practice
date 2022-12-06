@@ -14,6 +14,14 @@ A user story is the smallest unit of work in an agile framework.
 
 Epics are large bodies of work that can be broken down into a number of smaller tasks (called stories).
 
+## Things to check before MR
+
+
+**Params/returns** for all the functions that I added?
+
+**Unit tests** for all the js files?
+
+
 ## Splunk Terms
 
 <details>

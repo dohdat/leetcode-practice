@@ -2,6 +2,11 @@ ___
 
 ## Front End 
 
+Restart VM
+
+```
+sudo reboot
+```
   
 How to run yarn to **display latest changes**
 ```console

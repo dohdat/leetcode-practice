@@ -29,8 +29,8 @@ var orangesRotting = function(grid) {
   }
 
   while (q.length && freshOranges) {
-    let next = [];
-    while (q.length) {
+    let len = q.length;
+    for (let i = 0; i < len; i++) {
       let [r, c] = q.shift();
       for (let [dr, dc] of dir) {
         let cr = r + dr;
@@ -38,12 +38,11 @@ var orangesRotting = function(grid) {
         if (isValid(cr, cd) && grid[cr][cd] === 1) {
           grid[cr][cd] = 2;
           freshOranges--;
-          next.push([cr, cd]);
+          q.push([cr, cd]);
         }
       }
     }
     mins++;
-    q = next;
   }
   return freshOranges === 0 ? mins : -1;
 };

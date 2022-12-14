@@ -4,11 +4,11 @@
  * @return {number[]}
  */
 var searchRange = function(nums, target) {
-  let res = [-1, -1];
   let left = 0;
   let right = nums.length - 1;
+  let res = [-1, -1];
   while (left <= right) {
-    let mid = Math.floor((right + left) / 2);
+    let mid = Math.floor((left + right) / 2);
     if (nums[mid] === target) {
       let found = mid;
       res[1] = mid;

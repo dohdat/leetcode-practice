@@ -1,7 +1,7 @@
 var longestCommonSubsequence = function(text1, text2) {
   const memo = new Map();
   if (text2.length > text1.length) {
-    longestCommonSubsequence(text2, text1);
+    return longestCommonSubsequence(text2, text1);
   }
   function recursion(index1, index2) {
     // base cases

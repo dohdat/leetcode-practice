@@ -7,7 +7,7 @@ var isValid = function(s) {
   let stack = [];
 
   for (let c of s) {
-    if (map[c] === true) {
+    if (c in map) {
       stack.push(c);
     } else {
       if (c === ")" && stack[stack.length - 1] !== "(") return false;

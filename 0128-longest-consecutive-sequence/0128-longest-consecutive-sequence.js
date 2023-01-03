@@ -3,26 +3,40 @@
  * @return {number}
  */
 var longestConsecutive = function(nums) {
-  let visited = new Set();
-  let longestSequence = 0;
-  for (let num of nums) {
-    if (visited.has(num)) continue;
-    visited.add(num);
+  // Create an empty object to store visited elements
+  let visited = {};
 
-    let curSequence = 1;
-    let curNum = num;
-    while (visited.has(curNum - 1)) {
-      curNum -= 1;
-      curSequence += 1;
-      visited.add(curNum);
+  let longestSequence = 0;
+  // Iterate through the elements in the array
+  for (let num of nums) {
+    // Skip the element if it has already been visited
+    if (visited[num]) {
+      continue;
     }
-    curNum = num;
-    while (visited.has(curNum + 1)) {
-      curNum += 1;
-      curSequence += 1;
-      visited.add(curNum);
+
+    // Mark the element as visited
+    visited[num] = true;
+
+    // Find the length of the current consecutive sequence
+    let currentSequence = 1;
+    let currentNum = num;
+    while (visited[currentNum - 1]) {
+      currentNum -= 1;
+      currentSequence += 1;
+      visited[currentNum] = true;
     }
-    longestSequence = Math.max(longestSequence, curSequence);
+    currentNum = num;
+    while (visited[currentNum + 1]) {
+      currentNum += 1;
+      currentSequence += 1;
+      visited[currentNum] = true;
+    }
+
+    // Update the longest sequence if necessary
+    if (currentSequence > longestSequence) {
+      longestSequence = currentSequence;
+    }
   }
+
   return longestSequence;
 };

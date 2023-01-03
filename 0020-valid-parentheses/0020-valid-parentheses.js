@@ -1,20 +1,9 @@
 var isValid = function(s) {
-  const map = {
-    "(": true,
-    "[": true,
-    "{": true
-  };
-  let stack = [];
-
-  for (let c of s) {
-    if (c in map) {
-      stack.push(c);
-    } else {
-      if (c === ")" && stack[stack.length - 1] !== "(") return false;
-      if (c === "]" && stack[stack.length - 1] !== "[") return false;
-      if (c === "}" && stack[stack.length - 1] !== "{") return false;
-      stack.pop();
-    }
+  const stack = [];
+  const pairs = { "(": ")", "[": "]", "{": "}" };
+  for (const c of s) {
+    if (c in pairs) stack.push(c);
+    else if (stack.length === 0 || pairs[stack.pop()] !== c) return false;
   }
   return stack.length === 0;
 };

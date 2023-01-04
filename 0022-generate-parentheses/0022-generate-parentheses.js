@@ -19,3 +19,5 @@ var generateParenthesis = function(n) {
   dfs("", 0, 0);
   return res;
 };
+// The time complexity of the original code is exponential, specifically O(2^n). This is because the number of recursive calls grows exponentially with the size of the input (n).
+// The space complexity of the original code is also exponential, specifically O(n). This is because the maximum depth of the recursive call stack grows with the size of the input (n).

@@ -5,10 +5,8 @@ var validPath = function(n, edges, source, destination) {
 
   // Create an adjacency list to store the edges
   for (let [src, dst] of edges) {
-    if (!preMap.has(src)) preMap.set(src, []);
-    if (!preMap.has(dst)) preMap.set(dst, []);
-    preMap.get(src).push(dst);
-    preMap.get(dst).push(src);
+    preMap.set(src, (preMap.get(src) || []).concat(dst));
+    preMap.set(dst, (preMap.get(dst) || []).concat(src));
   }
 
   // BFS function for traversing the graph
@@ -29,6 +27,5 @@ var validPath = function(n, edges, source, destination) {
     }
     return false;
   }
-
   return bfs(source);
 };

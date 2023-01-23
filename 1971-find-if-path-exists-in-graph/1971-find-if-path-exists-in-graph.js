@@ -1,31 +1,34 @@
-/**
- * @param {number} n
- * @param {number[][]} edges
- * @param {number} source
- * @param {number} destination
- * @return {boolean}
- */
 var validPath = function(n, edges, source, destination) {
-  let res = false;
   let preMap = new Map();
   let visited = new Set();
+  let queue = [];
+
+  // Create an adjacency list to store the edges
   for (let [src, dst] of edges) {
-    preMap.set(src, (preMap.get(src) || []).concat(dst));
-    preMap.set(dst, (preMap.get(dst) || []).concat(src));
+    if (!preMap.has(src)) preMap.set(src, []);
+    if (!preMap.has(dst)) preMap.set(dst, []);
+    preMap.get(src).push(dst);
+    preMap.get(dst).push(src);
   }
-  function dfs(node) {
+
+  // BFS function for traversing the graph
+  function bfs(node) {
     if (node === destination) {
-      res = true;
-      return;
+      return true;
     }
-    if (visited.has(node)) return;
+    if (visited.has(node)) return false;
     visited.add(node);
-    let visiting = preMap.get(node);
-    while (visiting && visiting.length > 0) {
-      let c = visiting.shift();
-      dfs(c);
+    for (let next of preMap.get(node)) {
+      queue.push(next);
     }
+    while (queue.length) {
+      let c = queue.shift();
+      if (bfs(c)) {
+        return true;
+      }
+    }
+    return false;
   }
-  dfs(source);
-  return res;
+
+  return bfs(source);
 };

@@ -2,6 +2,13 @@ ___
 
 ## Front End 
 
+If there are issues, not seeing updated changes, hard refresh everything.
+
+```console
+yarn clean
+yarn install
+```
+
 Restart VM
 
 ```

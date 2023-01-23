@@ -18,6 +18,8 @@ var validPath = function(n, edges, source, destination) {
       res = true;
       return;
     }
+    if (visited.has(node)) return;
+    visited.add(node);
     let visiting = preMap.get(node);
     while (visiting && visiting.length > 0) {
       let c = visiting.shift();

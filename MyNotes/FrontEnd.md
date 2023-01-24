@@ -2,6 +2,10 @@ ___
 
 ## Front End 
 
+For caching issues, try <host>/en-US/_bump endpoint and clicking the bump button
+  
+http://10.214.35.206:8000/en-US/_bump
+  
 If there are issues, not seeing updated changes, hard refresh everything.
 
 ```console

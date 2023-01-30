@@ -1,24 +1,41 @@
 var possibleBipartition = function(n, dislikes) {
-  let graph = Array(n + 1).fill(0).map(() => []);
+  // Time complexity: O(n + m) where n is the number of nodes and m is the number of edges.
+  // Space complexity: O(n + m)
+
+  let graph = new Map();
+  // Initialize the graph with an empty array for each node.
+  for (let i = 1; i <= n; i++) {
+    graph.set(i, []);
+  }
+  // Add edges to the graph.
   for (let dislike of dislikes) {
-    graph[dislike[0]].push(dislike[1]);
-    graph[dislike[1]].push(dislike[0]);
+    graph.get(dislike[0]).push(dislike[1]);
+    graph.get(dislike[1]).push(dislike[0]);
   }
 
-  let colors = Array(n + 1).fill(0);
+  let colors = new Map();
+  // Initialize the color map with 0 for each node.
+  for (let i = 1; i <= n; i++) {
+    colors.set(i, 0);
+  }
 
   for (let i = 1; i <= n; i++) {
-    if (colors[i] === 0 && !dfs(i, 1)) {
+    // If the node has not been colored, attempt to color it with color 1.
+    // If coloring fails, return false.
+    if (colors.get(i) === 0 && !dfs(i, 1)) {
       return false;
     }
   }
 
   function dfs(node, color) {
-    if (colors[node] !== 0) {
-      return colors[node] === color;
+    // If the node has already been colored, return whether its color is the same as the expected color.
+    if (colors.get(node) !== 0) {
+      return colors.get(node) === color;
     }
-    colors[node] = color;
-    for (let neighbor of graph[node]) {
+    colors.set(node, color);
+    // Visit all neighbors of the node and color them with the opposite color.
+    // If coloring any of the neighbors fails, return false.
+    for (let neighbor of graph.get(node)) {
       if (!dfs(neighbor, -color)) {
         return false;
       }
@@ -26,5 +43,6 @@ var possibleBipartition = function(n, dislikes) {
     return true;
   }
 
+  // If all nodes have been successfully colored, return true.
   return true;
 };

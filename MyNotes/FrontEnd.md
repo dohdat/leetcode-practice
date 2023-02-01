@@ -96,7 +96,7 @@ ___
 Go to ~splunk/etc/apps
 Remove all symlink
 ```console
-find -type l -delete
+find . -type l -delete
 ```
 Remove previous static build
 ```console

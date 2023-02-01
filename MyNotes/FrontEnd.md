@@ -133,6 +133,10 @@ ps -ef|grep splunkd
 ```
 ___
 **Environment setup**
+```  
+vim ~/.profile -- to edit profile
+source ~/.profile -- restart profile to take effects
+```
 ```bash
 # directory where you clone repositories, for example:
 export SOLN_ROOT=$HOME/git

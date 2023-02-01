@@ -98,6 +98,11 @@ Remove all symlink
 ```console
 find . -type l -delete
 ```
+  
+Find symlinks
+```console
+find . -type l -ls
+```
 Remove previous static build
 ```console
 rm -rf $SPLUNK_HOME/etc/apps/itsi/appserver/static/build

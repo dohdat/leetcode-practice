@@ -1,5 +1,9 @@
 **Unit Testings**
 
+```
+yarn run test:unit:src <test-file-with-path> -u
+```
+
 **WDIO**
 
 To focus on a test, change from **it('') to fit('')**

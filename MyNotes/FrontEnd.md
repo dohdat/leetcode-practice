@@ -177,3 +177,7 @@ $HOME/Library/Python/2.7/lib/python/site-packages:\
 /Library/Python/2.7/site-packages
 ```
   
+How to enable feature flags
+```
+find . -name "app_common_flags.conf"
+```

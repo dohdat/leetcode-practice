@@ -1,21 +1,13 @@
-/**
-Use a dp
+function climbStairs(n) {
+  // Initialize an array to store the number of ways to reach each stair.
+  // We start with 1 way to reach the first stair (if n = 0, there are 0 stairs to climb).
+  const dp = [1, 1];
 
- */
-var climbStairs = function(n) {
-  let memo = [];
-  function dfs(step, end) {
-    if (step === end) {
-      return 1;
-    }
-    if (end < step) {
-      return 0;
-    }
-    if (memo[step]) {
-      return memo[step];
-    }
-    memo[step] = dfs(step + 1, end) + dfs(step + 2, end);
-    return memo[step];
+  // Iterate from the second stair up to n, and calculate the number of ways to reach each stair.
+  for (let i = 2; i <= n; i++) {
+    // The number of ways to reach the i-th stair is equal to the sum of the number of ways to reach the (i-1)th stair and the (i-2)th stair.
+    // This is because you can either climb 1 stair from the (i-1)th stair, or 2 stairs from the (i-2)th stair.
+    dp[i] = dp[i - 1] + dp[i - 2];
   }
-  return dfs(0, n);
-};
+  return dp[n];
+}

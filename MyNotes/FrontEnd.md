@@ -181,3 +181,6 @@ How to enable feature flags
 ```
 find . -name "app_common_flags.conf"
 ```
+  
+For WDIO issues
+Update both wdio.conf.js and wdio-local-chrome.conf.js with the latest chrome version

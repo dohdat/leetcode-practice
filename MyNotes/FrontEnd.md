@@ -189,7 +189,7 @@ Update both wdio.conf.js and wdio-local-chrome.conf.js with the latest chrome ve
 ```
 {
   "changeReason": "ITSI-1234 updating",
-  "name": "sajjaad-test",
+  "name": "datdo-test",
   "spec": {
     "accessRules": {
       "apiWhitelist": [
@@ -548,48 +548,48 @@ Update both wdio.conf.js and wdio-local-chrome.conf.js with the latest chrome ve
   "status": {
     "certs": {
       "forwarders": {
-        "body": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/certs/forwarders/certificate_body",
-        "chain": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/certs/forwarders/certificate_chain",
-        "password": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/certs/forwarders/password",
-        "privateKey": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/certs/forwarders/private_key",
+        "body": "vault://cloud-sec/data/std/stg/stacks/datdo-test/certs/forwarders/certificate_body",
+        "chain": "vault://cloud-sec/data/std/stg/stacks/datdo-test/certs/forwarders/certificate_chain",
+        "password": "vault://cloud-sec/data/std/stg/stacks/datdo-test/certs/forwarders/password",
+        "privateKey": "vault://cloud-sec/data/std/stg/stacks/datdo-test/certs/forwarders/private_key",
         "provider": "VaultPKI",
-        "rootCA": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/certs/forwarders/root_ca",
+        "rootCA": "vault://cloud-sec/data/std/stg/stacks/datdo-test/certs/forwarders/root_ca",
         "serial": "45:bd:f0:47:88:74:62:33:69:7c:8e:6a:33:7f:3a:3f:91:98:2b:68"
       },
       "inputs": {
-        "body": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/certs/inputs/certificate_body",
-        "chain": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/certs/inputs/certificate_chain",
-        "password": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/certs/inputs/password",
-        "privateKey": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/certs/inputs/private_key",
+        "body": "vault://cloud-sec/data/std/stg/stacks/datdo-test/certs/inputs/certificate_body",
+        "chain": "vault://cloud-sec/data/std/stg/stacks/datdo-test/certs/inputs/certificate_chain",
+        "password": "vault://cloud-sec/data/std/stg/stacks/datdo-test/certs/inputs/password",
+        "privateKey": "vault://cloud-sec/data/std/stg/stacks/datdo-test/certs/inputs/private_key",
         "provider": "VaultPKI",
-        "rootCA": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/certs/inputs/root_ca",
+        "rootCA": "vault://cloud-sec/data/std/stg/stacks/datdo-test/certs/inputs/root_ca",
         "serial": "12:66:36:1c:3d:67:2f:83:5d:e3:d8:21:18:e6:46:49:d4:55:67:f2"
       },
       "saml": {
-        "body": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/certs/saml/certificate_body",
-        "chain": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/certs/saml/certificate_chain",
-        "password": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/certs/saml/password",
-        "privateKey": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/certs/saml/private_key",
+        "body": "vault://cloud-sec/data/std/stg/stacks/datdo-test/certs/saml/certificate_body",
+        "chain": "vault://cloud-sec/data/std/stg/stacks/datdo-test/certs/saml/certificate_chain",
+        "password": "vault://cloud-sec/data/std/stg/stacks/datdo-test/certs/saml/password",
+        "privateKey": "vault://cloud-sec/data/std/stg/stacks/datdo-test/certs/saml/private_key",
         "provider": "VaultPKI",
-        "rootCA": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/certs/saml/root_ca",
+        "rootCA": "vault://cloud-sec/data/std/stg/stacks/datdo-test/certs/saml/root_ca",
         "serial": "7c:6e:5e:aa:03:a9:05:1d:25:9d:a6:b1:44:dc:d0:77:a8:61:f7:90"
       },
       "samlIDP": {
-        "body": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/certs/samlIDP/certificate_body",
-        "chain": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/certs/samlIDP/certificate_chain",
-        "password": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/certs/samlIDP/password",
-        "privateKey": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/certs/samlIDP/private_key",
+        "body": "vault://cloud-sec/data/std/stg/stacks/datdo-test/certs/samlIDP/certificate_body",
+        "chain": "vault://cloud-sec/data/std/stg/stacks/datdo-test/certs/samlIDP/certificate_chain",
+        "password": "vault://cloud-sec/data/std/stg/stacks/datdo-test/certs/samlIDP/password",
+        "privateKey": "vault://cloud-sec/data/std/stg/stacks/datdo-test/certs/samlIDP/private_key",
         "provider": "VaultPKI",
-        "rootCA": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/certs/samlIDP/root_ca",
+        "rootCA": "vault://cloud-sec/data/std/stg/stacks/datdo-test/certs/samlIDP/root_ca",
         "serial": "7c:8c:55:4f:f3:c2:40:a1:60:2d:ce:6b:85:6f:b2:de:b0:6b:bc:13"
       },
       "server": {
-        "body": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/certs/server/certificate_body",
-        "chain": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/certs/server/certificate_chain",
-        "password": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/certs/server/password",
-        "privateKey": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/certs/server/private_key",
+        "body": "vault://cloud-sec/data/std/stg/stacks/datdo-test/certs/server/certificate_body",
+        "chain": "vault://cloud-sec/data/std/stg/stacks/datdo-test/certs/server/certificate_chain",
+        "password": "vault://cloud-sec/data/std/stg/stacks/datdo-test/certs/server/password",
+        "privateKey": "vault://cloud-sec/data/std/stg/stacks/datdo-test/certs/server/private_key",
         "provider": "VaultPKI",
-        "rootCA": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/certs/server/root_ca",
+        "rootCA": "vault://cloud-sec/data/std/stg/stacks/datdo-test/certs/server/root_ca",
         "serial": "29:59:44:48:6d:76:a0:06:fb:b5:0b:d4:89:59:3e:bd:4c:40:af:2d"
       }
     },
@@ -636,22 +636,22 @@ Update both wdio.conf.js and wdio-local-chrome.conf.js with the latest chrome ve
     "lastProvisionedStatus": "Complete",
     "lastProvisionedTimestamp": "2023-03-17T19:41:39Z",
     "lastProvisionedURL": "https://jenkins.stg.splunkcloud.systems/job/build-stack/233649/",
-    "lastPuppetJobRef": "splunk-cloud-operator-staging/sajjaad-test-h67jg",
+    "lastPuppetJobRef": "splunk-cloud-operator-staging/datdo-test-h67jg",
     "objectChecksums": {
       "hieradata": {
-        "sajjaad-test/cluster_master": {
+        "datdo-test/cluster_master": {
           "generated": "8a80554c91d9fca8acb82f023de02f11",
           "persisted": "8a80554c91d9fca8acb82f023de02f11"
         },
-        "sajjaad-test/idx": {
+        "datdo-test/idx": {
           "generated": "934497a882df035483f49f794e47c5ff",
           "persisted": "28d78e1f39d5d74da64303f421561429"
         },
-        "sajjaad-test/sh1": {
+        "datdo-test/sh1": {
           "generated": "0aba6261e913ce8818477d05ecb14545",
           "persisted": "8caba9c3bc100850fdfc43af0ac175ac"
         },
-        "sajjaad-test/stack": {
+        "datdo-test/stack": {
           "generated": "6b04aceab8a4a7887eba6360f499bd12",
           "persisted": "55fb4b74da52204f3112d860b08fd4fe"
         }
@@ -685,7 +685,7 @@ Update both wdio.conf.js and wdio-local-chrome.conf.js with the latest chrome ve
       "search_head_ip_sh1": "34.193.161.187",
       "shc_dns_endpoints": "{}",
       "single_instance": "false",
-      "stack": "sajjaad-test",
+      "stack": "datdo-test",
       "tf_branch": "main",
       "userdata_branch": "latest"
     },
@@ -695,17 +695,17 @@ Update both wdio.conf.js and wdio-local-chrome.conf.js with the latest chrome ve
       "terraformVersion": "main"
     },
     "secrets": {
-      "adminPassword": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/admin/plaintext",
-      "indexManagerPassword": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/index_manager/plaintext",
-      "internalAutomationPassword": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/internal_automation/plaintext",
-      "internalITSIPassword": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/internal_itsi/plaintext",
-      "internalObservabilityPassword": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/internal_observability/plaintext",
-      "opsAdminPassword": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/ops_admin/plaintext",
-      "pass4SymmKey": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/p4sk/plaintext",
-      "replicationSSLPassword": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/ssl_repl/plaintext",
-      "shcPass4SymmKey": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/shc_p4sk/plaintext",
-      "splunkSecret": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/secret/plaintext",
-      "ssaiPass4SymmKey": "vault://cloud-sec/data/std/stg/stacks/sajjaad-test/ssaip4sk/plaintext"
+      "adminPassword": "vault://cloud-sec/data/std/stg/stacks/datdo-test/admin/plaintext",
+      "indexManagerPassword": "vault://cloud-sec/data/std/stg/stacks/datdo-test/index_manager/plaintext",
+      "internalAutomationPassword": "vault://cloud-sec/data/std/stg/stacks/datdo-test/internal_automation/plaintext",
+      "internalITSIPassword": "vault://cloud-sec/data/std/stg/stacks/datdo-test/internal_itsi/plaintext",
+      "internalObservabilityPassword": "vault://cloud-sec/data/std/stg/stacks/datdo-test/internal_observability/plaintext",
+      "opsAdminPassword": "vault://cloud-sec/data/std/stg/stacks/datdo-test/ops_admin/plaintext",
+      "pass4SymmKey": "vault://cloud-sec/data/std/stg/stacks/datdo-test/p4sk/plaintext",
+      "replicationSSLPassword": "vault://cloud-sec/data/std/stg/stacks/datdo-test/ssl_repl/plaintext",
+      "shcPass4SymmKey": "vault://cloud-sec/data/std/stg/stacks/datdo-test/shc_p4sk/plaintext",
+      "splunkSecret": "vault://cloud-sec/data/std/stg/stacks/datdo-test/secret/plaintext",
+      "ssaiPass4SymmKey": "vault://cloud-sec/data/std/stg/stacks/datdo-test/ssaip4sk/plaintext"
     },
     "terminationDate": "2023-03-28T19:07:00Z"
   },

@@ -2,6 +2,11 @@ ___
 
 ## Front End 
 
+CSS for debugging
+```CSS
+background: (0 100 0 /0.05) !important
+```
+
 For caching issues, try <host>/en-US/_bump endpoint and clicking the bump button
   
 http://10.214.35.206:8000/en-US/_bump

@@ -106,7 +106,7 @@ find . -type l -ls
 ```
 Remove previous static build
 ```console
-rm -rf $SPLUNK_HOME/etc/apps/itsi/appserver/static/build
+source ~/.profile && rm -rf $SPLUNK_HOME/etc/apps/itsi/appserver/static/build
 ```
 
 **Front-end symlink**

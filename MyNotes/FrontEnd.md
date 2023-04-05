@@ -2,10 +2,6 @@ ___
 
 ## Front End 
 
-CSS for debugging
-```CSS
-background: (0 100 0 /0.05) !important
-```
 
 For caching issues, try <host>/en-US/_bump endpoint and clicking the bump button
   

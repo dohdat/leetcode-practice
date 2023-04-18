@@ -180,7 +180,7 @@ $HOME/Library/Python/2.7/lib/python/site-packages:\
   
 How to enable feature flags
 ```
-find . -name "app_common_flags.conf"
+vim $(find . -name "app_common_flags.conf")
 ```
   
 Ignore local changes with git

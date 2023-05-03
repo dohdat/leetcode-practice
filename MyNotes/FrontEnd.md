@@ -2,7 +2,11 @@ ___
 
 ## Front End 
 
-
+Node incompatible issue?
+```
+nvm use <Version>
+```
+  
 For caching issues, try <host>/en-US/_bump endpoint and clicking the bump button
   
 http://10.214.35.206:8000/en-US/_bump

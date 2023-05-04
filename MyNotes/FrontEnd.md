@@ -198,7 +198,7 @@ For WDIO issues
 Update both wdio.conf.js and wdio-local-chrome.conf.js with the latest chrome version
 
   
-How to create CO2 stack for testing:
+## How to create CO2 stack for testing:
   
 1) Go to the pipeline -> Build
 2) Get the published build
@@ -206,8 +206,15 @@ How to create CO2 stack for testing:
 
 3) Change the build in the JSON
 https://console.splunkcloud.systems/stg/create/stack/overview
-```
-{
+4) Get the credentials
+https://console.splunkcloud.systems/stg/stack/datdo-test/credentials
+
+<details>
+  <summary>JSON Code</summary>
+  
+
+  ```js
+  {
   "changeReason": "ITSI-1234 updating",
   "name": "datdo-test",
   "spec": {
@@ -731,4 +738,6 @@ https://console.splunkcloud.systems/stg/create/stack/overview
   },
   "version": 6
 }
-```
+  ```
+</details>
+  

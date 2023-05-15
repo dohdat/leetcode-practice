@@ -197,7 +197,8 @@ For WDIO issues
   
 Update both wdio.conf.js and wdio-local-chrome.conf.js with the latest chrome version
 
-  
+## Deploy to orca:
+https://splunk.atlassian.net/wiki/spaces/PROD/pages/1078131255065/App-ITSI+Gitlab+onboarding#Create-preserve-instance-and-debug---Deploy-to-orca
 ## How to create CO2 stack for testing:
   
 1) Go to the pipeline -> Build

@@ -560,13 +560,13 @@ https://console.splunkcloud.systems/stg/stack/datdo-test/credentials
   },
   "reviewReason": "",
   "createdAt": "2023-03-17T19:39:37.494626237Z",
-  "createdBy": "skhader@splunk.com",
+  "createdBy": "ddo@splunk.com",
   "labels": {
     "enterprise.cloud.splunk8s.io/account": "std-stg-1",
     "enterprise.cloud.splunk8s.io/cloud": "aws",
     "enterprise.cloud.splunk8s.io/ephemeral": "true",
     "enterprise.cloud.splunk8s.io/network": "default",
-    "enterprise.cloud.splunk8s.io/owner": "skhader",
+    "enterprise.cloud.splunk8s.io/owner": "ddo",
     "enterprise.cloud.splunk8s.io/region": "us-east-1"
   },
   "reviewStatus": "",

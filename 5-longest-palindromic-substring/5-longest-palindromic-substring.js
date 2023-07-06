@@ -4,7 +4,7 @@
  */
 var longestPalindrome = function(s) {
     let res = '';
-    let resLen = 0;
+    // let resLen = 0;
     function expand(l, r) {
         while (l >= 0 && r < s.length && s[l] === s[r]) {
             if (r - l + 1 > resLen) {

@@ -38,6 +38,13 @@ yarn run test:unit:src <test-file-with-path> -u
 https://splunk.enterprise.slack.com/files/W9WH87QKS/F041CB83EQ4/itsidefaultscheduledbackup-1661949816.zip
 ___
 **How to install splunk or ITSI:**
+
+Go to splunk/etc/apps
+
+```console
+rm -rf itsi
+```
+
 ```console
 wget <link>
 ```

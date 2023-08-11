@@ -105,7 +105,7 @@ ___
 ___
 **How to symlink:**
 
-Go to ~splunk/etc/apps
+Go to ~cd && cd splunk/etc/apps
 Remove all symlink
 ```console
 find . -type l -delete

@@ -1,5 +1,6 @@
 import requests
 import time
+import re
 from datetime import datetime, timedelta
 from concurrent.futures import ThreadPoolExecutor
 from data import table_data
@@ -71,8 +72,12 @@ get_url = f"https://prv.tutor.com/nGEN/Tools/ScheduleManager_v2/default.aspx?Sel
 response = session.get(get_url)
 print(f"GET request to {get_url}. Status Code: {response.status_code}")
 
-# Print the response text
-print(response.text)
+pattern = r"fillCell\('[^']*', '([^']*)', 'Scheduled!', '[^']*'\)"
 
+scheduled_fill_cells = [int(match) for match in re.findall(pattern, response.text)]
 
-
+for entry in table_data:
+    if entry["fillCell"] in scheduled_fill_cells:
+        entry["scheduled"] = True
+    else:
+        entry["scheduled"] = False

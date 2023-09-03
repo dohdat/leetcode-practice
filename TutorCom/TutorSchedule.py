@@ -4,7 +4,7 @@ import re
 from datetime import datetime, timedelta
 from concurrent.futures import ThreadPoolExecutor
 from data import table_data, calendar_id
-# from Calendar import create_event
+from Calendar import create_event, list_upcoming_events
 
 
 session = requests.Session()
@@ -55,7 +55,7 @@ if current_time < start_running_time:
 start_time = time.time()
 num_threads = 2
 
-# with ThreadPoolExecutor(max_workers=num_threads) as executor:
+with ThreadPoolExecutor(max_workers=num_threads) as executor:
     # Submit requests to the executor
     executor.map(send_request, urls)
 
@@ -108,5 +108,5 @@ for entry in table_data:
         events.append(event)
 
 # Create the events on the Google Calendar
-# for event in events:
-#     create_event(calendar_id, event["start_time"], event["end_time"], event["event_summary"])
+for event in events:
+    create_event(calendar_id, event["start_time"], event["end_time"], event["event_summary"])

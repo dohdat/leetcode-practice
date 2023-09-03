@@ -3,7 +3,8 @@ import time
 import re
 from datetime import datetime, timedelta
 from concurrent.futures import ThreadPoolExecutor
-from data import table_data
+from data import table_data, calendar_id
+# from Calendar import create_event
 
 
 session = requests.Session()
@@ -54,7 +55,7 @@ if current_time < start_running_time:
 start_time = time.time()
 num_threads = 2
 
-with ThreadPoolExecutor(max_workers=num_threads) as executor:
+# with ThreadPoolExecutor(max_workers=num_threads) as executor:
     # Submit requests to the executor
     executor.map(send_request, urls)
 
@@ -81,3 +82,31 @@ for entry in table_data:
         entry["scheduled"] = True
     else:
         entry["scheduled"] = False
+
+# Create a list of events to create on the Google Calendar
+events = []
+for entry in table_data:
+    if entry["scheduled"]:
+        # Convert formatted_date to a datetime object
+        formatted_date_datetime = datetime.strptime(formatted_date, "%m/%d/%Y")
+
+        # Calculate the start and end times
+        start_time = formatted_date_datetime + timedelta(days=entry["weekday"] - 1)
+        start_time_str = start_time.strftime("%m/%d/%Y") + " " + entry["hour"]
+        start_time = datetime.strptime(start_time_str, "%m/%d/%Y %I:%M %p")
+        end_time = start_time + timedelta(hours=1)
+        
+        # Create the event dictionary
+        event = {
+            "start_time": start_time.strftime("%Y-%m-%dT%H:%M:%S"),
+            "end_time": end_time.strftime("%Y-%m-%dT%H:%M:%S"),
+            "event_summary": "Tutor.com Session",
+            "status": "free"
+        }
+        
+        # Append the event to the list
+        events.append(event)
+
+# Create the events on the Google Calendar
+# for event in events:
+#     create_event(calendar_id, event["start_time"], event["end_time"], event["event_summary"])

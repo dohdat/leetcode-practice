@@ -18,11 +18,11 @@ def create_event(calendar_id, start_time, end_time, event_summary):
         'summary': event_summary,
         'start': {
             'dateTime': start_time,
-            'timeZone': 'America/Los_Angeles',  # e.g., 'America/New_York'
+            'timeZone': 'America/Los_Angeles',
         },
         'end': {
             'dateTime': end_time,
-            'timeZone': 'America/Los_Angeles',  # e.g., 'America/New_York'
+            'timeZone': 'America/Los_Angeles',
         },
     }
 
@@ -32,11 +32,3 @@ def create_event(calendar_id, start_time, end_time, event_summary):
     except Exception as e:
         print(f'Error creating event: {e}')
 
-# Example usage
-if __name__ == '__main__':
-    calendar_id = '951d3b2328ace2ababeb5e28228a9bcefa20851a5de9e810dfd8e4ad49277d3c@group.calendar.google.com'
-    start_time = '2023-09-02T09:00:00'
-    end_time = '2023-09-02T10:00:00'
-    event_summary = 'Tutoring Time'
-
-    create_event(calendar_id, start_time, end_time, event_summary)

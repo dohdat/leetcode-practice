@@ -9,12 +9,20 @@ from Calendar import create_event, list_upcoming_events
 
 session = requests.Session()
 session.headers = {"Cookie": "ASP.NET_SessionId=wx3ambaeyfp2zywxtsy5pyt5"}
+
+
 def send_request(url):
     try:
         response = session.post(url)
         print(f"{url}. Status Code: {response.status_code}")
     except requests.exceptions.RequestException as e:
         print(f"Request to {url} failed with error: {e}")
+
+
+def create_event_wrapper(args):
+    calendar_id, start_time, end_time, event_summary = args
+    create_event(calendar_id, start_time, end_time, event_summary)
+
 
 # Calculate the date of the first Monday of next week
 today = datetime.now()
@@ -32,10 +40,10 @@ urls = []
 for entry in table_data:
     weekday = entry["weekday"]
     hour = entry["hour"]
-    
+
     # Construct the URL
     url = f"https://prv.tutor.com/nGEN/Tools/ScheduleManager_v2/SchedulerWorker.aspx?Type=Set&Week={formatted_date}&WeekDay={weekday}&Hour={hour.replace(' ', '%20')}"
-    
+
     # Append the URL to the list
     urls.append(url)
 
@@ -47,7 +55,7 @@ if current_time < start_running_time:
     time_to_wait = (start_running_time - current_time).total_seconds()
     print(f"Waiting for {time_to_wait:.2f} seconds until 9:00:01 AM.")
     while time_to_wait > 0:
-        print(f"Time remaining: {time_to_wait:.2f} seconds", end='\r')
+        print(f"Time remaining: {time_to_wait:.2f} seconds", end="\r")
         time_to_wait -= 1
         time.sleep(1)
     print("\nStarting execution at 9:00:01 AM.")
@@ -62,7 +70,6 @@ with ThreadPoolExecutor(max_workers=num_threads) as executor:
 end_time = time.time()
 total_time = end_time - start_time
 print(f"All requests completed. Total Time: {total_time:.2f} seconds")
-
 
 
 # Call the GET endpoint to get scheduled dates, selected date is formatted_date - 7 days
@@ -96,13 +103,13 @@ for entry in table_data:
         start_time_str = start_time.strftime("%m/%d/%Y") + " " + entry["hour"]
         start_time = datetime.strptime(start_time_str, "%m/%d/%Y %I:%M %p")
         end_time = start_time + timedelta(hours=1)
-        
+
         # Create the event dictionary
         event = {
             "start_time": start_time.strftime("%Y-%m-%dT%H:%M:%S"),
             "end_time": end_time.strftime("%Y-%m-%dT%H:%M:%S"),
             "event_summary": "Tutor.com",
-            "status": "free"
+            "status": "free",
         }
         # Check if the event has already been created
         event_created = False
@@ -122,6 +129,18 @@ for entry in table_data:
         if not event_created:
             events.append(event)
 
-# Create the events on the Google Calendar
-for event in events:
-    create_event(calendar_id, event["start_time"], event["end_time"], event["event_summary"])
+
+with ThreadPoolExecutor(max_workers=num_threads) as executor:
+    # Submit requests to the executor
+    executor.map(
+        create_event_wrapper,
+        [
+            (
+                calendar_id,
+                event["start_time"],
+                event["end_time"],
+                event["event_summary"],
+            )
+            for event in events
+        ],
+    )

@@ -5,6 +5,7 @@ import os.path
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
+from google.auth.transport.requests import Request
 from googleapiclient.errors import HttpError
 
 # If modifying these scopes, delete the file token.json.
@@ -26,17 +27,17 @@ def get_google_calendar_service():
             token.write(creds.to_json())
     return build('calendar', 'v3', credentials=creds)
 
-def list_upcoming_events():
+def list_upcoming_events(calendar_id='primary', maxResults=25):
     """List the next 10 events on the user's calendar."""
     try:
         service = get_google_calendar_service()
         now = datetime.datetime.utcnow().isoformat() + 'Z'
-        print('Getting the upcoming 10 events')
-        events_result = service.events().list(calendarId='primary', timeMin=now,
-                                               maxResults=10, singleEvents=True,
+        print(f'Getting the upcoming {maxResults} events')
+        events_result = service.events().list(calendarId=calendar_id, timeMin=now,
+                                               maxResults=maxResults, singleEvents=True,
                                                orderBy='startTime').execute()
         events = events_result.get('items', [])
-
+        res = []
         if not events:
             print('No upcoming events found.')
             return
@@ -44,6 +45,8 @@ def list_upcoming_events():
         for event in events:
             start = event.get('start', {}).get('dateTime', event.get('start', {}).get('date'))
             print(start, event.get('summary'))
+            res.append(start)
+        return res
 
     except HttpError as error:
         print('An error occurred: %s' % error)
@@ -62,6 +65,7 @@ def create_event(calendar_id, start_time, end_time, event_summary):
                 'dateTime': end_time,
                 'timeZone': 'America/New_York',
             },
+            "transparency": "transparent",
         }
         event = service.events().insert(calendarId=calendar_id, body=event).execute()
         print(f'Event created: {event.get("htmlLink")}')

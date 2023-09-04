@@ -85,6 +85,7 @@ for entry in table_data:
 
 # Create a list of events to create on the Google Calendar
 events = []
+created_events = list_upcoming_events(calendar_id, 25)
 for entry in table_data:
     if entry["scheduled"]:
         # Convert formatted_date to a datetime object
@@ -100,12 +101,26 @@ for entry in table_data:
         event = {
             "start_time": start_time.strftime("%Y-%m-%dT%H:%M:%S"),
             "end_time": end_time.strftime("%Y-%m-%dT%H:%M:%S"),
-            "event_summary": "Tutor.com Session",
+            "event_summary": "Tutor.com",
             "status": "free"
         }
-        
-        # Append the event to the list
-        events.append(event)
+        # Check if the event has already been created
+        event_created = False
+        # convert event["start_time"] to PST time zone to compare with created_events
+        event_start_time = datetime.strptime(event["start_time"], "%Y-%m-%dT%H:%M:%S")
+        event_start_time = event_start_time - timedelta(hours=3)
+        event_start_time = event_start_time.strftime("%Y-%m-%dT%H:%M:%S-07:00")
+        for created_event in created_events:
+            if created_event == event_start_time:
+                event_created = True
+                break
+        # if event_start_time is already passed, don't create the event
+        if event_start_time < datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00"):
+            event_created = True
+
+        # Append the event to the list if it hasn't been created already
+        if not event_created:
+            events.append(event)
 
 # Create the events on the Google Calendar
 for event in events:

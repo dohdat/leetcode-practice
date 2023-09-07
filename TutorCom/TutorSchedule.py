@@ -8,13 +8,23 @@ from Calendar import create_event, list_upcoming_events
 
 
 session = requests.Session()
-session.headers = {"Cookie": "ASP.NET_SessionId=wfsjfrkzywfn0ypo4jmczav3"}
+session.headers = {"Cookie": "ASP.NET_SessionId=sat3uldowhpej1eazscwmc02"}
 
-
+failed_event_created = False
 def send_request(url):
+    global failed_event_created
     try:
         response = session.post(url)
-        print(f"{url}. Status Code: {response.status_code}")
+        if "ErrorOccurred" in response.text or "ErrorMsg" in response.text:
+          if not failed_event_created:
+            start_time = datetime.now().replace(hour=10, minute=00, second=0)
+            start_time = start_time.strftime("%Y-%m-%dT%H:%M:%S")
+            end_time = datetime.now().replace(hour=23, minute=00, second=0)
+            end_time = end_time.strftime("%Y-%m-%dT%H:%M:%S")
+            create_event(calendar_id, start_time, end_time, "TUTOR SCHEDULE FAILED, UPDATE COOKIES")
+            failed_event_created = True
+        else:
+          print(f"{url}. Status Code: {response.status_code}")
     except requests.exceptions.RequestException as e:
         print(f"Request to {url} failed with error: {e}")
 
@@ -71,7 +81,6 @@ end_time = time.time()
 total_time = end_time - start_time
 print(f"All requests completed. Total Time: {total_time:.2f} seconds")
 
-
 # Call the GET endpoint to get scheduled dates, selected date is formatted_date - 7 days
 selected_date = (today + timedelta(days=days_until_monday - 8)).strftime("%m/%d/%Y")
 get_url = f"https://prv.tutor.com/nGEN/Tools/ScheduleManager_v2/default.aspx?SelectedDate={selected_date}&DaysToAdd=7"
@@ -93,6 +102,7 @@ for entry in table_data:
 # Create a list of events to create on the Google Calendar
 events = []
 created_events = list_upcoming_events(calendar_id, 25)
+
 for entry in table_data:
     if entry["scheduled"]:
         # Convert formatted_date to a datetime object

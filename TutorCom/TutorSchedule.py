@@ -8,7 +8,7 @@ from Calendar import create_event, list_upcoming_events
 
 
 session = requests.Session()
-session.headers = {"Cookie": "ASP.NET_SessionId=wx3ambaeyfp2zywxtsy5pyt5"}
+session.headers = {"Cookie": "ASP.NET_SessionId=wfsjfrkzywfn0ypo4jmczav3"}
 
 
 def send_request(url):

@@ -73,3 +73,7 @@ table_data = [
 ]
 
 calendar_id = "951d3b2328ace2ababeb5e28228a9bcefa20851a5de9e810dfd8e4ad49277d3c@group.calendar.google.com"
+
+FAILED_EVENT_MESSAGE = "TUTOR SCHEDULE FAILED, UPDATE COOKIES"
+
+MAX_CALENDAR_EVENTS = 25

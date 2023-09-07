@@ -1,33 +1,43 @@
 import requests
 import time
 import re
+import threading
 from datetime import datetime, timedelta
 from concurrent.futures import ThreadPoolExecutor
-from data import table_data, calendar_id
+from data import table_data, calendar_id, FAILED_EVENT_MESSAGE, MAX_CALENDAR_EVENTS
 from Calendar import create_event, list_upcoming_events
 
+# Define constants
+NUM_THREADS = 2
+COOKIE_HEADER = {"Cookie": "ASP.NET_SessionId=epmzcopmxdwedad2rfs5vsc1"}
 
+# Define global variables
 session = requests.Session()
-session.headers = {"Cookie": "ASP.NET_SessionId=sat3uldowhpej1eazscwmc02"}
-
+session.headers = COOKIE_HEADER
 failed_event_created = False
+event_creation_lock = threading.Lock()
+
+
 def send_request(url):
-    global failed_event_created
     try:
         response = session.post(url)
-        if "ErrorOccurred" in response.text or "ErrorMsg" in response.text:
-          if not failed_event_created:
-            start_time = datetime.now().replace(hour=10, minute=00, second=0)
-            start_time = start_time.strftime("%Y-%m-%dT%H:%M:%S")
-            end_time = datetime.now().replace(hour=23, minute=00, second=0)
-            end_time = end_time.strftime("%Y-%m-%dT%H:%M:%S")
-            create_event(calendar_id, start_time, end_time, "TUTOR SCHEDULE FAILED, UPDATE COOKIES")
-            failed_event_created = True
+        if any(substring in response.text for substring in ["ErrorOccurred", "ErrorMsg"]):
+            create_failed_event()
         else:
           print(f"{url}. Status Code: {response.status_code}")
     except requests.exceptions.RequestException as e:
         print(f"Request to {url} failed with error: {e}")
 
+def create_failed_event():
+    global failed_event_created
+    with event_creation_lock:
+        if not failed_event_created:
+            start_time = datetime.now().replace(hour=10, minute=00, second=0)
+            start_time = start_time.strftime("%Y-%m-%dT%H:%M:%S")
+            end_time = datetime.now().replace(hour=23, minute=00, second=0)
+            end_time = end_time.strftime("%Y-%m-%dT%H:%M:%S")
+            create_event(calendar_id, start_time, end_time, FAILED_EVENT_MESSAGE)
+            failed_event_created = True
 
 def create_event_wrapper(args):
     calendar_id, start_time, end_time, event_summary = args
@@ -41,7 +51,7 @@ next_monday = today + timedelta(days=days_until_monday - 1)
 
 # Format the date in the desired format (MM/DD/YYYY)
 formatted_date = next_monday.strftime("%m/%d/%Y")
-print(formatted_date)
+print("Starting execution for week of " + formatted_date)
 
 # Define the URL with the calculated date
 urls = []
@@ -71,9 +81,8 @@ if current_time < start_running_time:
     print("\nStarting execution at 9:00:01 AM.")
 
 start_time = time.time()
-num_threads = 2
 
-with ThreadPoolExecutor(max_workers=num_threads) as executor:
+with ThreadPoolExecutor(max_workers=NUM_THREADS) as executor:
     # Submit requests to the executor
     executor.map(send_request, urls)
 
@@ -101,7 +110,7 @@ for entry in table_data:
 
 # Create a list of events to create on the Google Calendar
 events = []
-created_events = list_upcoming_events(calendar_id, 25)
+created_events = list_upcoming_events(calendar_id, MAX_CALENDAR_EVENTS)
 
 for entry in table_data:
     if entry["scheduled"]:
@@ -140,7 +149,7 @@ for entry in table_data:
             events.append(event)
 
 
-with ThreadPoolExecutor(max_workers=num_threads) as executor:
+with ThreadPoolExecutor(max_workers=1) as executor:
     # Submit requests to the executor
     executor.map(
         create_event_wrapper,

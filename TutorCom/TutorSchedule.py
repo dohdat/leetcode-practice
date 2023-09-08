@@ -9,7 +9,7 @@ from Calendar import create_event, list_upcoming_events
 
 # Define constants
 NUM_THREADS = 2
-COOKIE_HEADER = {"Cookie": "ASP.NET_SessionId=epmzcopmxdwedad2rfs5vsc1"}
+COOKIE_HEADER = {"Cookie": "ASP.NET_SessionId=mvfqun1kk0qwicsvpcy1ge1c"}
 
 # Define global variables
 session = requests.Session()

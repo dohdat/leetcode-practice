@@ -6,10 +6,11 @@ from datetime import datetime, timedelta
 from concurrent.futures import ThreadPoolExecutor
 from data import table_data, calendar_id, FAILED_EVENT_MESSAGE, MAX_CALENDAR_EVENTS
 from Calendar import create_event, list_upcoming_events
+from Login import cookies
 
 # Define constants
 NUM_THREADS = 2
-COOKIE_HEADER = {"Cookie": "ASP.NET_SessionId=mvfqun1kk0qwicsvpcy1ge1c"}
+COOKIE_HEADER = {"Cookie": "ASP.NET_SessionId=" + cookies} if cookies else {"Cookie": "ASP.NET_SessionId=mvfqun1kk0qwicsvpcy1ge1c"}
 
 # Define global variables
 session = requests.Session()

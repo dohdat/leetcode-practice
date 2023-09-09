@@ -79,7 +79,7 @@ for entry in table_data:
     urls.append(url)
 
 current_time = datetime.now()
-start_running_time = datetime.now().replace(hour=8, minute=59, second=59)
+start_running_time = datetime.now().replace(hour=9, minute=00, second=1)
 
 if current_time < start_running_time:
     time_to_wait = (start_running_time - current_time).total_seconds()

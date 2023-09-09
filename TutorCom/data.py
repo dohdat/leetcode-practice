@@ -46,11 +46,11 @@ table_data = [
     {"weekday": 7, "hour": "9:00 PM", "fillCell": 153},
     {"weekday": 7, "hour": "10:00 PM", "fillCell": 160},
     {"weekday": 7, "hour": "11:00 PM", "fillCell": 167},
-    {"weekday": 2, "hour": "11:00 PM", "fillCell": 148},
-    {"weekday": 3, "hour": "11:00 PM", "fillCell": 149},
-    {"weekday": 4, "hour": "11:00 PM", "fillCell": 150},
-    {"weekday": 5, "hour": "11:00 PM", "fillCell": 151},
-    {"weekday": 6, "hour": "11:00 PM", "fillCell": 152},
+    {"weekday": 2, "hour": "11:00 PM", "fillCell": 162},
+    {"weekday": 3, "hour": "11:00 PM", "fillCell": 163},
+    {"weekday": 4, "hour": "11:00 PM", "fillCell": 164},
+    {"weekday": 5, "hour": "11:00 PM", "fillCell": 165},
+    {"weekday": 6, "hour": "11:00 PM", "fillCell": 166},
     {"weekday": 2, "hour": "10:00 PM", "fillCell": 155},
     {"weekday": 3, "hour": "10:00 PM", "fillCell": 156},
     {"weekday": 4, "hour": "10:00 PM", "fillCell": 157},
@@ -70,6 +70,11 @@ table_data = [
     {"weekday": 5, "hour": "9:00 AM", "fillCell": 67},
     {"weekday": 6, "hour": "9:00 AM", "fillCell": 68},
     {"weekday": 7, "hour": "9:00 AM", "fillCell": 69},
+    {"weekday": 2, "hour": "9:00 PM", "fillCell": 148},
+    {"weekday": 3, "hour": "9:00 PM", "fillCell": 149},
+    {"weekday": 4, "hour": "9:00 PM", "fillCell": 150},
+    {"weekday": 5, "hour": "9:00 PM", "fillCell": 151},
+    {"weekday": 6, "hour": "9:00 PM", "fillCell": 152},
 ]
 
 calendar_id = "951d3b2328ace2ababeb5e28228a9bcefa20851a5de9e810dfd8e4ad49277d3c@group.calendar.google.com"

@@ -1,6 +1,6 @@
 table_data = [
     {"weekday": 1, "hour": "10:00 AM", "fillCell": 70},
-    {"weekday": 2, "hour": "10:00 AM", "fillCell": 71}, 
+    {"weekday": 2, "hour": "10:00 AM", "fillCell": 71},
     {"weekday": 3, "hour": "10:00 AM", "fillCell": 72},
     {"weekday": 4, "hour": "10:00 AM", "fillCell": 73},
     {"weekday": 5, "hour": "10:00 AM", "fillCell": 74},
@@ -74,7 +74,7 @@ table_data = [
 
 calendar_id = "951d3b2328ace2ababeb5e28228a9bcefa20851a5de9e810dfd8e4ad49277d3c@group.calendar.google.com"
 
-FAILED_EVENT_MESSAGE = "TUTOR SCHEDULE FAILED, UPDATE COOKIES"
+FAILED_EVENT_MESSAGE = "TUTOR SCHEDULE FAILED!"
 
 MAX_CALENDAR_EVENTS = 25
 

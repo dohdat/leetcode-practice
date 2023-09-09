@@ -6,28 +6,37 @@ from datetime import datetime, timedelta
 from concurrent.futures import ThreadPoolExecutor
 from data import table_data, calendar_id, FAILED_EVENT_MESSAGE, MAX_CALENDAR_EVENTS
 from Calendar import create_event, list_upcoming_events
-from Login import cookies
+from Login import url as login_url, payload, headers as login_headers
 
 # Define constants
 NUM_THREADS = 2
-COOKIE_HEADER = {"Cookie": "ASP.NET_SessionId=" + cookies} if cookies else {"Cookie": "ASP.NET_SessionId=mvfqun1kk0qwicsvpcy1ge1c"}
 
 # Define global variables
 session = requests.Session()
-session.headers = COOKIE_HEADER
 failed_event_created = False
 event_creation_lock = threading.Lock()
+
+# Login to Tutor.com before sending requests
+login_response = session.post(login_url, headers=login_headers, data=payload)
+
+if "fillCell" not in login_response.text:
+    print("Login failed.")
+else:
+    print("Login successful.")
 
 
 def send_request(url):
     try:
         response = session.post(url)
-        if any(substring in response.text for substring in ["ErrorOccurred", "ErrorMsg"]):
+        if any(
+            substring in response.text for substring in ["ErrorOccurred", "ErrorMsg"]
+        ):
             create_failed_event()
         else:
-          print(f"{url}. Status Code: {response.status_code}")
+            print(f"{url}. Status Code: {response.status_code}")
     except requests.exceptions.RequestException as e:
         print(f"Request to {url} failed with error: {e}")
+
 
 def create_failed_event():
     global failed_event_created
@@ -39,6 +48,7 @@ def create_failed_event():
             end_time = end_time.strftime("%Y-%m-%dT%H:%M:%S")
             create_event(calendar_id, start_time, end_time, FAILED_EVENT_MESSAGE)
             failed_event_created = True
+
 
 def create_event_wrapper(args):
     calendar_id, start_time, end_time, event_summary = args
@@ -69,17 +79,16 @@ for entry in table_data:
     urls.append(url)
 
 current_time = datetime.now()
-start_running_time = datetime.now().replace(hour=9, minute=00, second=1)
+start_running_time = datetime.now().replace(hour=8, minute=59, second=59)
 
 if current_time < start_running_time:
-    # Calculate the time to wait until 9:00:01 AM
     time_to_wait = (start_running_time - current_time).total_seconds()
-    print(f"Waiting for {time_to_wait:.2f} seconds until 9:00:01 AM.")
+    print(f"Waiting for {time_to_wait:.2f} seconds until 9:00:00 AM.")
     while time_to_wait > 0:
         print(f"Time remaining: {time_to_wait:.2f} seconds", end="\r")
         time_to_wait -= 1
         time.sleep(1)
-    print("\nStarting execution at 9:00:01 AM.")
+    print("\nStarting execution at 9:00:00 AM.")
 
 start_time = time.time()
 

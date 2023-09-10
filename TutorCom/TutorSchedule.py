@@ -146,10 +146,11 @@ for entry in table_data:
         event_start_time = datetime.strptime(event["start_time"], "%Y-%m-%dT%H:%M:%S")
         event_start_time = event_start_time - timedelta(hours=3)
         event_start_time = event_start_time.strftime("%Y-%m-%dT%H:%M:%S-07:00")
-        for created_event in created_events:
-            if created_event == event_start_time:
-                event_created = True
-                break
+        if created_events is not None:
+            for created_event in created_events:
+                if created_event == event_start_time:
+                    event_created = True
+                    break
         # if event_start_time is already passed, don't create the event
         if event_start_time < datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00"):
             event_created = True
@@ -159,7 +160,7 @@ for entry in table_data:
             events.append(event)
 
 
-with ThreadPoolExecutor(max_workers=1) as executor:
+with ThreadPoolExecutor(max_workers=3) as executor:
     # Submit requests to the executor
     executor.map(
         create_event_wrapper,

@@ -39,7 +39,7 @@ https://splunk.enterprise.slack.com/files/W9WH87QKS/F041CB83EQ4/itsidefaultsched
 ___
 **How to install splunk or ITSI:**
 
-Go to splunk/etc/apps
+Go to cd && cd splunk/etc/apps
 
 ```console
 rm -rf itsi

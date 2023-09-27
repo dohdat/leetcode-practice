@@ -70,7 +70,7 @@ def list_upcoming_events(calendar_id="primary", maxResults=25):
         print("An error occurred: %s" % error)
 
 
-def create_event(calendar_id, start_time, end_time, event_summary):
+def create_event(calendar_id, start_time, end_time, event_summary, event_transparency):
     """Create a Calendar event."""
     try:
         service = get_google_calendar_service()
@@ -84,7 +84,7 @@ def create_event(calendar_id, start_time, end_time, event_summary):
                 "dateTime": end_time,
                 "timeZone": "America/New_York",
             },
-            "transparency": "transparent",
+            "transparency": event_transparency,
         }
         event = service.events().insert(calendarId=calendar_id, body=event).execute()
         print(f'Event created: {event.get("htmlLink")}')

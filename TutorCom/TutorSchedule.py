@@ -51,8 +51,8 @@ def create_failed_event():
 
 
 def create_event_wrapper(args):
-    calendar_id, start_time, end_time, event_summary = args
-    create_event(calendar_id, start_time, end_time, event_summary)
+    calendar_id, start_time, end_time, event_summary, event_transparency = args
+    create_event(calendar_id, start_time, end_time, event_summary, event_transparency)
 
 
 # Calculate the date of the first Monday of next week
@@ -101,7 +101,7 @@ total_time = end_time - start_time
 print(f"All requests completed. Total Time: {total_time:.2f} seconds")
 
 # Call the GET endpoint to get scheduled dates, selected date is formatted_date - 7 days
-selected_date = (today + timedelta(days=days_until_monday - 8)).strftime("%m/%d/%Y")
+selected_date = (today + timedelta(days=days_until_monday - 15)).strftime("%m/%d/%Y")
 get_url = f"https://prv.tutor.com/nGEN/Tools/ScheduleManager_v2/default.aspx?SelectedDate={selected_date}&DaysToAdd=7"
 
 # Send the GET request
@@ -133,12 +133,16 @@ for entry in table_data:
         start_time = datetime.strptime(start_time_str, "%m/%d/%Y %I:%M %p")
         end_time = start_time + timedelta(hours=1)
 
+        if entry["hour"] == "8:00 PM" or entry["hour"] == "9:00 PM" or entry["hour"] == "10:00 PM" or entry["hour"] == "11:00 PM":
+            transparency = "opaque"
+        else:
+            transparency = "transparent"
         # Create the event dictionary
         event = {
             "start_time": start_time.strftime("%Y-%m-%dT%H:%M:%S"),
             "end_time": end_time.strftime("%Y-%m-%dT%H:%M:%S"),
             "event_summary": "Tutor.com",
-            "status": "free",
+            "transparency": transparency,
         }
         # Check if the event has already been created
         event_created = False
@@ -170,6 +174,7 @@ with ThreadPoolExecutor(max_workers=3) as executor:
                 event["start_time"],
                 event["end_time"],
                 event["event_summary"],
+                event["transparency"],
             )
             for event in events
         ],

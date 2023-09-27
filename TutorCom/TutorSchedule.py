@@ -101,7 +101,7 @@ total_time = end_time - start_time
 print(f"All requests completed. Total Time: {total_time:.2f} seconds")
 
 # Call the GET endpoint to get scheduled dates, selected date is formatted_date - 7 days
-selected_date = (today + timedelta(days=days_until_monday - 15)).strftime("%m/%d/%Y")
+selected_date = (today + timedelta(days=days_until_monday - 8)).strftime("%m/%d/%Y")
 get_url = f"https://prv.tutor.com/nGEN/Tools/ScheduleManager_v2/default.aspx?SelectedDate={selected_date}&DaysToAdd=7"
 
 # Send the GET request

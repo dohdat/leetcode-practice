@@ -133,7 +133,8 @@ for entry in table_data:
         start_time = datetime.strptime(start_time_str, "%m/%d/%Y %I:%M %p")
         end_time = start_time + timedelta(hours=1)
 
-        if entry["hour"] == "8:00 PM" or entry["hour"] == "9:00 PM" or entry["hour"] == "10:00 PM" or entry["hour"] == "11:00 PM":
+        opaque_hours = ["8:00 PM", "9:00 PM", "10:00 PM", "11:00 PM"]
+        if entry["hour"] in opaque_hours:
             transparency = "opaque"
         else:
             transparency = "transparent"

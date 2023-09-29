@@ -2,6 +2,20 @@ ___
 
 ## Front End 
 
+How to find selector
+```javascript
+// Use the CSS selector to find the element
+const element = document.querySelector('[data-test-itsi="kpi-title-read-only-text-control"] [data-test-itsi="inline-text-control-label-read-only"]');
+
+// Check if the element is found
+if (element) {
+  // Log the text content of the element to the console
+  console.log(element.textContent);
+} else {
+  console.log('Element not found');
+}
+```
+
 Node incompatible issue?
 ```
 nvm use <Version>

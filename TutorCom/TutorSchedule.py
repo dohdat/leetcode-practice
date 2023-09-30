@@ -9,7 +9,7 @@ from data import (
     calendar_id,
     FAILED_EVENT_MESSAGE,
     MAX_CALENDAR_EVENTS,
-    SUCCSS_LOGIN_MESSAGE,
+    SUCCESS_LOGIN_MESSAGE,
 )
 from Calendar import create_event, list_upcoming_events
 from Login import url as login_url, payload, headers as login_headers
@@ -37,7 +37,7 @@ else:
         calendar_id,
         start_time_login_event,
         end_time_login_event,
-        SUCCSS_LOGIN_MESSAGE,
+        SUCCESS_LOGIN_MESSAGE,
         "transparent",
     )
     print("Created login event.")

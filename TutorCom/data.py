@@ -81,6 +81,8 @@ calendar_id = "951d3b2328ace2ababeb5e28228a9bcefa20851a5de9e810dfd8e4ad49277d3c@
 
 FAILED_EVENT_MESSAGE = "TUTOR SCHEDULE FAILED!"
 
+SUCCSS_LOGIN_MESSAGE = "Tutor.com login successful!"
+
 MAX_CALENDAR_EVENTS = 25
 
 username = "dohdat%40gmail.com"

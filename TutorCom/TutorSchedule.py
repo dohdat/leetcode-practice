@@ -4,7 +4,13 @@ import re
 import threading
 from datetime import datetime, timedelta
 from concurrent.futures import ThreadPoolExecutor
-from data import table_data, calendar_id, FAILED_EVENT_MESSAGE, MAX_CALENDAR_EVENTS
+from data import (
+    table_data,
+    calendar_id,
+    FAILED_EVENT_MESSAGE,
+    MAX_CALENDAR_EVENTS,
+    SUCCSS_LOGIN_MESSAGE,
+)
 from Calendar import create_event, list_upcoming_events
 from Login import url as login_url, payload, headers as login_headers
 
@@ -23,6 +29,18 @@ if "fillCell" not in login_response.text:
     print("Login failed.")
 else:
     print("Login successful.")
+    start_time_login_event = datetime.now().replace(hour=11, minute=30, second=0)
+    start_time_login_event = start_time_login_event.strftime("%Y-%m-%dT%H:%M:%S")
+    end_time_login_event = datetime.now().replace(hour=12, minute=00, second=0)
+    end_time_login_event = end_time_login_event.strftime("%Y-%m-%dT%H:%M:%S")
+    create_event(
+        calendar_id,
+        start_time_login_event,
+        end_time_login_event,
+        SUCCSS_LOGIN_MESSAGE,
+        "transparent",
+    )
+    print("Created login event.")
 
 
 def send_request(url):

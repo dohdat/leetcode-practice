@@ -33,14 +33,15 @@ else:
     start_time_login_event = start_time_login_event.strftime("%Y-%m-%dT%H:%M:%S")
     end_time_login_event = datetime.now().replace(hour=12, minute=00, second=0)
     end_time_login_event = end_time_login_event.strftime("%Y-%m-%dT%H:%M:%S")
+    current_time = datetime.now()
     create_event(
         calendar_id,
         start_time_login_event,
         end_time_login_event,
-        SUCCESS_LOGIN_MESSAGE,
+        SUCCESS_LOGIN_MESSAGE + current_time.strftime("%m/%d %I:%M %p"),
         "transparent",
     )
-    print("Created login event.")
+    print("Created login notification event.")
 
 
 def send_request(url):

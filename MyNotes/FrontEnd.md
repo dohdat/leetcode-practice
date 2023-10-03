@@ -1,6 +1,11 @@
 ___
 
 ## Front End 
+Command to update ITSI
+
+```console
+cd && cd splunk/etc/apps && rm -rf itsi && wget https://repo.splunk.com/artifactory/Solutions/APP/app-itsi/builds/develop/latest/itsi-4.18.0-38874.spl && tar -xvzf itsi-4.18.0-38874.spl && cd && cd splunk/etc/apps && find . -type l -delete && source ~/.profile && rm -rf $SPLUNK_HOME/etc/apps/itsi/appserver/static/build && ln -s  $GIT_DIRECTORY/apps/itsi/appserver/static/build $SPLUNK_HOME/etc/apps/itsi/appserver/static/build && ln -s $GIT_DIRECTORY/apps/SA-ITOA/package $SPLUNK_HOME/etc/apps/SA-ITOA/package && ~/splunk/bin/splunk restart
+```
 
 How to find selector
 ```javascript

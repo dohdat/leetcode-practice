@@ -4,7 +4,7 @@ ___
 1 line command to update ITSI
 
 ```console
-read -p "Enter SPL link: " spl_link && cd && cd splunk/etc/apps && rm -rf itsi && wget $spl_link && tar -xvzf $(basename $spl_link) && cd && cd splunk/etc/apps && find . -type l -delete && source ~/.profile && rm -rf $SPLUNK_HOME/etc/apps/itsi/appserver/static/build && ln -s  $GIT_DIRECTORY/apps/itsi/appserver/static/build $SPLUNK_HOME/etc/apps/itsi/appserver/static/build && ln -s $GIT_DIRECTORY/apps/SA-ITOA/package $SPLUNK_HOME/etc/apps/SA-ITOA/package && ~/splunk/bin/splunk restart
+read -p "Enter SPL link: " spl_link && cd && cd splunk/etc/apps && rm -rf itsi && rm -f *.spl && wget $spl_link && tar -xvzf $(basename $spl_link) && cd && cd splunk/etc/apps && find . -type l -delete && source ~/.profile && rm -rf $SPLUNK_HOME/etc/apps/itsi/appserver/static/build && ln -s  $GIT_DIRECTORY/apps/itsi/appserver/static/build $SPLUNK_HOME/etc/apps/itsi/appserver/static/build && ln -s $GIT_DIRECTORY/apps/SA-ITOA/package $SPLUNK_HOME/etc/apps/SA-ITOA/package && ~/splunk/bin/splunk restart
 ```
 
 

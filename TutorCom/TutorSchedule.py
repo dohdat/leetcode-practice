@@ -10,6 +10,7 @@ from data import (
     FAILED_EVENT_MESSAGE,
     MAX_CALENDAR_EVENTS,
     SUCCESS_LOGIN_MESSAGE,
+    ERROR_LOGIN_MESSAGE
 )
 from Calendar import create_event, list_upcoming_events
 from Login import url as login_url, payload, headers as login_headers
@@ -25,24 +26,28 @@ event_creation_lock = threading.Lock()
 # Login to Tutor.com before sending requests
 login_response = session.post(login_url, headers=login_headers, data=payload)
 
-if "fillCell" not in login_response.text:
-    print("Login failed.")
-else:
-    print("Login successful.")
-    start_time_login_event = datetime.now().replace(hour=11, minute=30, second=0)
-    start_time_login_event = start_time_login_event.strftime("%Y-%m-%dT%H:%M:%S")
-    end_time_login_event = datetime.now().replace(hour=12, minute=00, second=0)
-    end_time_login_event = end_time_login_event.strftime("%Y-%m-%dT%H:%M:%S")
-    current_time = datetime.now()
-    create_event(
-        calendar_id,
-        start_time_login_event,
-        end_time_login_event,
-        SUCCESS_LOGIN_MESSAGE + current_time.strftime("%m/%d %I:%M %p"),
-        "transparent",
-    )
-    print("Created login notification event.")
+def format_time(time):
+  return time.replace(hour=11, minute=30, second=0).strftime("%Y-%m-%dT%H:%M:%S")
 
+def create_login_event(message):
+  start_time_login_event = format_time(datetime.now())
+  end_time_login_event = format_time(datetime.now().replace(hour=12, minute=0, second=0))
+  current_time = datetime.now()
+  create_event(
+    calendar_id,
+    start_time_login_event,
+    end_time_login_event,
+    message + current_time.strftime("%m/%d %I:%M %p"),
+    "transparent",
+  )
+  print("Created login notification event.")
+
+if "fillCell" not in login_response.text:
+  print("Login failed.")
+  create_login_event(ERROR_LOGIN_MESSAGE)
+else:
+  print("Login successful.")
+  create_login_event(SUCCESS_LOGIN_MESSAGE)
 
 def send_request(url):
     try:

@@ -146,6 +146,8 @@ for entry in table_data:
 events = []
 created_events = list_upcoming_events(calendar_id, MAX_CALENDAR_EVENTS)
 
+show_as_busy = "opaque"
+show_as_free = "transparent"
 for entry in table_data:
     if entry["scheduled"]:
         # Convert formatted_date to a datetime object
@@ -157,11 +159,11 @@ for entry in table_data:
         start_time = datetime.strptime(start_time_str, "%m/%d/%Y %I:%M %p")
         end_time = start_time + timedelta(hours=1)
 
-        opaque_hours = ["8:00 PM", "9:00 PM", "10:00 PM", "11:00 PM"]
+        opaque_hours = ["12:00 AM", "1:00 AM"]  # hours to show as busy in EST
         if entry["hour"] in opaque_hours:
-            transparency = "opaque"
+            transparency = show_as_free
         else:
-            transparency = "transparent"
+            transparency = show_as_busy
         # Create the event dictionary
         event = {
             "start_time": start_time.strftime("%Y-%m-%dT%H:%M:%S"),

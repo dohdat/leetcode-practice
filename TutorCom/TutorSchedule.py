@@ -10,7 +10,7 @@ from data import (
     FAILED_EVENT_MESSAGE,
     MAX_CALENDAR_EVENTS,
     SUCCESS_LOGIN_MESSAGE,
-    ERROR_LOGIN_MESSAGE
+    ERROR_LOGIN_MESSAGE,
 )
 from Calendar import create_event, list_upcoming_events
 from Login import url as login_url, payload, headers as login_headers
@@ -26,28 +26,34 @@ event_creation_lock = threading.Lock()
 # Login to Tutor.com before sending requests
 login_response = session.post(login_url, headers=login_headers, data=payload)
 
+
 def format_time(time):
-  return time.replace(hour=11, minute=30, second=0).strftime("%Y-%m-%dT%H:%M:%S")
+    return time.replace(hour=11, minute=30, second=0).strftime("%Y-%m-%dT%H:%M:%S")
+
 
 def create_login_event(message):
-  start_time_login_event = format_time(datetime.now())
-  end_time_login_event = format_time(datetime.now().replace(hour=12, minute=0, second=0))
-  current_time = datetime.now()
-  create_event(
-    calendar_id,
-    start_time_login_event,
-    end_time_login_event,
-    message + current_time.strftime("%m/%d %I:%M %p"),
-    "transparent",
-  )
-  print("Created login notification event.")
+    start_time_login_event = format_time(datetime.now())
+    end_time_login_event = format_time(
+        datetime.now().replace(hour=12, minute=0, second=0)
+    )
+    current_time = datetime.now()
+    create_event(
+        calendar_id,
+        start_time_login_event,
+        end_time_login_event,
+        message + current_time.strftime("%m/%d %I:%M %p"),
+        "transparent",
+    )
+    print("Created login notification event.")
+
 
 if "fillCell" not in login_response.text:
-  print("Login failed.")
-  create_login_event(ERROR_LOGIN_MESSAGE)
+    print("Login failed.")
+    create_login_event(ERROR_LOGIN_MESSAGE)
 else:
-  print("Login successful.")
-  create_login_event(SUCCESS_LOGIN_MESSAGE)
+    print("Login successful.")
+    create_login_event(SUCCESS_LOGIN_MESSAGE)
+
 
 def send_request(url):
     try:
@@ -146,6 +152,18 @@ for entry in table_data:
 events = []
 created_events = list_upcoming_events(calendar_id, MAX_CALENDAR_EVENTS)
 
+# check created_events for timezone offset
+timezone_offset = ""
+if created_events is not None and len(created_events) > 0:
+    created_event = created_events[0]
+    if created_event[-6:] == "-08:00":
+        timezone_offset = "-08:00"
+    elif created_event[-6:] == "-07:00":
+        timezone_offset = "-07:00"
+    else:
+        timezone_offset = "-08:00"
+
+
 show_as_busy = "opaque"
 show_as_free = "transparent"
 for entry in table_data:
@@ -176,14 +194,20 @@ for entry in table_data:
         # convert event["start_time"] to PST time zone to compare with created_events
         event_start_time = datetime.strptime(event["start_time"], "%Y-%m-%dT%H:%M:%S")
         event_start_time = event_start_time - timedelta(hours=3)
-        event_start_time = event_start_time.strftime("%Y-%m-%dT%H:%M:%S-07:00")
+        # add timezone offset to event_start_time
+        event_start_time = (
+            event_start_time.strftime("%Y-%m-%dT%H:%M:%S") + timezone_offset
+        )
         if created_events is not None:
             for created_event in created_events:
                 if created_event == event_start_time:
                     event_created = True
                     break
         # if event_start_time is already passed, don't create the event
-        if event_start_time < datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00"):
+        if (
+            event_start_time
+            < datetime.now().strftime("%Y-%m-%dT%H:%M:%S") + timezone_offset
+        ):
             event_created = True
 
         # Append the event to the list if it hasn't been created already

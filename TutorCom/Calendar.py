@@ -16,7 +16,7 @@ SCOPES = [
 ]
 
 if not os.path.exists("token.json"):
-    os.chdir(r"C:\Users\dohda\leetcode-practice\TutorCom")
+    os.chdir(r"leetcode-practice/TutorCom")
 
 
 def get_google_calendar_service():

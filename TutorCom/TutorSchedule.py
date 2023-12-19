@@ -177,7 +177,7 @@ for entry in table_data:
         start_time = datetime.strptime(start_time_str, "%m/%d/%Y %I:%M %p")
         end_time = start_time + timedelta(hours=1)
 
-        opaque_hours = ["12:00 AM", "1:00 AM"]  # hours to show as busy in EST
+        opaque_hours = []  # hours to show as busy in EST, etc 12:00 AM is 9:00 PM PST
         if entry["hour"] in opaque_hours:
             transparency = show_as_free
         else:

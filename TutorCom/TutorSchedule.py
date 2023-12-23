@@ -181,7 +181,7 @@ for entry in table_data:
         if entry["hour"] in opaque_hours:
             transparency = show_as_free
         else:
-            transparency = show_as_busy
+            transparency = show_as_free
         # Create the event dictionary
         event = {
             "start_time": start_time.strftime("%Y-%m-%dT%H:%M:%S"),

@@ -179,9 +179,9 @@ for entry in table_data:
 
         opaque_hours = []  # hours to show as busy in EST, etc 12:00 AM is 9:00 PM PST
         if entry["hour"] in opaque_hours:
-            transparency = show_as_free
+            transparency = show_as_busy
         else:
-            transparency = show_as_free
+            transparency = show_as_busy
         # Create the event dictionary
         event = {
             "start_time": start_time.strftime("%Y-%m-%dT%H:%M:%S"),

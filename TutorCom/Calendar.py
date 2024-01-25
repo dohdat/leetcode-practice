@@ -35,7 +35,7 @@ def get_google_calendar_service():
     return build("calendar", "v3", credentials=creds)
 
 
-def list_upcoming_events(calendar_id="primary", maxResults=25):
+def list_upcoming_events(calendar_id="primary", maxResults=25, end_time=False):
     """List the next 10 events on the user's calendar."""
     try:
         service = get_google_calendar_service()
@@ -62,8 +62,17 @@ def list_upcoming_events(calendar_id="primary", maxResults=25):
             start = event.get("start", {}).get(
                 "dateTime", event.get("start", {}).get("date")
             )
+            if end_time:
+                end = event.get("end", {}).get(
+                    "dateTime", event.get("end", {}).get("date")
+                )
+
             print(start, event.get("summary"))
-            res.append(start)
+            if end_time:
+                res.append(start)
+                res.append(end)
+            else:
+                res.append(start)
         return res
 
     except HttpError as error:

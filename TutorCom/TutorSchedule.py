@@ -13,7 +13,7 @@ from data import (
     ERROR_LOGIN_MESSAGE,
 )
 from Calendar import create_event, list_upcoming_events
-from RemotasksSchedule import createRemotasksEvents
+from Utils import createRemotasksEvents, findConflictingEvents, fill_out_table_data
 from Login import url as login_url, payload, headers as login_headers
 
 # Define constants
@@ -94,6 +94,12 @@ next_monday = today + timedelta(days=days_until_monday - 1)
 # Format the date in the desired format (MM/DD/YYYY)
 formatted_date = next_monday.strftime("%m/%d/%Y")
 print("Starting execution for week of " + formatted_date)
+
+fill_out_table_data(table_data, formatted_date)
+
+conflicting_events = list_upcoming_events("dohdat@gmail.com", MAX_CALENDAR_EVENTS, True)
+findConflictingEvents(table_data, conflicting_events, formatted_date)
+
 
 # Define the URL with the calculated date
 urls = []

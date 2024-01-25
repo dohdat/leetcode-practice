@@ -167,6 +167,14 @@ if created_events is not None and len(created_events) > 0:
 
 show_as_busy = "opaque"
 show_as_free = "transparent"
+
+# Create Remotasks events on Saturday to fill in the gaps
+day_of_week = today.weekday()
+if day_of_week == 5:
+    len_created_events = len(created_events) if created_events is not None else 0
+    missing_events = MAX_CALENDAR_EVENTS - len_created_events
+    createRemotasksEvents(table_data, missing_events)
+
 for entry in table_data:
     if entry["scheduled"]:
         # Convert formatted_date to a datetime object
@@ -183,11 +191,18 @@ for entry in table_data:
             transparency = show_as_free
         else:
             transparency = show_as_busy
+
+        event_summary = (
+            "Remotasks"
+            if "type" in entry and entry["type"] == "Remotasks"
+            else "Tutor.com"
+        )
+
         # Create the event dictionary
         event = {
             "start_time": start_time.strftime("%Y-%m-%dT%H:%M:%S"),
             "end_time": end_time.strftime("%Y-%m-%dT%H:%M:%S"),
-            "event_summary": "Tutor.com",
+            "event_summary": event_summary,
             "transparency": transparency,
         }
         # Check if the event has already been created
@@ -231,22 +246,3 @@ with ThreadPoolExecutor(max_workers=3) as executor:
             for event in events
         ],
     )
-
-
-# remotasks_events = createRemotasksEvents(formatted_date, timezone_offset, table_data)
-
-# with ThreadPoolExecutor(max_workers=3) as executor:
-#     # Submit requests to the executor
-#     executor.map(
-#         create_event_wrapper,
-#         [
-#             (
-#                 calendar_id,
-#                 event["start_time"],
-#                 event["end_time"],
-#                 event["event_summary"],
-#                 event["transparency"],
-#             )
-#             for event in remotasks_events
-#         ],
-#     )

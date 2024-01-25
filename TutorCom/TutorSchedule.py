@@ -180,7 +180,7 @@ show_as_free = "transparent"
 
 # Create Remotasks events on Saturday to fill in the gaps
 day_of_week = today.weekday()
-if day_of_week == 3:
+if day_of_week == 5:
     len_created_events = len(created_events) if created_events is not None else 0
     missing_events = MAX_CALENDAR_EVENTS - len_created_events
     createRemotasksEvents(table_data, missing_events)

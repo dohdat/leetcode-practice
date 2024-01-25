@@ -1,16 +1,6 @@
 from datetime import datetime, timedelta
 
 
-def createRemotasksEvents(table_data, missing_events):
-    for entry in table_data:
-        if not entry["scheduled"]:
-            entry["scheduled"] = True
-            entry["type"] = "Remotasks"
-            missing_events -= 1
-            if missing_events == 0:
-                break
-
-
 def findConflictingEvents(table_data, created_events, formatted_date):
     created_event = created_events[0]
     for entry in table_data:

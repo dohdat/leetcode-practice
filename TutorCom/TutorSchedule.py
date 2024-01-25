@@ -13,7 +13,7 @@ from data import (
     ERROR_LOGIN_MESSAGE,
 )
 from Calendar import create_event, list_upcoming_events
-from Utils import createRemotasksEvents, findConflictingEvents, fill_out_table_data
+from Utils import findConflictingEvents, fill_out_table_data
 from Login import url as login_url, payload, headers as login_headers
 
 # Define constants
@@ -153,9 +153,16 @@ pattern = r"fillCell\('[^']*', '([^']*)', 'Scheduled!', '[^']*'\)"
 
 scheduled_fill_cells = [int(match) for match in re.findall(pattern, response.text)]
 
+# Create Remotasks events on Saturday to fill in the gaps
+day_of_week = today.weekday()
+remotasks_events = MAX_CALENDAR_EVENTS - len(scheduled_fill_cells)
 for entry in table_data:
     if entry["fillCell"] in scheduled_fill_cells:
         entry["scheduled"] = True
+    elif day_of_week == 5 and remotasks_events > 0 and not entry["scheduled"]:
+        entry["scheduled"] = True
+        entry["type"] = "Remotasks"
+        remotasks_events -= 1
     else:
         entry["scheduled"] = False
 
@@ -177,13 +184,6 @@ if created_events is not None and len(created_events) > 0:
 
 show_as_busy = "opaque"
 show_as_free = "transparent"
-
-# Create Remotasks events on Saturday to fill in the gaps
-day_of_week = today.weekday()
-if day_of_week == 5:
-    len_created_events = len(created_events) if created_events is not None else 0
-    missing_events = MAX_CALENDAR_EVENTS - len_created_events
-    createRemotasksEvents(table_data, missing_events)
 
 for entry in table_data:
     if entry["scheduled"]:

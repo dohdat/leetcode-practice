@@ -13,6 +13,7 @@ from data import (
     ERROR_LOGIN_MESSAGE,
 )
 from Calendar import create_event, list_upcoming_events
+from RemotasksSchedule import createRemotasksEvents
 from Login import url as login_url, payload, headers as login_headers
 
 # Define constants
@@ -230,3 +231,22 @@ with ThreadPoolExecutor(max_workers=3) as executor:
             for event in events
         ],
     )
+
+
+# remotasks_events = createRemotasksEvents(formatted_date, timezone_offset, table_data)
+
+# with ThreadPoolExecutor(max_workers=3) as executor:
+#     # Submit requests to the executor
+#     executor.map(
+#         create_event_wrapper,
+#         [
+#             (
+#                 calendar_id,
+#                 event["start_time"],
+#                 event["end_time"],
+#                 event["event_summary"],
+#                 event["transparency"],
+#             )
+#             for event in remotasks_events
+#         ],
+#     )

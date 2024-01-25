@@ -97,7 +97,9 @@ print("Starting execution for week of " + formatted_date)
 
 fill_out_table_data(table_data, formatted_date)
 
-conflicting_events = list_upcoming_events("dohdat@gmail.com", MAX_CALENDAR_EVENTS, True)
+conflicting_events = list_upcoming_events(
+    "dohdat@gmail.com", MAX_CALENDAR_EVENTS * 3, True
+)
 findConflictingEvents(table_data, conflicting_events, formatted_date)
 
 
@@ -106,6 +108,8 @@ urls = []
 
 # Iterate through the table data and generate URLs
 for entry in table_data:
+    if entry["scheduled"]:
+        continue
     weekday = entry["weekday"]
     hour = entry["hour"]
 
@@ -176,7 +180,7 @@ show_as_free = "transparent"
 
 # Create Remotasks events on Saturday to fill in the gaps
 day_of_week = today.weekday()
-if day_of_week == 5:
+if day_of_week == 3:
     len_created_events = len(created_events) if created_events is not None else 0
     missing_events = MAX_CALENDAR_EVENTS - len_created_events
     createRemotasksEvents(table_data, missing_events)

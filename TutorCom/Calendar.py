@@ -66,11 +66,15 @@ def list_upcoming_events(calendar_id="primary", maxResults=25, end_time=False):
                 end = event.get("end", {}).get(
                     "dateTime", event.get("end", {}).get("date")
                 )
+                if len(end) > 10:
+                    start_time = datetime.datetime.fromisoformat(start)
+                    end_time = datetime.datetime.fromisoformat(end)
 
-            print(start, event.get("summary"))
-            if end_time:
-                res.append(start)
-                res.append(end)
+                    current_time = start_time
+
+                    while current_time < end_time:
+                        res.append(current_time.isoformat())
+                        current_time += datetime.timedelta(hours=1)
             else:
                 res.append(start)
         return res

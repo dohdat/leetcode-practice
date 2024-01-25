@@ -13,8 +13,6 @@ def createRemotasksEvents(table_data, missing_events):
 
 def findConflictingEvents(table_data, created_events, formatted_date):
     created_event = created_events[0]
-    timezone_offset = created_event[-6:]
-
     for entry in table_data:
         if created_events is not None:
             for created_event in created_events:
@@ -22,6 +20,8 @@ def findConflictingEvents(table_data, created_events, formatted_date):
                 if created_event == entry["date"]:
                     entry["scheduled"] = True
                     break
+                else:
+                    entry["scheduled"] = False
 
 
 def fill_out_table_data(table_data, starting_date):

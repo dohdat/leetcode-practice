@@ -279,6 +279,9 @@ for entry in table_data:
         if not event_created:
             events.append(event)
 
+        if len(events) == MAX_CALENDAR_EVENTS - 2:
+            break
+
 print("The length of events is: " + str(len(events)))
 
 with ThreadPoolExecutor(max_workers=3) as executor:

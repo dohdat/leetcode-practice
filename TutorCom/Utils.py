@@ -9,6 +9,7 @@ def findConflictingEvents(table_data, created_events, formatted_date):
                 created_event = created_event[:-6]
                 if created_event == entry["date"]:
                     entry["scheduled"] = True
+                    entry["type"] = "Other"
                     break
                 else:
                     entry["scheduled"] = False

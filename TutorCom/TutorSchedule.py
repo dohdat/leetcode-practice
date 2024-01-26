@@ -82,8 +82,10 @@ def create_failed_event():
 
 
 def create_event_wrapper(args):
-    calendar_id, start_time, end_time, event_summary, event_transparency = args
-    create_event(calendar_id, start_time, end_time, event_summary, event_transparency)
+    calendar_id, start_time, end_time, event_summary, event_transparency, colorId = args
+    create_event(
+        calendar_id, start_time, end_time, event_summary, event_transparency, colorId
+    )
 
 
 # Calculate the date of the first Monday of next week
@@ -156,15 +158,47 @@ scheduled_fill_cells = [int(match) for match in re.findall(pattern, response.tex
 # Create Remotasks events on Saturday to fill in the gaps
 day_of_week = today.weekday()
 remotasks_events = MAX_CALENDAR_EVENTS - len(scheduled_fill_cells)
+
+counter = {}
+max_counter_per_day = 5
 for entry in table_data:
-    if entry["fillCell"] in scheduled_fill_cells:
-        entry["scheduled"] = True
-    elif day_of_week == 5 and remotasks_events > 0 and not entry["scheduled"]:
+    entry_day = str(entry["weekday"])
+
+    if entry_day not in counter:
+        counter[entry_day] = 0
+
+    if (
+        entry_day in ["1", "7"]
+        and remotasks_events > 0
+        and not entry["scheduled"]
+        and counter[entry_day] < max_counter_per_day
+    ):
         entry["scheduled"] = True
         entry["type"] = "Remotasks"
         remotasks_events -= 1
+        counter[entry_day] += 1
+
+    elif (
+        entry["fillCell"] in scheduled_fill_cells
+        and counter[entry_day] < max_counter_per_day
+    ):
+        entry["scheduled"] = True
+        entry["type"] = "Tutor.com"
+        counter[entry_day] += 1
+
+    elif (
+        entry_day not in ["1", "7"]
+        and remotasks_events > 0
+        and not entry["scheduled"]
+        and counter[entry_day] < max_counter_per_day
+    ):
+        entry["scheduled"] = True
+        entry["type"] = "Remotasks"
+        remotasks_events -= 1
+        counter[entry_day] += 1
     else:
         entry["scheduled"] = False
+
 
 # Create a list of events to create on the Google Calendar
 events = []
@@ -215,6 +249,9 @@ for entry in table_data:
             "event_summary": event_summary,
             "transparency": transparency,
         }
+
+        if event_summary == "Remotasks":
+            event["colorId"] = "7"
         # Check if the event has already been created
         event_created = False
         # convert event["start_time"] to PST time zone to compare with created_events
@@ -240,6 +277,7 @@ for entry in table_data:
         if not event_created:
             events.append(event)
 
+print("The length of events is: " + str(len(events)))
 
 with ThreadPoolExecutor(max_workers=3) as executor:
     # Submit requests to the executor
@@ -252,6 +290,7 @@ with ThreadPoolExecutor(max_workers=3) as executor:
                 event["end_time"],
                 event["event_summary"],
                 event["transparency"],
+                event["colorId"] if "colorId" in event else None,
             )
             for event in events
         ],

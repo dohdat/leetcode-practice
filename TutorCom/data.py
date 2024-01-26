@@ -85,7 +85,7 @@ SUCCESS_LOGIN_MESSAGE = "Logged in at "
 
 ERROR_LOGIN_MESSAGE = "Failed at "
 
-MAX_CALENDAR_EVENTS = 22
+MAX_CALENDAR_EVENTS = 24
 
 username = "dohdat%40gmail.com"
 

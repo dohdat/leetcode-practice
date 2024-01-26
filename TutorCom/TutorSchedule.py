@@ -172,6 +172,7 @@ for entry in table_data:
         and remotasks_events > 0
         and not entry["scheduled"]
         and counter[entry_day] < max_counter_per_day
+        and day_of_week == 5
     ):
         entry["scheduled"] = True
         entry["type"] = "Remotasks"
@@ -191,6 +192,7 @@ for entry in table_data:
         and remotasks_events > 0
         and not entry["scheduled"]
         and counter[entry_day] < max_counter_per_day
+        and day_of_week == 5
     ):
         entry["scheduled"] = True
         entry["type"] = "Remotasks"

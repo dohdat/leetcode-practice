@@ -35,7 +35,7 @@ def get_google_calendar_service():
     return build("calendar", "v3", credentials=creds)
 
 
-def list_upcoming_events(calendar_id="primary", maxResults=25):
+def list_upcoming_events(calendar_id="primary", maxResults=25, end_time=False):
     """List the next 10 events on the user's calendar."""
     try:
         service = get_google_calendar_service()
@@ -62,15 +62,30 @@ def list_upcoming_events(calendar_id="primary", maxResults=25):
             start = event.get("start", {}).get(
                 "dateTime", event.get("start", {}).get("date")
             )
-            print(start, event.get("summary"))
-            res.append(start)
+            if end_time:
+                end = event.get("end", {}).get(
+                    "dateTime", event.get("end", {}).get("date")
+                )
+                if len(end) > 10:
+                    start_time = datetime.datetime.fromisoformat(start)
+                    end_time = datetime.datetime.fromisoformat(end)
+
+                    current_time = start_time
+
+                    while current_time < end_time:
+                        res.append(current_time.isoformat())
+                        current_time += datetime.timedelta(hours=1)
+            else:
+                res.append(start)
         return res
 
     except HttpError as error:
         print("An error occurred: %s" % error)
 
 
-def create_event(calendar_id, start_time, end_time, event_summary, event_transparency):
+def create_event(
+    calendar_id, start_time, end_time, event_summary, event_transparency, colorId=1
+):
     """Create a Calendar event."""
     try:
         service = get_google_calendar_service()
@@ -85,11 +100,43 @@ def create_event(calendar_id, start_time, end_time, event_summary, event_transpa
                 "timeZone": "America/New_York",
             },
             "transparency": event_transparency,
+            "colorId": colorId,
         }
         event = service.events().insert(calendarId=calendar_id, body=event).execute()
         print(f'Event created: {event.get("htmlLink")}')
     except HttpError as error:
         print("An error occurred: %s" % error)
+
+
+def delete_all_events(calendar_id, maxResults=50):
+    try:
+        service = get_google_calendar_service()
+        now = datetime.datetime.utcnow().isoformat() + "Z"
+        print(f"Getting the upcoming {maxResults} events")
+        events_result = (
+            service.events()
+            .list(
+                calendarId=calendar_id,
+                timeMin=now,
+                maxResults=maxResults,
+                singleEvents=True,
+                orderBy="startTime",
+            )
+            .execute()
+        )
+        events = events_result.get("items", [])
+        # Iterate through each event and delete it
+        for event in events:
+            try:
+                service.events().delete(
+                    calendarId=calendar_id, eventId=event["id"]
+                ).execute()
+                print("Event deleted with id " + event["id"])
+            except Exception as e:
+                print(f"Error deleting event with id {event['id']}: {str(e)}")
+
+    except Exception as e:
+        print(f"Error listing events from calendar {calendar_id}: {str(e)}")
 
 
 if __name__ == "__main__":

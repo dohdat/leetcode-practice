@@ -13,6 +13,7 @@ from data import (
     ERROR_LOGIN_MESSAGE,
 )
 from Calendar import create_event, list_upcoming_events
+from Utils import findConflictingEvents, fill_out_table_data
 from Login import url as login_url, payload, headers as login_headers
 
 # Define constants
@@ -81,8 +82,10 @@ def create_failed_event():
 
 
 def create_event_wrapper(args):
-    calendar_id, start_time, end_time, event_summary, event_transparency = args
-    create_event(calendar_id, start_time, end_time, event_summary, event_transparency)
+    calendar_id, start_time, end_time, event_summary, event_transparency, colorId = args
+    create_event(
+        calendar_id, start_time, end_time, event_summary, event_transparency, colorId
+    )
 
 
 # Calculate the date of the first Monday of next week
@@ -94,11 +97,21 @@ next_monday = today + timedelta(days=days_until_monday - 1)
 formatted_date = next_monday.strftime("%m/%d/%Y")
 print("Starting execution for week of " + formatted_date)
 
+fill_out_table_data(table_data, formatted_date)
+
+conflicting_events = list_upcoming_events(
+    "dohdat@gmail.com", MAX_CALENDAR_EVENTS * 3, True
+)
+findConflictingEvents(table_data, conflicting_events, formatted_date)
+
+
 # Define the URL with the calculated date
 urls = []
 
 # Iterate through the table data and generate URLs
 for entry in table_data:
+    if entry["scheduled"]:
+        continue
     weekday = entry["weekday"]
     hour = entry["hour"]
 
@@ -142,11 +155,52 @@ pattern = r"fillCell\('[^']*', '([^']*)', 'Scheduled!', '[^']*'\)"
 
 scheduled_fill_cells = [int(match) for match in re.findall(pattern, response.text)]
 
+# Create Remotasks events on Saturday to fill in the gaps
+day_of_week = today.weekday()
+remotasks_events = MAX_CALENDAR_EVENTS - len(scheduled_fill_cells)
+
+counter = {}
+max_counter_per_day = 5
 for entry in table_data:
-    if entry["fillCell"] in scheduled_fill_cells:
+    entry_day = str(entry["weekday"])
+
+    if entry_day not in counter:
+        counter[entry_day] = 0
+
+    if (
+        entry_day in ["1", "7"]
+        and remotasks_events > 0
+        and not entry["scheduled"]
+        and counter[entry_day] < max_counter_per_day
+        and day_of_week == 5
+    ):
         entry["scheduled"] = True
+        entry["type"] = "Remotasks"
+        remotasks_events -= 1
+        counter[entry_day] += 1
+
+    elif (
+        entry["fillCell"] in scheduled_fill_cells
+        and counter[entry_day] < max_counter_per_day
+    ):
+        entry["scheduled"] = True
+        entry["type"] = "Tutor.com"
+        counter[entry_day] += 1
+
+    elif (
+        entry_day not in ["1", "7"]
+        and remotasks_events > 0
+        and not entry["scheduled"]
+        and counter[entry_day] < max_counter_per_day
+        and day_of_week == 5
+    ):
+        entry["scheduled"] = True
+        entry["type"] = "Remotasks"
+        remotasks_events -= 1
+        counter[entry_day] += 1
     else:
         entry["scheduled"] = False
+
 
 # Create a list of events to create on the Google Calendar
 events = []
@@ -166,6 +220,7 @@ if created_events is not None and len(created_events) > 0:
 
 show_as_busy = "opaque"
 show_as_free = "transparent"
+
 for entry in table_data:
     if entry["scheduled"]:
         # Convert formatted_date to a datetime object
@@ -182,13 +237,23 @@ for entry in table_data:
             transparency = show_as_busy
         else:
             transparency = show_as_busy
+
+        event_summary = (
+            "Remotasks"
+            if "type" in entry and entry["type"] == "Remotasks"
+            else "Tutor.com"
+        )
+
         # Create the event dictionary
         event = {
             "start_time": start_time.strftime("%Y-%m-%dT%H:%M:%S"),
             "end_time": end_time.strftime("%Y-%m-%dT%H:%M:%S"),
-            "event_summary": "Tutor.com",
+            "event_summary": event_summary,
             "transparency": transparency,
         }
+
+        if event_summary == "Remotasks":
+            event["colorId"] = "7"
         # Check if the event has already been created
         event_created = False
         # convert event["start_time"] to PST time zone to compare with created_events
@@ -214,6 +279,10 @@ for entry in table_data:
         if not event_created:
             events.append(event)
 
+        if len(events) == MAX_CALENDAR_EVENTS - 2:
+            break
+
+print("The length of events is: " + str(len(events)))
 
 with ThreadPoolExecutor(max_workers=3) as executor:
     # Submit requests to the executor
@@ -226,6 +295,7 @@ with ThreadPoolExecutor(max_workers=3) as executor:
                 event["end_time"],
                 event["event_summary"],
                 event["transparency"],
+                event["colorId"] if "colorId" in event else None,
             )
             for event in events
         ],

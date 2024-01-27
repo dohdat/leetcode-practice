@@ -16,7 +16,13 @@ SCOPES = [
 ]
 
 if not os.path.exists("token.json"):
-    os.chdir(r"leetcode-practice/TutorCom")
+    try:
+        os.chdir(r"leetcode-practice/TutorCom")
+    except FileNotFoundError:
+        try:
+            os.chdir(r"C:\Users\dohda\leetcode-practice\TutorCom")
+        except FileNotFoundError:
+            print("Both paths are invalid. Please check your directory structure.")
 
 
 def get_google_calendar_service():

@@ -157,6 +157,7 @@ scheduled_fill_cells = [int(match) for match in re.findall(pattern, response.tex
 
 # Create Remotasks events on Saturday to fill in the gaps
 day_of_week = today.weekday()
+print(f"Day of the week: {day_of_week}")
 remotasks_events = MAX_CALENDAR_EVENTS - len(scheduled_fill_cells)
 
 counter = {}
@@ -166,38 +167,43 @@ for entry in table_data:
 
     if entry_day not in counter:
         counter[entry_day] = 0
+    if (
+        entry["fillCell"] in scheduled_fill_cells
+        and counter[entry_day] <= max_counter_per_day
+    ):
+        entry["scheduled"] = True
+        entry["type"] = "Tutor.com"
+        counter[entry_day] += 1
 
+# sort table_data by weekday 1 and 7 first then by weekday 2-6
+table_data.sort(key=lambda x: (x["weekday"] not in [1, 7], x["weekday"]))
+
+for entry in table_data:
+    entry_day = str(entry["weekday"])
     if (
         entry_day in ["1", "7"]
         and remotasks_events > 0
         and not entry["scheduled"]
-        and counter[entry_day] < max_counter_per_day
+        and counter[entry_day] <= max_counter_per_day
         and day_of_week == 5
     ):
         entry["scheduled"] = True
         entry["type"] = "Remotasks"
         remotasks_events -= 1
-        counter[entry_day] += 1
-
-    elif (
-        entry["fillCell"] in scheduled_fill_cells
-        and counter[entry_day] < max_counter_per_day
-    ):
-        entry["scheduled"] = True
-        entry["type"] = "Tutor.com"
         counter[entry_day] += 1
 
     elif (
         entry_day not in ["1", "7"]
         and remotasks_events > 0
         and not entry["scheduled"]
-        and counter[entry_day] < max_counter_per_day
+        and counter[entry_day] <= max_counter_per_day
         and day_of_week == 5
     ):
         entry["scheduled"] = True
         entry["type"] = "Remotasks"
         remotasks_events -= 1
         counter[entry_day] += 1
+
     else:
         entry["scheduled"] = False
 
@@ -279,7 +285,7 @@ for entry in table_data:
         if not event_created:
             events.append(event)
 
-        if len(events) == MAX_CALENDAR_EVENTS - 2:
+        if len(events) == MAX_CALENDAR_EVENTS:
             break
 
 print("The length of events is: " + str(len(events)))

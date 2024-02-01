@@ -204,7 +204,7 @@ for entry in table_data:
         remotasks_events -= 1
         counter[entry_day] += 1
 
-    else:
+    elif "type" in entry and entry["type"] != "Tutor.com":
         entry["scheduled"] = False
 
 

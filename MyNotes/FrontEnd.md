@@ -1,3 +1,7 @@
+React Redux 
+
+Actions -> Action Types -> Reducers -> Sagas -> Services
+
 ___
 
 ## Front End 

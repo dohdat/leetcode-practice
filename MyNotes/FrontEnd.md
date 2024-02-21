@@ -1,6 +1,6 @@
 React Redux 
 
-Actions -> Action Types -> Reducers -> Sagas -> Services
+Services-> Action Types -> Actions-> Sagas-> Reducers
 
 ___
 
